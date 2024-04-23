@@ -1,0 +1,41 @@
+@import "../../../../styles.scss";
+.content-header {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background-color: $color-yellow-header;
+    border-bottom: 3px solid $color-border-shadow;
+
+    .title-span{
+     visibility: hidden;
+     background-color: $color-blue-tooltip;
+     color: $color-white;
+     text-align: center;
+     border-radius: 6px;
+     padding: 5px 0;
+     position: absolute;
+     z-index: 1;
+     border: 2px solid $color-border-shadow;
+     font-size: 13px;
+     width: fit-content;
+     padding: 5px;
+     font-weight: bold;
+    }
+    .logo{
+        max-height: 70px;
+        padding-left: 30px;
+    }
+    .icon {
+        cursor: pointer;
+        font-size: 25px;
+        margin-top: 10px;
+        color: $color-blue-actions-header;
+    }
+
+    #icon-login:hover, #icon-cart:hover, #icon-Contact:hover, #icon-faceboock:hover, #icon-events:hover{
+            .title-span{
+                visibility: visible;
+            }
+        
+      }
+
+}
