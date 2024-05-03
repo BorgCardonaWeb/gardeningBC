@@ -1,0 +1,17 @@
+<div class="wrap-categories col-10 offset-1">
+  <h1>Categories</h1>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="row">
+        <div *ngFor="let categorie of categories; index as i;" class="col-lg col-md-6 col-sm-12 col-12">
+          <div class="card mb-3 mx-md-auto" >
+            <img src="./assets/images/categories/{{categorie.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{categorie.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
