@@ -9,7 +9,8 @@ import { CardCategoriesComponent } from './features/components/card-categories/c
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { categorie } from './features/models/models';
-import { FooterComponent } from './features/components/footer/footer.component';
+import { FooterComponent } from './features/components/footer/FooterComponent';
+import $ from "jquery";
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ import { FooterComponent } from './features/components/footer/footer.component';
     CommonModule,
     FooterComponent
   ],
-  providers:[FilterCategoriesService],
+  providers: [FilterCategoriesService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
 
   title = 'gardeningMalta';
 
-  categories: categorie[] =[];
+  categories: categorie[] = [];
 
 
   constructor(private categoriesService: FilterCategoriesService) { }
@@ -41,7 +42,5 @@ export class AppComponent implements OnInit {
       console.log(this.categories)
     });
   }
-
-
 
 }
