@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './searcher.component.html',
-  styleUrl: './searcher.component.css'
+  styleUrl: './searcher.component.scss'
 })
 export class SearcherComponent {
 

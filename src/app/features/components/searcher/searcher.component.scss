@@ -1,0 +1,32 @@
+@import "../../../../styles.scss";
+
+.wrap-search-input {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    h1 {
+        color: $color-green-logo;
+        font-size: 2rem;
+        margin-left: -5px;
+    }
+
+    .logo-header {
+        max-height: 136px;
+        margin-top: -88px;
+    }
+
+    .imp-search-nav {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    ::placeholder {
+        color: $color-green-logo
+    }
+
+    input:hover {
+        border: 2px solid $color-green-logo;
+
+    }
+
+}

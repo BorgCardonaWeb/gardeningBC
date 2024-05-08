@@ -16,7 +16,7 @@ import { DeliveriesComponent } from '../deliveries/deliveries.component';
     CommonModule
   ],
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css'
+  styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
 

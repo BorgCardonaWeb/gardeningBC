@@ -39,7 +39,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesService.getCategories().subscribe(data => {
       this.categories = data;
-      console.log(this.categories)
     });
   }
 

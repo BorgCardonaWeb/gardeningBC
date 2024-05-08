@@ -1,9 +1,8 @@
 @import "../../../../styles.scss";
 .content-header {
-    padding-top: 10px;
-    padding-bottom: 5px;
     background-color: $color-yellow-header;
     border-bottom: 3px solid $color-border-shadow;
+    padding-left: 30px;
 
     .title-span{
      visibility: hidden;
@@ -21,13 +20,12 @@
      font-weight: bold;
     }
     .logo{
-        max-height: 70px;
-        padding-left: 30px;
+        max-height: 85px;
     }
     .icon {
         cursor: pointer;
-        font-size: 25px;
-        margin-top: 10px;
+        font-size: 2rem;
+        margin-top: 15%;
         color: $color-blue-actions-header;
     }
 

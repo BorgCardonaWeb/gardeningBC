@@ -3,3 +3,7 @@ export enum footerOptions {
     Deliveries = "Deliveries",
     Police = "Privacy Policy",
   }
+
+  export enum navOptions {
+    contact = "Contact Us"
+  }

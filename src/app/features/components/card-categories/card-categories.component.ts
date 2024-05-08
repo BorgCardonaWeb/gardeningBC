@@ -18,7 +18,6 @@ export class CardCategoriesComponent {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.categories)
   }
 
 }

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './deliveries.component.html',
-  styleUrl: './deliveries.component.css'
+  styleUrl: './deliveries.component.scss'
 })
 export class DeliveriesComponent {
 
