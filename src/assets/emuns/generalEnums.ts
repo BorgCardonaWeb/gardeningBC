@@ -5,5 +5,5 @@ export enum footerOptions {
   }
 
   export enum navOptions {
-    contact = "Contact Us"
+    contact = "Contact"
   }

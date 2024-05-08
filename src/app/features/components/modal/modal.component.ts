@@ -5,6 +5,7 @@ import { NonNullableFormBuilder } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
 import { DeliveriesComponent } from '../deliveries/deliveries.component';
+import { ContactComponent } from '../contact/contact.component';
 
 @Component({
   selector: 'app-modal',
@@ -13,7 +14,8 @@ import { DeliveriesComponent } from '../deliveries/deliveries.component';
     TermsAndConditionsComponent,
     PrivacyPolicyComponent,
     DeliveriesComponent,
-    CommonModule
+    CommonModule,
+    ContactComponent
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'

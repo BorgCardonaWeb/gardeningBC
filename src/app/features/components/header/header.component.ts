@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ModalComponent } from '../modal/modal.component';
 import { navOptions } from '../../../../assets/emuns/generalEnums';
+import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [ModalComponent],
   providers: [
+    GeneralInfoServiceService,
     MdbModalService
   ],
   templateUrl: './header.component.html',
@@ -16,16 +17,10 @@ import { navOptions } from '../../../../assets/emuns/generalEnums';
 })
 export class HeaderComponent {
 
-  modalRef: MdbModalRef<ModalComponent> | null = null;
+  constructor(private generalInfoServiceService: GeneralInfoServiceService) { }
 
-  constructor(private modalService: MdbModalService) { }
-
-  openModal() {
-    this.modalRef = this.modalService.open(ModalComponent, {
-      modalClass: 'modal-xl',
-      data: {
-        title: navOptions.contact
-      }
-    });
+  openModal(type: number) {
+    this.generalInfoServiceService.openModal(type, navOptions.contact);
   }
+
 }

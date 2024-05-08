@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { ModalComponent } from '../modal/modal.component';
 import { footerOptions } from '../../../../assets/emuns/generalEnums';
+import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 
 @Component({
@@ -9,6 +9,7 @@ import { footerOptions } from '../../../../assets/emuns/generalEnums';
   standalone: true,
   imports: [],
   providers: [
+    GeneralInfoServiceService,
     MdbModalService
   ],
   templateUrl: './footer.component.html',
@@ -16,18 +17,9 @@ import { footerOptions } from '../../../../assets/emuns/generalEnums';
 })
 export class FooterComponent {
 
-
-  modalRef: MdbModalRef<ModalComponent> | null = null;
-
-  constructor(private modalService: MdbModalService) { }
+  constructor(private generalInfoServiceService: GeneralInfoServiceService) { }
 
   openModal(type: number) {
-    this.modalRef = this.modalService.open(ModalComponent, {
-      modalClass: 'modal-xl',
-      data: {
-        title: Object.values(footerOptions)[type],
-        type
-      }
-    });
+    this.generalInfoServiceService.openModal(type, Object.values(footerOptions)[type])
   }
 }
