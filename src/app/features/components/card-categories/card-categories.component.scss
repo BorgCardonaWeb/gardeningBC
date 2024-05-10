@@ -16,39 +16,50 @@
     }
 
     .card:hover {
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+       /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, box-shadow 0.3s, font-size 0.3s, transform 0.3s ease;
-        transform: scale(1.1);
-        font-weight: bold;
         z-index: 1
+        transform: scale(1.1);*/
+        font-weight: bold;
+        
+    }
+
+
+
+    .submenu {
+        color: gray;
+        font-weight: bold;
+        width: 100%;
+        position: absolute;
+        top: calc(100% + 0px);
+        left: 0;
+        background-color: $color-white;
+        border: 1px solid $color-white;
+        z-index: 9999;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 14px;
+    }
+
+    .submenu ul {
+        list-style-type: none;
+        padding: 0;
+        margin-left: 12%;
+    }
+
+    .submenu ul li:before {
+        content: "•";
+        color: $color-blue-tooltip;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+
+    li:hover {
+        font-weight: bold;
+        color: $color-blue-tooltip;
+        font-size: 16px; 
     }
 
 }
 
-.submenu {
-    text-align: center;
-    color: red;
-    width: 100%;
-    position: absolute;
-    top: calc(100% + 0px); 
-    left: 0;
-    background-color: $color-white;
-    border: 1px solid $color-white;
-    z-index: 9999; 
-    pointer-events: none; 
-     border-radius: 0 0 5px 5px;
-     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .submenu ul {
-    list-style-type: none; 
-    padding: 0; 
-}
-
-.submenu ul li:before {
-    content: "•"; 
-    color: $color-blue-tooltip; 
-    display: inline-block;
-    width: 1em; 
-    margin-left: -1em; 
-}

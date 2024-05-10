@@ -10,7 +10,7 @@ export class categorie {
     id!: string;
     name!: string;
     image!: string;
-    subcategorie!: subcategorie;
+    subcategories!:subcategorie[];
     showSubMenu: boolean = false
 }
 

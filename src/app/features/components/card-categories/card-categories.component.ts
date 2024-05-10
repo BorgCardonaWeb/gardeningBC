@@ -21,14 +21,13 @@ export class CardCategoriesComponent {
   onClickOutside(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const clickBox = document.getElementById(this.currentCategorie);
-    console.log(this.currentCategorie)
     if (!(clickBox && clickBox.contains(target))) {
       this.closeSubMenu();
     }
   }
 
-
   toggleSubMenu(index: number) {
+    console.log("entra aca");
     this.currentCategorie = `categorie-${index}`;
     this.closeSubMenu();
     this.categories[index].showSubMenu = !this.categories[index].showSubMenu;
@@ -38,6 +37,9 @@ export class CardCategoriesComponent {
     this.categories.forEach(category => {
       category.showSubMenu = false;
     });
+  }
 
+  getProductsByCategorie(categorie: string){
+    console.log(categorie);
   }
 }
