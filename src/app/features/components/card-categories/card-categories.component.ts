@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { categorie } from '../../models/models';
 import { CommonModule } from '@angular/common';
 
@@ -13,11 +13,31 @@ import { CommonModule } from '@angular/common';
 })
 export class CardCategoriesComponent {
 
-  @Input() categories: categorie[] =[];
+  @Input() categories: categorie[] = [];
 
-  constructor() { }
+  currentCategorie!: string;
 
-  ngOnInit(): void {
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const clickBox = document.getElementById(this.currentCategorie);
+    console.log(this.currentCategorie)
+    if (!(clickBox && clickBox.contains(target))) {
+      this.closeSubMenu();
+    }
   }
 
+
+  toggleSubMenu(index: number) {
+    this.currentCategorie = `categorie-${index}`;
+    this.closeSubMenu();
+    this.categories[index].showSubMenu = !this.categories[index].showSubMenu;
+  }
+
+  closeSubMenu() {
+    this.categories.forEach(category => {
+      category.showSubMenu = false;
+    });
+
+  }
 }

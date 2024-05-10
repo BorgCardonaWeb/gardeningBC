@@ -4,7 +4,7 @@
     cursor: pointer;
     font-size: 1.188rem;
 
-    h1{
+    h1 {
         color: $color-blue-actions-header;
         font-size: 24px;
     }
@@ -16,13 +16,39 @@
     }
 
     .card:hover {
-        opacity: 0.9;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, box-shadow 0.3s, font-size 0.3s, transform 0.3s ease;
         transform: scale(1.1);
         font-weight: bold;
-       
+        z-index: 1
     }
 
+}
 
+.submenu {
+    text-align: center;
+    color: red;
+    width: 100%;
+    position: absolute;
+    top: calc(100% + 0px); 
+    left: 0;
+    background-color: $color-white;
+    border: 1px solid $color-white;
+    z-index: 9999; 
+    pointer-events: none; 
+     border-radius: 0 0 5px 5px;
+     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .submenu ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+.submenu ul li:before {
+    content: "•"; 
+    color: $color-blue-tooltip; 
+    display: inline-block;
+    width: 1em; 
+    margin-left: -1em; 
 }

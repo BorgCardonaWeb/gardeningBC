@@ -1,14 +1,20 @@
-
 <div class="wrap-categories col-10 offset-1">
   <h1>Categories</h1>
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="row">
         <div *ngFor="let categorie of categories; index as i;" class="col-md-3 col-lg-3 col-xl">
-          <div class="card mb-3 mx-md-auto" >
+          <div id="categorie-{{i}}" class="card mb-3 mx-md-auto" (click)="toggleSubMenu(i)">
             <img src="./assets/images/categories/{{categorie.image}}" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-text">{{categorie.name}}</p>
+              <span *ngIf="categorie.showSubMenu" class="submenu">
+                <ul>
+                  <li>Elemento 1</li>
+                  <li>Elemento 2</li>
+                  <li>Elemento 3</li>
+                </ul>
+              </span>
             </div>
           </div>
         </div>
@@ -16,3 +22,4 @@
     </div>
   </div>
 </div>
+
