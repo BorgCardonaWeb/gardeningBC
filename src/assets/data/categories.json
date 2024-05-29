@@ -2,43 +2,196 @@
     {
         "id": "1",
         "name": "Watering",
-        "image": "watering.png",
+        "image": "watering.jpg",
         "subcategories": [
             {
                 "id": "1",
                 "name": "Garden Hose",
-                "image": "gardenHose.jpg",
-                "stock": true
+                "image": "gardenHose.JPG",
+                "stock": true,
+                "submenu": [
+                    {
+                        "id": "1",
+                        "name": "Traditional Hose",
+                        "stock": true
+                    },
+                    {
+                        "id": "2",
+                        "name": "Alternative Hose",
+                        "stock": true
+                    }
+                ]
             },
             {
                 "id": "2",
                 "name": "Hose Storage",
                 "image": "hoseStorage.jpg",
-                "stock": true
+                "stock": true,
+                "submenu": [
+                    {
+                        "id": "1",
+                        "name": "Auto Reel",
+                        "stock": true
+                    },
+                    {
+                        "id": "2",
+                        "name": "Enclosed Reel",
+                        "stock": true
+                    },
+                    {
+                        "id": "3",
+                        "name": "Enclosed Cart",
+                        "stock": true
+                    },
+                    {
+                        "id": "4",
+                        "name": "2-in-1 Open Reels",
+                        "stock": true
+                    },
+                    {
+                        "id": "5",
+                        "name": "Open Reels",
+                        "stock": true
+                    },
+                    {
+                        "id": "6",
+                        "name": "Open Carts",
+                        "stock": true
+                    },
+                    {
+                        "id": "7",
+                        "name": "Compact Storage",
+                        "stock": true
+                    }
+
+                ]
             },
             {
                 "id": "3",
                 "name": "Fittings and Connectors",
                 "image": "fittingsConnectors.jpg",
-                "stock": true
+                "stock": true,
+                "submenu": [
+                    {
+                        "id": "1",
+                        "name": "Tap Connectors",
+                        "stock": true
+                    },
+                    {
+                        "id": "2",
+                        "name": "Hose Connectors",
+                        "stock": true
+                    },
+                    {
+                        "id": "3",
+                        "name": "Gun/Sprinkler Connectorst",
+                        "stock": true
+                    },
+                    {
+                        "id": "4",
+                        "name": "Hose Extend & Repair",
+                        "stock": true
+                    },
+                    {
+                        "id": "5",
+                        "name": "Adaptors",
+                        "stock": true
+                    }
+                ]
             },
             {
                 "id": "4",
                 "name": "Spray Guns",
                 "image": "sprayGuns.jpg",
-                "stock": true
+                "stock": true,
+                "submenu": [
+                    {
+                        "id": "1",
+                        "name": "Nozzle",
+                        "stock": true
+                    },
+                    {
+                        "id": "2",
+                        "name": "Jet Spray Gun",
+                        "stock": true
+                    },
+                    {
+                        "id": "3",
+                        "name": "Multi Spray Guns",
+                        "stock": true
+                    },
+                    {
+                        "id": "4",
+                        "name": "Multi-Function Spray Guns",
+                        "stock": true
+                    },
+                    {
+                        "id": "5",
+                        "name": "Spray Starter Sets",
+                        "stock": true
+                    },
+                    {
+                        "id": "6",
+                        "name": "Lances",
+                        "stock": true
+                    }
+                ]
             },
             {
                 "id": "5",
                 "name": "Garden Sprinklers",
                 "image": "gardenSprinklers.jpg",
-                "stock": true
+                "stock": true,
+                "submenu": [
+                    {
+                        "id": "1",
+                        "name": "Rectangular Area Sprinklers",
+                        "stock": true
+                    },
+                    {
+                        "id": "2",
+                        "name": "Round Area Sprinklers",
+                        "stock": true
+                    }
+                ]
             },
             {
                 "id": "6",
                 "name": "Automatic Watering",
                 "image": "automaticWatering.jpg",
-                "stock": true
+                "stock": true,
+                "submenu": [
+                    {
+                        "id": "1",
+                        "name": "Pipeline",
+                        "stock": true
+                    },
+                    {
+                        "id": "2",
+                        "name": "Tap Connectors and Controllers",
+                        "stock": true
+                    },
+                    {
+                        "id": "3",
+                        "name": "Drippers",
+                        "stock": true
+                    },
+                    {
+                        "id": "4",
+                        "name": "Sprinklers and Jets",
+                        "stock": true
+                    },
+                    {
+                        "id": "5",
+                        "name": "Automatic Watering Kits",
+                        "stock": true
+                    },
+                    {
+                        "id": "6",
+                        "name": "Waterers",
+                        "stock": true
+                    }
+                ]
             },
             {
                 "id": "7",
@@ -50,14 +203,32 @@
                 "id": "8",
                 "name": "Garden Pumps",
                 "image": "gardenPumps.jpg",
-                "stock": true
+                "stock": true,
+                "submenu": [
+                    {
+                        "id": "1",
+                        "name": "Water Butt Pumps",
+                        "stock": true
+                    },
+                    {
+                        "id": "2",
+                        "name": "Flood Pumps",
+                        "stock": true
+                    }
+                    ,
+                    {
+                        "id": "2",
+                        "name": "Jet Pumps",
+                        "stock": true
+                    }
+                ]
             }
         ]
     },
     {
         "id": "2",
         "name": "Natural Gardening",
-        "image": "naturalGardening.png",
+        "image": "naturalGardeningRange.jpg",
         "subcategories": [
             {
                 "id": "1",
@@ -88,7 +259,7 @@
     {
         "id": "3",
         "name": "Weed Control",
-        "image":"weedControl.png",
+        "image": "weedControl.jpg",
         "subcategories": [
             {
                 "id": "1",
@@ -101,7 +272,7 @@
     {
         "id": "4",
         "name": "Spraying",
-        "image":"sprayers.jpg",
+        "image": "sprayers.jpg",
         "subcategories": [
             {
                 "id": "1",
@@ -169,7 +340,7 @@
     {
         "id": "6",
         "name": "Aquatics",
-        "image":"aquatics.png",
+        "image": "aquatics.jpg",
         "subcategories": [
             {
                 "id": "1",
