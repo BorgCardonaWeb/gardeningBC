@@ -19,9 +19,13 @@
     }
 
     .card:hover {
-        font-weight: bold;
+        .card-text {
+            font-weight: bold;
+        }
+
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s, box-shadow 0.3s;
+        transition: background-color 0.3s,
+        box-shadow 0.3s;
 
         img {
             transform: scale(1.05);
@@ -33,8 +37,7 @@
 
     .submenu {
         padding-top: 10px;
-        color: gray;
-        font-weight: bold;
+        color: #ef6c00;
         width: 100%;
         position: absolute;
         top: calc(100% + 0px);
@@ -44,17 +47,18 @@
         z-index: 9999;
         border-radius: 0 0 5px 5px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        font-size: 14px;
+        font-size: 1rem;
+        font-weight: bold;
+
     }
 
     .submenu ul {
         list-style-type: none;
-        padding: 0;
-        margin-left: 12%;
+        list-style: url ("./assets/icons/icon-collapse.svg");
+        padding-left: 15px;
     }
 
     .submenu ul li:before {
-        content: "•";
         color: $color-blue-tooltip;
         display: inline-block;
         width: 1em;
@@ -64,60 +68,6 @@
     li:hover {
         font-weight: bold;
         color: $color-blue-tooltip;
-        font-size: 16px;
-    }
-
-}
-
-
-.content-categorie-card {
-    width: 100%;
-    max-height: fit-content;
-    margin-bottom: 30px;
-    cursor: pointer;
-
-    .img-categorie {
-        border-radius: 7px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border: 2px solid $color-blue-tooltip;
-        width: 100%
-    }
-
-    .content-categorie-description {
-        color: $color-white;
-        background-color: $color-blue-tooltip;
-        word-break: break-all;
-        border-bottom-left-radius: 7px;
-        border-bottom-right-radius: 7px;
-        margin-top: -5px;
-        font-size: 1.188rem;
-        padding: 10px;
-    }
-
-    .wrap-menu{
-        color: gray;
-        font-weight: bold;
-        background-color: $color-white;
-        border-radius: 0 0 5px 5px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        width: 100%;
-        left: 0;
-        position: absolute;
-    }
-}
-
-.content-categorie-card:hover {
-        
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, box-shadow 0.3s;
-    transform: scale(1.05);
-        transition: transform 0.3s ease;
-
-    label {
-        font-weight: bold;
-        cursor: pointer;
     }
 
 }

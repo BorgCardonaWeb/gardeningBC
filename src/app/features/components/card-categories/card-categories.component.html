@@ -1,7 +1,3 @@
-<!-- -->
-
-
-
 <div class="wrap-categories col-10 offset-1">
   <div>
     <h1>Categories</h1>
@@ -12,14 +8,13 @@
             <div id="categorie-{{i}}" class="card mb-3 mx-md-auto" (click)="toggleSubMenu(i)">
               <img src="./assets/images/categories/{{categorie.image}}" class="card-img-top" alt="...">
               <div class="card-body">
-                <p class="card-text">{{categorie.name}}</p>
-
+                <label class="card-text">{{categorie.name}}</label>
                 <span *ngIf="categorie.showSubMenu" class="submenu">
                   <div>
                     <ul *ngFor="let subcategorie of categorie.subcategories; index as i;"
                       (click)="getProductsByCategorie(subcategorie.name)">
                       <li (click)="getProductsByCategorie(subcategorie.name)">
-                        {{subcategorie.name}}
+                        <i class="fa-solid fa-bars" style="margin-right: 5px;"></i> {{subcategorie.name}}
                       </li>
                     </ul>
                   </div>
@@ -32,25 +27,3 @@
     </div>
   </div>
 </div>
-
-
-<!--
-<div class="row">
-  <div *ngFor="let categorie of categories; index as i;" class="col-md-3 col-lg-3 col-xl wrap-card-container">
-    <div id="categorie-{{i}}" (click)="toggleSubMenu(i)" class="content-categorie-card">
-      <img src="./assets/images/categories/{{categorie.image}}" class="img-categorie">
-      <div class="content-categorie-description">
-        <label>{{categorie.name}}</label>
-      </div>
-
-      <div *ngIf="categorie.showSubMenu" class="wrap-menu">
-        <ul *ngFor="let subcategorie of categorie.subcategories; index as i;">
-          <li>
-            <label>{{subcategorie.name}}</label>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
- -->
