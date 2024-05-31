@@ -11,6 +11,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { categorie } from './features/models/models';
 import { FooterComponent } from './features/components/footer/FooterComponent';
 import $ from "jquery";
+import { ProductsComponent } from './features/components/products/products.component';
+import { BreadcrumbComponent } from './features/components/breadcrumb/breadcrumb.component';
+import { LocalStorageService } from './services/local-storage.service';
+import { categoriesKeyStorage, productsKeyStorage } from '../assets/emuns/const';
 
 @Component({
   selector: 'app-root',
@@ -21,25 +25,64 @@ import $ from "jquery";
     SearcherComponent,
     CardCategoriesComponent,
     CommonModule,
-    FooterComponent
+    FooterComponent,
+    ProductsComponent,
+    BreadcrumbComponent
   ],
-  providers: [FilterCategoriesService],
+  providers: [FilterCategoriesService, LocalStorageService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
 
   title = 'gardeningMalta';
+  categories: any;//categorie[] = [];
+  products: categorie[] = [];
+  showProducts = false;
+  categoriesData: any[] = [];
 
-  categories: categorie[] = [];
 
-
-  constructor(private categoriesService: FilterCategoriesService) { }
+  constructor(private categoriesService: FilterCategoriesService,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe(data => {
-      this.categories = data;
-    });
+    this.getCategories();
+    this.getProducts();
+  }
+
+  getCategories() {
+    const storage = this.localStorageService.getItem(categoriesKeyStorage);
+    if (storage) {
+      this.categories = JSON.parse(storage);;
+    } else {
+      this.categoriesService.getCategories().subscribe(data => {
+        this.categories = data;
+        this.localStorageService.setItem(categoriesKeyStorage, JSON.stringify(data));
+      });
+    }
+
+  }
+
+  getProducts() {
+    const storage = this.localStorageService.getItem(productsKeyStorage);
+    if (storage) {
+      this.products = JSON.parse(storage);;
+    } else {
+        this.categoriesService.getAllProducts().subscribe(data => {
+        this.products = data;
+        this.localStorageService.setItem(productsKeyStorage, JSON.stringify(data));
+      });
+    }
+  }
+
+
+  findProducts(data: any) {
+    this.categoriesData = data;
+    this.showProducts = true;
+  }
+
+  showPrincipalBanner(data: any) {
+    this.showProducts = false;
   }
 
 }

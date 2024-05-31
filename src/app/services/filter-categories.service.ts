@@ -12,4 +12,8 @@ export class FilterCategoriesService {
   getCategories(): Observable<any> {
     return this.http.get<any>('/assets/data/categories.json');
   }
+
+  getAllProducts(): Observable<any> {
+    return this.http.get<any>('/assets/data/products.json');
+  }
 }

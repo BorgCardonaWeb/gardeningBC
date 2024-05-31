@@ -11,9 +11,8 @@
                 <label class="card-text">{{categorie.name}}</label>
                 <span *ngIf="categorie.showSubMenu" class="submenu">
                   <div>
-                    <ul *ngFor="let subcategorie of categorie.subcategories; index as i;"
-                      (click)="getProductsByCategorie(subcategorie.name)">
-                      <li (click)="getProductsByCategorie(subcategorie.name)">
+                    <ul *ngFor="let subcategorie of categorie.subcategories; index as i;">
+                      <li (click)="getProductsByCategorie(categorie, subcategorie)">
                         <i class="fa-solid fa-bars" style="margin-right: 5px;"></i> {{subcategorie.name}}
                       </li>
                     </ul>

@@ -1,4 +1,4 @@
-import { Component, Input, HostListener } from '@angular/core';
+import { Component, Input, HostListener, Output, EventEmitter } from '@angular/core';
 import { categorie } from '../../models/models';
 import { CommonModule } from '@angular/common';
 
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class CardCategoriesComponent {
 
   @Input() categories: categorie[] = [];
+  @Output() categoriAndSubcategoriSelected = new EventEmitter<any>();
 
   currentCategorie!: string;
 
@@ -27,7 +28,6 @@ export class CardCategoriesComponent {
   }
 
   toggleSubMenu(index: number) {
-    console.log("entra aca");
     this.currentCategorie = `categorie-${index}`;
     this.closeSubMenu();
     this.categories[index].showSubMenu = !this.categories[index].showSubMenu;
@@ -39,7 +39,11 @@ export class CardCategoriesComponent {
     });
   }
 
-  getProductsByCategorie(categorie: string){
-    console.log(categorie);
+  getProductsByCategorie(categorie: any, subcategorie: any) {
+    this.categoriAndSubcategoriSelected.emit([
+      categorie,
+      subcategorie
+    ]);
+
   }
 }
