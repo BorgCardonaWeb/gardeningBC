@@ -12,7 +12,7 @@
 -->
 
 <div class="col-12">
-    <app-header></app-header>
+    <app-header (initPageLogo)="showPrincipalBanner($event)"></app-header>
     <div class="wrap-body">
         <app-breadcrumb *ngIf="showProducts" [categoriesData]="categoriesData" (initPage)="showPrincipalBanner($event)"></app-breadcrumb>
         <app-searcher></app-searcher>

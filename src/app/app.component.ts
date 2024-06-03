@@ -36,8 +36,7 @@ import { categoriesKeyStorage, productsKeyStorage } from '../assets/emuns/const'
 export class AppComponent implements OnInit {
 
   title = 'gardeningMalta';
-  categories: any;//categorie[] = [];
-  products: categorie[] = [];
+  categories: any;
   showProducts = false;
   categoriesData: any[] = [];
 
@@ -46,6 +45,7 @@ export class AppComponent implements OnInit {
     private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
+    this.localStorageService.clear()
     this.getCategories();
     this.getProducts();
   }
@@ -64,15 +64,9 @@ export class AppComponent implements OnInit {
   }
 
   getProducts() {
-    const storage = this.localStorageService.getItem(productsKeyStorage);
-    if (storage) {
-      this.products = JSON.parse(storage);;
-    } else {
-        this.categoriesService.getAllProducts().subscribe(data => {
-        this.products = data;
-        this.localStorageService.setItem(productsKeyStorage, JSON.stringify(data));
-      });
-    }
+    this.categoriesService.getAllProducts().subscribe(data => {
+      this.categoriesService.updateData(data);
+    });
   }
 
 
@@ -83,6 +77,7 @@ export class AppComponent implements OnInit {
 
   showPrincipalBanner(data: any) {
     this.showProducts = false;
+    this.getProducts();
   }
 
 }

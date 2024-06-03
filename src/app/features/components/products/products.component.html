@@ -1,11 +1,14 @@
 <div class="wrap-products col-10 offset-1">
     <h1>Products</h1>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="col">
+    <div *ngIf="showProducts" class="row">
+        si hay products
+    </div>
 
-            </div>
-        </div>
+    <div *ngIf="!showProducts" class="row">
+        <p class="txt-searching-error">
+            <i class="fa-solid fa-triangle-exclamation icon-info"></i>
+            No products found matching your selected filters.
+        </p>
     </div>
 </div>
