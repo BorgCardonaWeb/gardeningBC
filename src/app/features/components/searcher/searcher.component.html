@@ -2,17 +2,32 @@
     <div class="col-12">
         <div class="row">
             <div class="col-11 col-sm-11 col-xs-11 col-md-3 col-lg-2 offset-1">
-               <h1 class="title">GARDENING MALTA</h1>
+                <h1 class="title">GARDENING MALTA</h1>
             </div>
             <div class="col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                <div class="input-group mb-3">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search product" aria-label="Search product"
-                        aria-describedby="basic-addon2">
+                        aria-describedby="basic-addon2" [(ngModel)]="searcherProduct">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">Search</button>
                     </div>
+                    
+                   
                 </div>
+                <div *ngIf="showSearcherBox" class="wrap-searcher-box">
+                    <div class="searcher-box" *ngFor="let product of productsData; index as i;"
+                        (click)="selectProductForSearching(product.name, product.SKU)">
+                        {{product.name}}
+                    </div>
+                </div>
+
+
+                <p *ngIf="showSearcherBoxError" class="error-text">*No products found matching your selected filters.
+                </p>
             </div>
+
+
+
         </div>
     </div>
 

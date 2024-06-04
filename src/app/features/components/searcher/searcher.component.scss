@@ -29,4 +29,29 @@
 
     }
 
+    .wrap-searcher-box {
+        border: 2px solid $color-border-shadow;
+        position: absolute;
+        z-index: 90;
+        background-color: $color-white;
+        overflow: hidden;
+        max-height: 40%;
+        width: inherit;
+
+        .searcher-box {
+            cursor: pointer;
+        }
+
+       
+
+        .searcher-box:hover {
+            background-color: #e0e0e0;
+        }
+    }
+
+    .error-text{
+        position: absolute;
+        color: red;
+    }
+
 }

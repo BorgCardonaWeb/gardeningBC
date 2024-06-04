@@ -14,3 +14,17 @@ export class categorie {
     showSubMenu: boolean = false
 }
 
+
+export class product {
+    categoriID!: string;
+    subcategoriID!: string;
+    id!: string;
+    SKU!: string;
+    name!: string;
+    description!: string;
+    value!: string;
+    stock!: string;
+    image!: string;
+}
+
+
