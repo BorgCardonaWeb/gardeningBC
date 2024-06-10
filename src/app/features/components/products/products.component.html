@@ -1,8 +1,10 @@
 <div class="wrap-products col-10 offset-1">
     <h1>Products</h1>
 
-    <div *ngIf="showProducts" class="row">
-        si hay products
+    <div  *ngFor="let product of products; index as i;">
+        {{i}}
+        {{product.name}}
+        {{product.SKU}}
     </div>
 
     <div *ngIf="!showProducts" class="row">

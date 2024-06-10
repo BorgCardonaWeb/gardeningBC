@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, signal } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, effect, signal } from '@angular/core';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Observable } from 'rxjs';
 import { product } from '../../models/models';
@@ -20,6 +20,7 @@ export class SearcherComponent {
   showSearcherBox = false;
   searcherProduct = signal('');
   data$: Observable<any[]> | undefined;
+  @Output() nameProductSearched = new EventEmitter<any>();
 
   constructor(private categoriesService: FilterCategoriesService) {
     effect(() => { this.filterProductProsses(); })
@@ -51,18 +52,23 @@ export class SearcherComponent {
     });
   }
 
-  selectProductForSearching(nameProductSelected: string, idProductSelected: string) {
-    this.searcherProduct.set(nameProductSelected);
+  selectProductForSearching(nameProductSelected: string) {
     this.showSearcherBox = false;
     this.showSearcherBoxError = false;
+    this.searcherProduct.set(nameProductSelected);
   }
 
   getProducts() {
     this.data$ = this.categoriesService.data$;
-
     this.data$.subscribe(data => {
       this.productsData = data;
     });
+  }
+
+  emmitSearching() {
+    this.showSearcherBox = false;
+    this.showSearcherBoxError = false;
+    this.nameProductSearched.emit(this.searcherProduct());
   }
 
 }
