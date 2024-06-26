@@ -9,7 +9,7 @@
                     <input type="text" class="form-control" placeholder="Search product" aria-label="Search product"
                         aria-describedby="basic-addon2" [(ngModel)]="searcherProduct">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" (click)="emmitSearching()">Search</button>
+                        <button class="btn btn-outline-secondary" type="button" (click)="emmitSearching()" (keyup.enter)="emmitSearching()">Search</button>
                     </div>
                 </div>
                 <div  class="wrap-searcher-box">

@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-breadcrumb',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.scss'
 })
@@ -14,12 +15,22 @@ export class BreadcrumbComponent implements OnInit {
 
   categorieName: string = "";
   subcategorieName: string = "";
+  showBreadcrumb = false;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.categorieName = this.categoriesData[0].name;
-    this.subcategorieName = this.categoriesData[1].name;
+   
+  }
+
+  getCategoriesInfo(){
+    if(this.categoriesData?.length > 1){
+      this.categorieName = this.categoriesData[0].name;
+      this.subcategorieName = this.categoriesData[1].name;
+      this.showBreadcrumb = true;
+    } else{
+      this.showBreadcrumb = false;
+    }
   }
 
 

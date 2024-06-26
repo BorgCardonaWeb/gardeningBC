@@ -1,9 +1,11 @@
-import { Component, EventEmitter, OnInit, Output, effect, signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, effect, signal } from '@angular/core';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Observable } from 'rxjs';
 import { product } from '../../models/models';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { productsKeyStorage } from '../../../../assets/emuns/const';
+import { LocalStorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-searcher',
@@ -20,20 +22,24 @@ export class SearcherComponent {
   showSearcherBox = false;
   searcherProduct = signal('');
   data$: Observable<any[]> | undefined;
+  dataSearcher$: Observable<string> | undefined;
   @Output() nameProductSearched = new EventEmitter<any>();
 
   constructor(private categoriesService: FilterCategoriesService) {
+    this.getProducts();
+    this.clearSearcher();
     effect(() => { this.filterProductProsses(); })
   }
 
   filterProductProsses() {
-    this.getProducts();
+
     if (this.searcherProduct().length > 0) {
       this.filterProductBySearchingControl();
       this.showOrHideNoProductsMessagges();
       this.showSearcherBox = true;
     } else {
       this.showSearcherBox = false;
+      this.productsData = this.categoriesService.getProductsByStorage();
     }
   }
 
@@ -63,6 +69,15 @@ export class SearcherComponent {
     this.data$.subscribe(data => {
       this.productsData = data;
     });
+  }
+
+  clearSearcher() {
+    this.dataSearcher$ = this.categoriesService.dataSearcher$;
+    this.dataSearcher$.subscribe(data => {
+      this.searcherProduct.set("");
+      this.productsData = this.categoriesService.getProductsByStorage();
+    });
+    
   }
 
   emmitSearching() {

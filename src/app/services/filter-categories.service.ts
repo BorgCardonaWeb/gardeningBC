@@ -12,7 +12,14 @@ export class FilterCategoriesService {
   objectProductFilter: Subject<any> = new Subject<any>();
 
   private dataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  private searcherSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private searcherParamSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private searcherCategorie: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  
   public data$: Observable<any[]> = this.dataSubject.asObservable();
+  public dataSearcher$: Observable<string> = this.searcherSubject.asObservable();
+  public dataSearcherParam$: Observable<string> = this.searcherParamSubject.asObservable();
+  public dataSearcherCategorie$: Observable<string> = this.searcherCategorie.asObservable();
 
   constructor(private http: HttpClient,
     private localStorageService: LocalStorageService) { }
@@ -28,9 +35,23 @@ export class FilterCategoriesService {
   getSetProductsForSearching(data: any[]): void {
     this.dataSubject.next(data);
   }
+
   updateData(data: any[]): void {
     this.dataSubject.next(data);
   };
+
+  updateSearcher(data: ""): void {
+    this.searcherSubject.next(data);
+  };
+
+  updateParamSearcher(data: ""): void {
+    this.searcherParamSubject.next(data);
+  };
+
+  updateCategorieSearcher(data: ""): void {
+    this.searcherCategorie.next(data);
+  };
+
 
   getProductsByStorage(updateData = false) {
     const storage = this.localStorageService.getItem(productsKeyStorage);

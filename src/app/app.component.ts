@@ -34,8 +34,6 @@ export class AppComponent implements OnInit {
   title = 'gardeningMalta';
   categories: any;
   showProducts = false;
-  categoriesData: any;
-  paramProduct: string = "";
 
   constructor(private categoriesService: FilterCategoriesService,
     private localStorageService: LocalStorageService) {
@@ -68,17 +66,21 @@ export class AppComponent implements OnInit {
 
 
   findProducts(data: any) {
-    this.categoriesData = data;
     this.showProducts = true;
+    this.categoriesService.updateSearcher("");
+    this.categoriesService.updateParamSearcher("");
+    this.categoriesService.updateCategorieSearcher(data);
   }
 
   showPrincipalBanner(data: any) {
     this.showProducts = false;
+    this.categoriesService.updateCategorieSearcher("");
     this.getProducts();
   }
 
-  searchProductsByName(baseProduct: string) {
-    this.paramProduct = baseProduct;
+  searchProductsByName(baseProduct: any) {
+    this.showProducts = true;
+    this.categoriesService.updateParamSearcher(baseProduct);
   }
 
 }

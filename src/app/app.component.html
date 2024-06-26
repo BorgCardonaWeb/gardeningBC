@@ -14,11 +14,11 @@
 <div class="col-12">
     <app-header (initPageLogo)="showPrincipalBanner($event)"></app-header>
     <div class="wrap-body">
-        <app-breadcrumb *ngIf="showProducts" [categoriesData]="categoriesData" (initPage)="showPrincipalBanner($event)"></app-breadcrumb>
+        <app-breadcrumb *ngIf="showProducts" (initPage)="showPrincipalBanner($event)"></app-breadcrumb>
         <app-searcher (nameProductSearched)="searchProductsByName($event)"></app-searcher>
         <app-card-categories *ngIf="categories?.length > 0 && !showProducts" [categories]="categories" (categoriAndSubcategoriSelected)="findProducts($event)"></app-card-categories>
         <app-principal-banner *ngIf="!showProducts"></app-principal-banner>
-        <app-products *ngIf="showProducts" [categoriesData]="categoriesData" [paramSearcher]="paramProduct"></app-products>
+        <app-products *ngIf="showProducts"></app-products>
     </div>
     <app-footer></app-footer>
 </div>
