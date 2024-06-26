@@ -25,6 +25,7 @@ export class product {
     value!: string;
     stock!: string;
     image!: string;
+    isLoading : boolean = false
 }
 
 

@@ -28,7 +28,6 @@ export class BreadcrumbComponent implements OnInit {
   getCategoriesInfo(){
     this.dataSearcherCategorie$ = this.categoriesService.dataSearcherCategorie$;
     this.dataSearcherCategorie$.subscribe(_data => {
-      debugger
       if (_data !== "") {
         this.categorieName = _data[0].name;
         this.subcategorieName = _data[1].name;

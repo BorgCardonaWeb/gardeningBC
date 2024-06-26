@@ -1,9 +1,7 @@
 import { Component, Input, HostListener, Output, EventEmitter, OnInit } from '@angular/core';
 import { categorie } from '../../models/models';
 import { CommonModule } from '@angular/common';
-import { LocalStorageService } from '../../../services/local-storage.service';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
-import { productsKeyStorage } from '../../../../assets/emuns/const';
 
 @Component({
   selector: 'app-card-categories',

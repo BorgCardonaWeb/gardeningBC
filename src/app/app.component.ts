@@ -9,7 +9,7 @@ import { FooterComponent } from './features/components/footer/FooterComponent';
 import { ProductsComponent } from './features/components/products/products.component';
 import { BreadcrumbComponent } from './features/components/breadcrumb/breadcrumb.component';
 
-import { categoriesKeyStorage, productsKeyStorage } from '../assets/emuns/const';
+import { productsKeyStorage } from '../assets/emuns/const';
 import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
@@ -83,5 +83,6 @@ export class AppComponent implements OnInit {
     this.categoriesService.updateCategorieSearcher("");
     this.categoriesService.updateParamSearcher(baseProduct);
   }
+
 
 }

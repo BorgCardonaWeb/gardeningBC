@@ -1,18 +1,80 @@
 @import "../../../../styles.scss";
 
 .wrap-products {
+    margin-bottom: 400px;
+
     h1 {
         color: $color-blue-actions-header;
         font-size: 1.5rem;
         margin-bottom: 20px;
     }
-    .txt-searching-error{
+
+    .txt-searching-error {
         color: gray;
         font-size: 1.5rem;
         margin-top: 50px;
     }
 
-    .icon-info{
+    .icon-info {
         color: $orange-acctions;
     }
+
+    .wrap-card-products {
+        border: 1px solid $color-blue-tooltip;
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+    .wrap-images {
+        width: 100%;
+        text-align: center;
+    }
+
+    .img-product {
+        max-width: 200px;
+    }
+
+    .wrap-btn-cart {
+        border-radius: 0px 0px 5px 5px;
+        background-color: $orange-acctions;
+        color: $color-white;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .wrap-btn-cart:hover {
+        background-color: $color-red-acctions;
+    }
+
+    .product-name {
+        font-size: 1.125rem;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .wrap-details {
+        padding: 5px;
+    }
+
+    .sku-details {
+        color: $color-blue-tooltip;
+        font-size: 0.875rem;
+        margin-top: -10px;
+    }
+
+    .wrap-amount {
+        font-weight: bold;
+    }
+
+    .wrap-spinner {
+        float: right;
+        margin-top: -29px;
+    }
+
+    .wrap-check{
+        color: $color-green-logo;
+    }
+
 }

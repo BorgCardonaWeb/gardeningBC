@@ -1,27 +1,30 @@
 @import "../../../../styles.scss";
+
 .content-header {
     background-color: $color-yellow-header;
     border-bottom: 3px solid $color-border-shadow;
     padding-left: 30px;
 
-    .title-span{
-     visibility: hidden;
-     background-color: $color-blue-tooltip;
-     color: $color-white;
-     text-align: center;
-     border-radius: 6px;
-     padding: 5px 0;
-     position: absolute;
-     z-index: 1;
-     border: 2px solid $color-border-shadow;
-     font-size: 13px;
-     width: fit-content;
-     padding: 5px;
-     font-weight: bold;
+    .title-span {
+        visibility: hidden;
+        background-color: $color-blue-tooltip;
+        color: $color-white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        border: 2px solid $color-border-shadow;
+        font-size: 13px;
+        width: fit-content;
+        padding: 5px;
+        font-weight: bold;
     }
-    .logo{
+
+    .logo {
         max-height: 85px;
     }
+
     .icon {
         cursor: pointer;
         font-size: 2rem;
@@ -29,11 +32,31 @@
         color: $color-blue-actions-header;
     }
 
-    #icon-login:hover, #icon-cart:hover, #icon-Contact:hover, #icon-faceboock:hover, #icon-events:hover{
-            .title-span{
-                visibility: visible;
-            }
-        
-      }
+    #icon-login:hover,
+    #icon-cart:hover,
+    #icon-Contact:hover,
+    #icon-faceboock:hover,
+    #icon-events:hover {
+        .title-span {
+            visibility: visible;
+        }
+
+    }
+
+    .wrap-notification {
+        height: 30px;
+        width: 30px;
+        background-color: $color-green-actions;
+        position: absolute;
+        border-radius: 50%;
+        color: $color-white;
+        font-weight: bold;
+        text-align: center;
+        margin-top: -40px;
+        margin-left: 45px;
+    }
+
+
+
 
 }

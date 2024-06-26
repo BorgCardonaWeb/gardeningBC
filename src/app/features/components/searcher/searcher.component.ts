@@ -1,11 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, effect, signal } from '@angular/core';
+import { Component, EventEmitter, Output, effect, signal } from '@angular/core';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Observable } from 'rxjs';
-import { product } from '../../models/models';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { productsKeyStorage } from '../../../../assets/emuns/const';
-import { LocalStorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-searcher',

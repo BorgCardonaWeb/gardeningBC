@@ -12,11 +12,13 @@ export class FilterCategoriesService {
   objectProductFilter: Subject<any> = new Subject<any>();
 
   private dataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  private dataCounterSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   private searcherSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherParamSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherCategorie: BehaviorSubject<string> = new BehaviorSubject<string>("");
   
   public data$: Observable<any[]> = this.dataSubject.asObservable();
+  public dataCounter$: Observable<any[]> = this.dataCounterSubject.asObservable();
   public dataSearcher$: Observable<string> = this.searcherSubject.asObservable();
   public dataSearcherParam$: Observable<string> = this.searcherParamSubject.asObservable();
   public dataSearcherCategorie$: Observable<string> = this.searcherCategorie.asObservable();
@@ -38,6 +40,10 @@ export class FilterCategoriesService {
 
   updateData(data: any[]): void {
     this.dataSubject.next(data);
+  };
+
+  updateCounter(data: any[]): void {
+    this.dataCounterSubject.next(data);
   };
 
   updateSearcher(data: ""): void {
