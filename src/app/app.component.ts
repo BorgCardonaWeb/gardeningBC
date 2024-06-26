@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
 
   searchProductsByName(baseProduct: any) {
     this.showProducts = true;
+    this.categoriesService.updateCategorieSearcher("");
     this.categoriesService.updateParamSearcher(baseProduct);
   }
 
