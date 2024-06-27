@@ -3,7 +3,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
-import { productsToCartKeyStorage } from '../../../../assets/emuns/const';
+import { productsKeyStorage, productsToCartKeyStorage } from '../../../../assets/emuns/const';
 import { product } from '../../models/models';
 
 @Component({
@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
 
   idCategorie: string = "";
   idSubCategorie: string = "";
-  products: any;
+  products: product[] = [];
 
   dataSearcherParam$: Observable<any> | undefined;
   dataSearcherCategorie$: Observable<any> | undefined;
@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
   constructor(private categoriesService: FilterCategoriesService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.products = this.categoriesService.getProductsByStorage();
+    this.products = this.categoriesService.getDataByStorage(productsKeyStorage);
     this.getProductsBycategorie();
     this.getProductsByParam();
   }
@@ -41,7 +41,7 @@ export class ProductsComponent implements OnInit {
       if (_data !== "") {
         this.idCategorie = _data[0].id;
         this.idSubCategorie = _data[1].id;
-        this.products = this.categoriesService.getProductsByStorage();
+        this.products = this.categoriesService.getDataByStorage(productsKeyStorage);
         this.products = this.products.filter((data: any) =>
           data.categoriID == this.idCategorie &&
           data.subcategoriID == this.idSubCategorie
@@ -54,10 +54,10 @@ export class ProductsComponent implements OnInit {
     this.dataSearcherParam$ = this.categoriesService.dataSearcherParam$;
     this.dataSearcherParam$.subscribe(_data => {
       if (this.idCategorie == "" && this.idSubCategorie == "") {
-        this.products = this.categoriesService.getProductsByStorage();
+        this.products = this.categoriesService.getDataByStorage(productsKeyStorage);
       }
       if (_data !== "") {
-        this.products = this.categoriesService.getProductsByStorage();
+        this.products = this.categoriesService.getDataByStorage(productsKeyStorage);
         this.products = this.products.filter((data: any) => {
           return (String(data.name).toLocaleLowerCase().includes(_data.toLocaleLowerCase()) ||
             String(data.SKU).toLocaleLowerCase().includes(_data.toLocaleLowerCase()))
@@ -90,7 +90,7 @@ export class ProductsComponent implements OnInit {
     this.products[index].isLoading = false;
 
     let testdata: any = this.localStorageService.getItem(productsToCartKeyStorage)
-    this.categoriesService.updateCounter(JSON.parse(testdata));
+    this.categoriesService.updateCartProducts(JSON.parse(testdata));
   }
 
   cleanArray(array: product[]): product[] {

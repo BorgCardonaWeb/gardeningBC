@@ -12,13 +12,13 @@ export class FilterCategoriesService {
   objectProductFilter: Subject<any> = new Subject<any>();
 
   private dataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  private dataCounterSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  private dataCartProductsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   private searcherSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherParamSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherCategorie: BehaviorSubject<string> = new BehaviorSubject<string>("");
   
   public data$: Observable<any[]> = this.dataSubject.asObservable();
-  public dataCounter$: Observable<any[]> = this.dataCounterSubject.asObservable();
+  public dataCartProducts$: Observable<any[]> = this.dataCartProductsSubject.asObservable();
   public dataSearcher$: Observable<string> = this.searcherSubject.asObservable();
   public dataSearcherParam$: Observable<string> = this.searcherParamSubject.asObservable();
   public dataSearcherCategorie$: Observable<string> = this.searcherCategorie.asObservable();
@@ -34,16 +34,12 @@ export class FilterCategoriesService {
     return this.http.get<any>('/assets/data/products.json');
   }
 
-  getSetProductsForSearching(data: any[]): void {
-    this.dataSubject.next(data);
-  }
-
   updateData(data: any[]): void {
     this.dataSubject.next(data);
   };
 
-  updateCounter(data: any[]): void {
-    this.dataCounterSubject.next(data);
+  updateCartProducts(data: any[]): void {
+    this.dataCartProductsSubject.next(data);
   };
 
   updateSearcher(data: ""): void {
@@ -59,13 +55,15 @@ export class FilterCategoriesService {
   };
 
 
-  getProductsByStorage(updateData = false) {
-    const storage = this.localStorageService.getItem(productsKeyStorage);
+  getDataByStorage(key: string, updateData = false, ) {
+    const storage = this.localStorageService.getItem(key);
     if (storage) {
       if (updateData) {
         this.updateData(JSON.parse(storage));
       }
       return JSON.parse(storage);
+    } else{
+      return undefined;
     }
   }
 
@@ -73,7 +71,6 @@ export class FilterCategoriesService {
     this.localStorageService.removeItem(categoriesKeyStorage);
     this.localStorageService.removeItem(productsKeyStorage);
   }
-
 
 
 }

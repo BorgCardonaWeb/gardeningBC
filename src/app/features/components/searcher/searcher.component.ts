@@ -3,6 +3,7 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { productsKeyStorage } from '../../../../assets/emuns/const';
 
 @Component({
   selector: 'app-searcher',
@@ -36,7 +37,7 @@ export class SearcherComponent {
       this.showSearcherBox = true;
     } else {
       this.showSearcherBox = false;
-      this.productsData = this.categoriesService.getProductsByStorage();
+      this.productsData = this.categoriesService.getDataByStorage(productsKeyStorage);
     }
   }
 
@@ -72,7 +73,7 @@ export class SearcherComponent {
     this.dataSearcher$ = this.categoriesService.dataSearcher$;
     this.dataSearcher$.subscribe(data => {
       this.searcherProduct.set("");
-      this.productsData = this.categoriesService.getProductsByStorage();
+      this.productsData = this.categoriesService.getDataByStorage(productsKeyStorage);
     });
     
   }

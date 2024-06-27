@@ -2,6 +2,7 @@ import { Component, Input, HostListener, Output, EventEmitter, OnInit } from '@a
 import { categorie } from '../../models/models';
 import { CommonModule } from '@angular/common';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
+import { productsKeyStorage } from '../../../../assets/emuns/const';
 
 @Component({
   selector: 'app-card-categories',
@@ -33,7 +34,7 @@ export class CardCategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoriesService.getProductsByStorage(true);
+    this.categoriesService.getDataByStorage(productsKeyStorage, true);
   }
 
   toggleSubMenu(index: number) {
