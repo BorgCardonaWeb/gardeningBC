@@ -68,7 +68,9 @@ export class ProductsComponent implements OnInit {
 
   addToCart(index: number, product: product) {
     this.products[index].isLoading = true;
-
+    this.products[index].quantities = 1;
+    this.products[index].originalValue = Number(this.products[index].value)
+    
     const storage = this.localStorageService.getItem(productsToCartKeyStorage);
     let arrayData: product[] = [];
 
@@ -91,6 +93,7 @@ export class ProductsComponent implements OnInit {
 
     let testdata: any = this.localStorageService.getItem(productsToCartKeyStorage)
     this.categoriesService.updateCartProducts(JSON.parse(testdata));
+    
 
     setTimeout(() => {
       this.products[index].isLoading = false;

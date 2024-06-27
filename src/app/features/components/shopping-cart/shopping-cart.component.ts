@@ -15,6 +15,11 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 })
 export class ShoppingCartComponent {
 
+  get showAlert() {
+    return this.products?.length < 1;
+  }
+
+
   products: product[] = [];
 
   constructor(private categoriesService: FilterCategoriesService, private localStorageService: LocalStorageService) { }
@@ -32,9 +37,24 @@ export class ShoppingCartComponent {
 
   removeItemStorage(index: number) {
     this.products.splice(index, 1);
-    this.localStorageService.removeItem(productsToCartKeyStorage);
-    this.localStorageService.setItem(productsToCartKeyStorage, JSON.stringify(this.products));
+    this.localStorageService.updateItem(productsToCartKeyStorage, JSON.stringify(this.products));
     this.categoriesService.updateCartProducts(this.products);
   }
+
+  addCounterProduct(index: number) {
+    this.products[index].quantities = this.products[index].quantities + 1;
+    this.products[index].value = String(Number(this.products[index].value) + this.products[index].originalValue);
+    this.localStorageService.updateItem(productsToCartKeyStorage, JSON.stringify(this.products));
+  }
+
+  deleteCounterProduct(index: number) {
+    if (this.products[index].quantities > 1) {
+      this.products[index].quantities = this.products[index].quantities - 1;
+      this.products[index].value = String(Number(this.products[index].value) - this.products[index].originalValue);
+      this.localStorageService.updateItem(productsToCartKeyStorage, JSON.stringify(this.products));
+    }
+  }
+
+ 
 
 }

@@ -9,19 +9,26 @@
                         </div>
                         <div class="wrap-details">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6">
                                     <p class="text-uppercase product-name">{{product.name}}</p>
                                     <p class="text-uppercase sku-details">SKU: {{product.SKU}}</p>
                                     <span class="wrap-amount">{{ product.value |currency: 'EUR'}}</span>
                                 </div>
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-6 wrap-add-control">
-                                            + 1 -
+                                <div class="col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                                    <div class="row" style="margin-left: 0px; ">
+                                        <div class="col-6">
+                                            <div class="wrap-add-control">
+                                                <label class="simbol-txt" (click)="deleteCounterProduct(i)"><i
+                                                        class="fa-solid fa-minus"></i></label>
+                                                <label class="counter-txt">{{product.quantities}}</label>
+                                                <label class="simbol-txt" (click)="addCounterProduct(i)"><i
+                                                        class="fa-solid fa-plus"></i></label>
+                                            </div>
                                         </div>
                                         <div (click)="removeItemStorage(i)" class="col-6 wrap-trash-control">
                                             <i class="fa-solid fa-trash"></i>
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -31,6 +38,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+
+        <div *ngIf="showAlert" class="wrap-msm-empty">
+            <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+            Your shopping cart is empty.
         </div>
     </div>
 
