@@ -87,10 +87,14 @@ export class ProductsComponent implements OnInit {
     arrayData.push(product);
     arrayData = this.cleanArray(arrayData);
     this.localStorageService.setItem(productsToCartKeyStorage, JSON.stringify(arrayData));
-    this.products[index].isLoading = false;
+
 
     let testdata: any = this.localStorageService.getItem(productsToCartKeyStorage)
     this.categoriesService.updateCartProducts(JSON.parse(testdata));
+
+    setTimeout(() => {
+      this.products[index].isLoading = false;
+    }, 100);
   }
 
   cleanArray(array: product[]): product[] {

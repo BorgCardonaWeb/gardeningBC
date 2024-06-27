@@ -30,9 +30,11 @@ export class HeaderComponent implements OnInit {
 
   get showCounter() {
     this.counter = this.products.length;
-    console.log(this.counter)
     return this.products.length;
   }
+
+  contactTitle = navOptions.contact;
+  shoppingTitle = navOptions.ShoppingCart;
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService, private categoriesService: FilterCategoriesService) { }
 
@@ -41,8 +43,8 @@ export class HeaderComponent implements OnInit {
     this.getCounterProducts();
   }
 
-  openModal(type: number) {
-    this.generalInfoServiceService.openModal(type, navOptions.contact);
+  openModal(type: number, option : string) {
+    this.generalInfoServiceService.openModal(type, option);
   }
 
   goToInitLogo() {
@@ -57,7 +59,6 @@ export class HeaderComponent implements OnInit {
   }
 
   getCounterStorage() {
-    debugger
     const storage = this.categoriesService.getDataByStorage(productsToCartKeyStorage);
     if (storage) {
       this.products = storage;

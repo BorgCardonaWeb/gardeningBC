@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
 import { DeliveriesComponent } from '../deliveries/deliveries.component';
 import { ContactComponent } from '../contact/contact.component';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-modal',
@@ -14,6 +15,7 @@ import { ContactComponent } from '../contact/contact.component';
     TermsAndConditionsComponent,
     PrivacyPolicyComponent,
     DeliveriesComponent,
+    ShoppingCartComponent,
     CommonModule,
     ContactComponent
   ],

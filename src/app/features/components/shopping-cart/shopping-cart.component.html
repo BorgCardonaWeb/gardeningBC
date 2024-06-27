@@ -1,0 +1,37 @@
+<div class="wrap-shopping-cart">
+    <div class="row">
+        <div class="" *ngFor="let product of products; index as i;">
+            <div class="row">
+                <div class="col-10 offset-1">
+                    <div class="wrap-card-products">
+                        <div class="wrap-images">
+                            <img src="./assets/images/products/test.jpg" class="card-img-top img-product" alt="...">
+                        </div>
+                        <div class="wrap-details">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="text-uppercase product-name">{{product.name}}</p>
+                                    <p class="text-uppercase sku-details">SKU: {{product.SKU}}</p>
+                                    <span class="wrap-amount">{{ product.value |currency: 'EUR'}}</span>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-6 wrap-add-control">
+                                            + 1 -
+                                        </div>
+                                        <div (click)="removeItemStorage(i)" class="col-6 wrap-trash-control">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
