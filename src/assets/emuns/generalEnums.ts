@@ -8,3 +8,8 @@ export enum footerOptions {
     contact = "Contact",
     ShoppingCart = "Shopping Cart"
   }
+
+  export enum userSession {
+    login = "Login"
+  }
+ 

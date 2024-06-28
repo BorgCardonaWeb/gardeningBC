@@ -104,4 +104,22 @@
         color: $orange-acctions;
     }
 
+    .wrap-pay {
+        background-color: $color-red-acctions;
+        color: $color-white;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 30px;
+        cursor: pointer;
+    }
+
+    .wrap-pay:hover {
+        background-color: $color-red-dark-acctions;
+    }
+
+    .wrap-total {
+        text-align: right;
+    }
+
 }

@@ -39,11 +39,20 @@
                 </div>
             </div>
         </div>
-
-
         <div *ngIf="showAlert" class="wrap-msm-empty">
             <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
             Your shopping cart is empty.
+        </div>
+    </div>
+
+    <div *ngIf="!showAlert" class="col-12 wrap-pay" (click)="validateLogin()">
+        <div class="row">
+            <div class="col-6">
+                CHECKOUT
+            </div>
+            <div class="col-6 wrap-total">
+                {{ total|currency: 'EUR'}}
+            </div>
         </div>
     </div>
 

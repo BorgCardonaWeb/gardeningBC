@@ -20,4 +20,13 @@ export class GeneralInfoServiceService {
       }
     });
   }
+
+  closeModal() {
+    if (this.modalRef) {
+      this.modalRef.close();
+      this.modalRef = null; 
+    }
+  }
+  
+
 }

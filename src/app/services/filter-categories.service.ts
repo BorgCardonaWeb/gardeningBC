@@ -12,12 +12,14 @@ export class FilterCategoriesService {
   objectProductFilter: Subject<any> = new Subject<any>();
 
   private dataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  private dataModalSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private dataCartProductsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   private searcherSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherParamSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherCategorie: BehaviorSubject<string> = new BehaviorSubject<string>("");
   
   public data$: Observable<any[]> = this.dataSubject.asObservable();
+  public dataModal$: Observable<boolean> = this.dataModalSubject.asObservable();
   public dataCartProducts$: Observable<any[]> = this.dataCartProductsSubject.asObservable();
   public dataSearcher$: Observable<string> = this.searcherSubject.asObservable();
   public dataSearcherParam$: Observable<string> = this.searcherParamSubject.asObservable();
@@ -33,6 +35,10 @@ export class FilterCategoriesService {
   getAllProducts(): Observable<any> {
     return this.http.get<any>('/assets/data/products.json');
   }
+
+  updateModal(data: boolean): void {
+    this.dataModalSubject.next(data);
+  };
 
   updateData(data: any[]): void {
     this.dataSubject.next(data);

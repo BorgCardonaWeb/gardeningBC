@@ -7,6 +7,7 @@ import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.compone
 import { DeliveriesComponent } from '../deliveries/deliveries.component';
 import { ContactComponent } from '../contact/contact.component';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
+import { LoginPageComponent } from '../login-page/login-page.component';
 
 @Component({
   selector: 'app-modal',
@@ -17,7 +18,8 @@ import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component'
     DeliveriesComponent,
     ShoppingCartComponent,
     CommonModule,
-    ContactComponent
+    ContactComponent,
+    LoginPageComponent
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'

@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent implements OnInit {
 
   @Output() initPageLogo = new EventEmitter<any>();
+  dataModalAction$: Observable<boolean> | undefined;
   dataCounter$: Observable<any> | undefined;
   products: product[] = [];
   counter = 0;
@@ -41,9 +42,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getCounterStorage();
     this.getCounterProducts();
+    this.closeModal();
   }
 
-  openModal(type: number, option : string) {
+  openModal(type: number, option: string) {
     this.generalInfoServiceService.openModal(type, option);
   }
 
@@ -63,6 +65,15 @@ export class HeaderComponent implements OnInit {
     if (storage) {
       this.products = storage;
     }
+  }
+
+  closeModal() {
+    this.dataModalAction$ = this.categoriesService.dataModal$;
+    this.dataModalAction$.subscribe(_data => {
+      this.generalInfoServiceService.closeModal();
+      console.log("Se subscribe")
+    });
+    
   }
 
 }
