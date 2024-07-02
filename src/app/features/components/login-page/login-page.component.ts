@@ -15,7 +15,7 @@ export class LoginPageComponent implements OnInit {
   signupForm: FormGroup;
   showSignupForm: boolean = false;
   error: boolean = false;
-
+  success: boolean = false;
 
   @Input() showGeneralInf: boolean = false;
   countryCodes: any[] = [];
@@ -37,12 +37,19 @@ export class LoginPageComponent implements OnInit {
       address: ['', Validators.required],
       city: ['', Validators.required],
       postalCode: ['', [Validators.required, Validators.pattern(/^[A-Z]{2,3}\d{1,4}$/)]],
-      phonePrefix: [''],
-      phoneNumber: [''],
+      phonePrefix: ['+1'], // Default value
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]], 
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]]
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
+      ]],
+      confirmPassword: ['', Validators.required]
+    }, {
+      validators: this.passwordMatchValidator 
     });
-
   }
 
   ngOnInit(): void {
@@ -63,20 +70,32 @@ export class LoginPageComponent implements OnInit {
   onSubmitLogin(): void {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-    } else {
-      console.log('Form is invalid');
     }
   }
 
   onSubmitSignup(): void {
     if (this.signupForm.valid) {
       console.log(this.signupForm.value);
-    } else {
-      console.log('Form is invalid');
+      // Simulate success
+      this.success = true;
+      setTimeout(() => {
+        this.success = false;
+      }, 5000);
     }
   }
 
   toggleSignupForm(): void {
     this.showSignupForm = !this.showSignupForm;
+  }
+
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password');
+    const confirmPassword = form.get('confirmPassword');
+
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      confirmPassword.setErrors({ passwordMismatch: true });
+    } else {
+      confirmPassword?.setErrors(null);
+    }
   }
 }

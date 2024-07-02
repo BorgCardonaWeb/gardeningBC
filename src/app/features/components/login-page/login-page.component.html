@@ -1,6 +1,9 @@
 <div *ngIf="error" class="alert alert-danger" style="position: absolute;" role="alert">
   Oops! Something went wrong while creating your account. Please try again later or contact support for assistance.
 </div>
+<div *ngIf="success" style="position: absolute; width: 100%;" class="alert alert-success" role="alert">
+  The account has been created successfully
+</div>
 
 <div class="row wrap-session" [ngClass]="{'login-page': !showGeneralInf}">
   <div *ngIf="showGeneralInf" class="col-12">
@@ -90,15 +93,16 @@
       <div class="mb-3">
         <label for="signupPhonePrefix" class="form-label text-login">Phone Number</label>
         <div class="input-group">
-          <div class="input-group-prepend">
+          <div class="input-group-prepend" style="width: 30%;">
             <select class="form-select" id="signupPhonePrefix" formControlName="phonePrefix">
               <option *ngFor="let code of countryCodes" [value]="code.code">{{ code.name }} ({{ code.code }})</option>
             </select>
           </div>
-          <input id="signupPhoneNumber" class="form-control" formControlName="phoneNumber">
+          <input id="signupPhoneNumber" class="form-control" style="width: 70%;" formControlName="phoneNumber">
         </div>
         <div *ngIf="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched" class="text-danger mt-2">
           <small *ngIf="signupForm.get('phoneNumber')?.errors?.['required']">Phone Number is required.</small>
+          <small *ngIf="signupForm.get('phoneNumber')?.errors?.['pattern']">Phone Number must be numeric.</small>
         </div>
       </div>
 
@@ -119,6 +123,19 @@
           <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</small>
           <small *ngIf="signupForm.get('password')?.errors?.['maxlength']">Password cannot be more than 20 characters long.</small>
           <small *ngIf="signupForm.get('password')?.errors?.['pattern']">Password must contain at least one letter and one number.</small>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label text-login">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword">
+        <div class="text-danger">
+          <small *ngIf="signupForm.get('confirmPassword')?.errors?.['required'] && signupForm.get('confirmPassword')?.touched">
+            Confirm Password is required.
+          </small>
+          <small *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched">
+            Passwords do not match.
+          </small>
         </div>
       </div>
 
