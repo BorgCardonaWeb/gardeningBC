@@ -1,21 +1,27 @@
 @import "../../../../styles.scss";
 
 
+.login-page {
+    padding-top: 50px;
+}
+
+.inactive-class {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.text-danger{
+    color: $color-red-acctions;
+}
 .wrap-session {
     padding-bottom: 50px;
-    padding-top: 50px;
+
     .wrap-login {
         background-color: $color-gray-actions;
         border-radius: 5px;
         box-shadow: 0px 0px 5px gray;
         border: 2px solid $color-blue-tooltip;
         padding: 20px;
-
-
-        .inactive-class {
-            background-color: gray;
-            cursor: not-allowed;
-        }
 
         .text-login {
             color: $color-blue-actions-header;
@@ -38,7 +44,8 @@
 
     .hyperlink {
         text-align: right;
-        label{
+
+        label {
             font-weight: bold;
             color: $color-blue-actions-header;
             text-decoration: underline;
@@ -48,8 +55,8 @@
         label:hover {
             color: $orange-acctions;
         }
-    
-       
-      }
-   
+
+
+    }
+
 }

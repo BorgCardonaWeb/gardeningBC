@@ -36,6 +36,10 @@ export class FilterCategoriesService {
     return this.http.get<any>('/assets/data/products.json');
   }
 
+  getCountryCodes(): Observable<any[]> {
+    return this.http.get<any[]>('/assets/data/country-codes.json');
+  }
+
   updateModal(data: boolean): void {
     this.dataModalSubject.next(data);
   };
