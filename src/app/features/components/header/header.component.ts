@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
-import { navOptions } from '../../../../assets/emuns/generalEnums';
+import { navOptions, userSession } from '../../../../assets/emuns/generalEnums';
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
 
   contactTitle = navOptions.contact;
   shoppingTitle = navOptions.ShoppingCart;
+  loginTitle = userSession.login;
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService, private categoriesService: FilterCategoriesService) { }
 

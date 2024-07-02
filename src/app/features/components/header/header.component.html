@@ -24,7 +24,7 @@
     <div *ngIf="showCounter" class="wrap-notification">{{counter}}</div>
   </div>
   <div id="icon-login" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1">
-    <i class="icon fa-regular fa-user"></i>
+    <i class="icon fa-regular fa-user"  (click)="openModal(6, loginTitle)"></i>
     <span class="title-span">Login</span>
   </div>
 </div>
