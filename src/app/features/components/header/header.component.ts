@@ -73,10 +73,11 @@ export class HeaderComponent implements OnInit {
   }
 
   getLoginUserData() {
-    this. userLoginData$ = this.categoriesService.userLoginDataSubject$;
+    this.userLoginData$ = this.categoriesService.userLoginDataSubject$;
     this.userLoginData$.subscribe(_data => {
-      debugger
+      
     });
   }
+
 
 }

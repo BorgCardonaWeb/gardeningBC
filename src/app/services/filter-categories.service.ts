@@ -55,6 +55,7 @@ export class FilterCategoriesService {
   };
 
   updateUserLoginData(data: any[]): void {
+    console.log("ingresa a ;as funciones del servicio")
     this.userLoginDataSubject.next(data);
   };
 

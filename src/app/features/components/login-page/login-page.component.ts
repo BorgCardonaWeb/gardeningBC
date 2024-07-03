@@ -91,10 +91,12 @@ export class LoginPageComponent implements OnInit {
   }
 
   generateMockStogareUser(){
+    console.log("entra a la funcion desde el login")
     let data = [{
       name: "Xiomara Pulido",
       id: "123"
     }]
+
     this.categoriesService.setDataStorage(userkeystorage, data);
     this.categoriesService.updateUserLoginData(data);
     setTimeout(() => {
