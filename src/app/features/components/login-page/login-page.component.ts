@@ -20,6 +20,21 @@ export class LoginPageComponent implements OnInit {
   @Input() showGeneralInf: boolean = false;
   countryCodes: any[] = [];
 
+  get isValidConfirm() {
+    if(this.signupForm){
+      const password = this.signupForm.value['password'];
+      const confirmPassword = this.signupForm.value['confirmPassword'];
+      if (password !== confirmPassword) {
+        return false
+      } else {
+        return true;
+      }
+    } else{
+      return true;
+    }
+  }
+
+
   constructor(private fb: FormBuilder, private categoriesService: FilterCategoriesService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -37,8 +52,8 @@ export class LoginPageComponent implements OnInit {
       address: ['', Validators.required],
       city: ['', Validators.required],
       postalCode: ['', [Validators.required, Validators.pattern(/^[A-Z]{2,3}\d{1,4}$/)]],
-      phonePrefix: ['+1'], // Default value
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]], 
+      phonePrefix: ['+356'], // Default value
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [
         Validators.required,
@@ -48,7 +63,7 @@ export class LoginPageComponent implements OnInit {
       ]],
       confirmPassword: ['', Validators.required]
     }, {
-      validators: this.passwordMatchValidator 
+      validators: this.passwordMatchValidator
     });
   }
 
