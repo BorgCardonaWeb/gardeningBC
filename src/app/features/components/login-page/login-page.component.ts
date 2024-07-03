@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
+import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
+import { userkeystorage } from '../../../../assets/emuns/const';
 
 @Component({
   selector: 'app-login-page',
@@ -13,8 +15,9 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
-  showSignupForm: boolean = false;
-  error: boolean = false;
+  showSignupForm = false;
+  error = false;
+  alertSuccess = false;
 
   @Input() showGeneralInf: boolean = false;
   countryCodes: any[] = [];
@@ -34,7 +37,7 @@ export class LoginPageComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder, private categoriesService: FilterCategoriesService) {
+  constructor(private fb: FormBuilder, private categoriesService: FilterCategoriesService, private generalInfoServiceService: GeneralInfoServiceService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [
@@ -83,9 +86,22 @@ export class LoginPageComponent implements OnInit {
 
   onSubmitLogin(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      this.generateMockStogareUser();
     }
   }
+
+  generateMockStogareUser(){
+    let data = [{
+      name: "Xiomara Pulido",
+      id: "123"
+    }]
+    this.categoriesService.setDataStorage(userkeystorage, data);
+    this.categoriesService.updateUserLoginData(data);
+    setTimeout(() => {
+      this.generalInfoServiceService.closeModal();
+    });
+  }
+
 
   toggleSignupForm(): void {
     this.showSignupForm = !this.showSignupForm;
@@ -103,12 +119,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmitSignup(): void {
-  /*  if (this.signupForm.valid) {
-      console.log("Se envia")
-      this.categoriesService.sendSuccess(true);
-    }*/
-
-    this.categoriesService.sendSuccess(true);
+    if (this.signupForm.valid) {
+      this.alertSuccess = true;
+      setTimeout(() => {
+        this.toggleSignupForm();
+      }, 500);
+      setTimeout(() => {
+        this.alertSuccess = false;
+      }, 5000);
+    }
   }
 
 }

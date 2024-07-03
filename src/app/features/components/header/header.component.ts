@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() initPageLogo = new EventEmitter<any>();
   dataModalAction$: Observable<boolean> | undefined;
+  userLoginData$: Observable<any> | undefined;
   dataCounter$: Observable<any> | undefined;
   products: product[] = [];
   counter = 0;
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit {
     this.getCounterStorage();
     this.getCounterProducts();
     this.closeModal();
+    this.getLoginUserData();
   }
 
   openModal(type: number, option: string) {
@@ -67,6 +69,13 @@ export class HeaderComponent implements OnInit {
     this.dataModalAction$ = this.categoriesService.dataModal$;
     this.dataModalAction$.subscribe(_data => {
       this.generalInfoServiceService.closeModal();
+    });
+  }
+
+  getLoginUserData() {
+    this. userLoginData$ = this.categoriesService.userLoginDataSubject$;
+    this.userLoginData$.subscribe(_data => {
+      debugger
     });
   }
 

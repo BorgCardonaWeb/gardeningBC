@@ -17,15 +17,15 @@ export class FilterCategoriesService {
   private searcherSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherParamSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherCategorie: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  private dataSuccess: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  
+  private userLoginDataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+
   public data$: Observable<any[]> = this.dataSubject.asObservable();
   public dataModal$: Observable<boolean> = this.dataModalSubject.asObservable();
   public dataCartProducts$: Observable<any[]> = this.dataCartProductsSubject.asObservable();
   public dataSearcher$: Observable<string> = this.searcherSubject.asObservable();
   public dataSearcherParam$: Observable<string> = this.searcherParamSubject.asObservable();
   public dataSearcherCategorie$: Observable<string> = this.searcherCategorie.asObservable();
-  public dataSuccess$: Observable<boolean> = this.dataSuccess.asObservable();
+  public userLoginDataSubject$: Observable<any[]> = this.userLoginDataSubject.asObservable();
 
   constructor(private http: HttpClient,
     private localStorageService: LocalStorageService) { }
@@ -54,6 +54,10 @@ export class FilterCategoriesService {
     this.dataCartProductsSubject.next(data);
   };
 
+  updateUserLoginData(data: any[]): void {
+    this.userLoginDataSubject.next(data);
+  };
+
   updateSearcher(data: ""): void {
     this.searcherSubject.next(data);
   };
@@ -66,24 +70,34 @@ export class FilterCategoriesService {
     this.searcherCategorie.next(data);
   };
 
-  sendSuccess(data: boolean): void {
-    this.dataSuccess.next(data);
-  };
+ 
 
-  getDataByStorage(key: string, updateData = false, ) {
+  getDataByStorage(key: string, updateData = false,) {
     const storage = this.localStorageService.getItem(key);
     if (storage) {
       if (updateData) {
         this.updateData(JSON.parse(storage));
       }
       return JSON.parse(storage);
-    } else{
+    } else {
       return undefined;
     }
   }
-  
 
-  clearStorage(){
+  setDataStorage(key: string, data: any) {
+    const storage = this.localStorageService.getItem(key);
+    this.localStorageService.setItem(productsKeyStorage, JSON.stringify(data));
+    if (storage) {
+      this.localStorageService.removeItem(productsKeyStorage);
+      this.localStorageService.setItem(productsKeyStorage, JSON.stringify(data));
+    } else {
+      this.localStorageService.setItem(productsKeyStorage, JSON.stringify(data));
+    }
+
+  }
+
+
+  clearStorage() {
     this.localStorageService.removeItem(categoriesKeyStorage);
     this.localStorageService.removeItem(productsKeyStorage);
   }

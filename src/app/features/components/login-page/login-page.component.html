@@ -2,6 +2,13 @@
   Oops! Something went wrong while creating your account. Please try again later or contact support for assistance.
 </div>
 
+<div *ngIf="alertSuccess" class="alert alert-success" style="position: absolute;" role="alert">
+  Your account has been successfully created!
+</div>
+
+
+
+
 <div class="row wrap-session" [ngClass]="{'login-page': !showGeneralInf}">
   <div *ngIf="showGeneralInf" class="col-12">
     <p class="text-title">
@@ -16,8 +23,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
       <div class="mb-3">
         <label for="loginEmail" class="form-label text-login">Email address</label>
-        <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com"
-          formControlName="email">
+        <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" formControlName="email">
         <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
           Email is required and must be a valid email address.
         </div>
@@ -83,7 +89,8 @@
         <input id="signupPostalCode" class="form-control" formControlName="postalCode">
         <div *ngIf="signupForm.get('postalCode')?.invalid && signupForm.get('postalCode')?.touched" class="text-danger">
           <small *ngIf="signupForm.get('postalCode')?.errors?.['required']">Postal Code is required.</small>
-          <small *ngIf="signupForm.get('postalCode')?.errors?.['pattern']">Postal Code must match the pattern 'MXR1363'.</small>
+          <small *ngIf="signupForm.get('postalCode')?.errors?.['pattern']">Postal Code must match the pattern
+            'MXR1363'.</small>
         </div>
       </div>
 
@@ -97,7 +104,8 @@
           </div>
           <input id="signupPhoneNumber" class="form-control" style="width: 70%;" formControlName="phoneNumber">
         </div>
-        <div *ngIf="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched" class="text-danger mt-2">
+        <div *ngIf="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched"
+          class="text-danger mt-2">
           <small *ngIf="signupForm.get('phoneNumber')?.errors?.['required']">Phone Number is required.</small>
           <small *ngIf="signupForm.get('phoneNumber')?.errors?.['pattern']">Phone Number must be numeric.</small>
         </div>
@@ -117,12 +125,15 @@
         <input type="password" id="signupPassword" class="form-control" formControlName="password">
         <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-danger">
           <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</small>
-          <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</small>
-          <small *ngIf="signupForm.get('password')?.errors?.['maxlength']">Password cannot be more than 20 characters long.</small>
-          <small *ngIf="signupForm.get('password')?.errors?.['pattern']">Password must contain at least one letter and one number.</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters
+            long.</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['maxlength']">Password cannot be more than 20 characters
+            long.</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['pattern']">Password must contain at least one letter and
+            one number.</small>
         </div>
       </div>
-      
+
       <div class="mb-3">
         <label for="confirmPassword" class="form-label text-login">Confirm Password</label>
         <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword">
