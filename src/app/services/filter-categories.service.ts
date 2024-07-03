@@ -17,6 +17,7 @@ export class FilterCategoriesService {
   private searcherSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherParamSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherCategorie: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private dataSuccess: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   
   public data$: Observable<any[]> = this.dataSubject.asObservable();
   public dataModal$: Observable<boolean> = this.dataModalSubject.asObservable();
@@ -24,6 +25,7 @@ export class FilterCategoriesService {
   public dataSearcher$: Observable<string> = this.searcherSubject.asObservable();
   public dataSearcherParam$: Observable<string> = this.searcherParamSubject.asObservable();
   public dataSearcherCategorie$: Observable<string> = this.searcherCategorie.asObservable();
+  public dataSuccess$: Observable<boolean> = this.dataSuccess.asObservable();
 
   constructor(private http: HttpClient,
     private localStorageService: LocalStorageService) { }
@@ -64,6 +66,9 @@ export class FilterCategoriesService {
     this.searcherCategorie.next(data);
   };
 
+  sendSuccess(data: boolean): void {
+    this.dataSuccess.next(data);
+  };
 
   getDataByStorage(key: string, updateData = false, ) {
     const storage = this.localStorageService.getItem(key);
@@ -76,11 +81,13 @@ export class FilterCategoriesService {
       return undefined;
     }
   }
+  
 
   clearStorage(){
     this.localStorageService.removeItem(categoriesKeyStorage);
     this.localStorageService.removeItem(productsKeyStorage);
   }
+
 
 
 }

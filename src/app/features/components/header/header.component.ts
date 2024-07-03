@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
 import { navOptions, userSession } from '../../../../assets/emuns/generalEnums';
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
-import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Observable } from 'rxjs';
 import { product } from '../../models/models';
@@ -13,10 +12,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-header',
   standalone: true,
   imports: [ModalComponent, CommonModule],
-  providers: [
-    GeneralInfoServiceService,
-    MdbModalService
-  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -72,9 +67,7 @@ export class HeaderComponent implements OnInit {
     this.dataModalAction$ = this.categoriesService.dataModal$;
     this.dataModalAction$.subscribe(_data => {
       this.generalInfoServiceService.closeModal();
-      console.log("Se subscribe")
     });
-    
   }
 
 }

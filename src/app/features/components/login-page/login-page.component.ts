@@ -15,7 +15,6 @@ export class LoginPageComponent implements OnInit {
   signupForm: FormGroup;
   showSignupForm: boolean = false;
   error: boolean = false;
-  success: boolean = false;
 
   @Input() showGeneralInf: boolean = false;
   countryCodes: any[] = [];
@@ -88,17 +87,6 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  onSubmitSignup(): void {
-    if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
-      // Simulate success
-      this.success = true;
-      setTimeout(() => {
-        this.success = false;
-      }, 5000);
-    }
-  }
-
   toggleSignupForm(): void {
     this.showSignupForm = !this.showSignupForm;
   }
@@ -113,4 +101,14 @@ export class LoginPageComponent implements OnInit {
       confirmPassword?.setErrors(null);
     }
   }
+
+  onSubmitSignup(): void {
+  /*  if (this.signupForm.valid) {
+      console.log("Se envia")
+      this.categoriesService.sendSuccess(true);
+    }*/
+
+    this.categoriesService.sendSuccess(true);
+  }
+
 }

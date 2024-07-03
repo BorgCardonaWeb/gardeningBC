@@ -10,7 +10,7 @@ import { product } from '../../models/models';
   selector: 'app-products',
   standalone: true,
   imports: [CommonModule],
-  providers: [CurrencyPipe, LocalStorageService],
+  providers: [CurrencyPipe],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })

@@ -5,17 +5,14 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
-import { navOptions, userSession } from '../../../../assets/emuns/generalEnums';
-import { MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { userSession } from '../../../../assets/emuns/generalEnums';
+
 
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
   imports: [CommonModule],
-  providers: [CurrencyPipe,
-    LocalStorageService,
-    GeneralInfoServiceService,
-    MdbModalService],
+  providers: [CurrencyPipe],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.scss'
 })

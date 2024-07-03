@@ -1,9 +1,6 @@
 <div *ngIf="error" class="alert alert-danger" style="position: absolute;" role="alert">
   Oops! Something went wrong while creating your account. Please try again later or contact support for assistance.
 </div>
-<div *ngIf="success" style="position: absolute; width: 100%;" class="alert alert-success" role="alert">
-  The account has been created successfully
-</div>
 
 <div class="row wrap-session" [ngClass]="{'login-page': !showGeneralInf}">
   <div *ngIf="showGeneralInf" class="col-12">
