@@ -19,6 +19,8 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 export class HeaderComponent implements OnInit {
 
   @Output() initPageLogo = new EventEmitter<any>();
+  @Output() showUserPanel = new EventEmitter<boolean>();
+
   dataModalAction$: Observable<boolean> | undefined;
   userLoginData$: Observable<any> | undefined;
   dataCounter$: Observable<any> | undefined;
@@ -114,6 +116,7 @@ export class HeaderComponent implements OnInit {
     let storage = JSON.parse(String(this.localStorageService.getItem(userkeystorage)));
     if (storage !== null && storage.length > 0) {
       this.showLogout = true;
+      this.showUserPanel.emit(true);
     } else {
       this.showLogout = false;
     }
@@ -124,6 +127,7 @@ export class HeaderComponent implements OnInit {
     this.categoriesService.clearStorage();
     this.products = [];
     this.showLogout = false;
+    this.showUserPanel.emit(false);
   }
 
 }

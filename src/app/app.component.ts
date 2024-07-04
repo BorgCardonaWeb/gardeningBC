@@ -11,6 +11,7 @@ import { BreadcrumbComponent } from './features/components/breadcrumb/breadcrumb
 
 import { productsKeyStorage } from '../assets/emuns/const';
 import { LocalStorageService } from './services/local-storage.service';
+import { NavUserComponent } from './features/components/nav-user/nav-user.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,7 +23,8 @@ import { LocalStorageService } from './services/local-storage.service';
     CommonModule,
     FooterComponent,
     ProductsComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    NavUserComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit {
   title = 'gardeningMalta';
   categories: any;
   showProducts = false;
+  showUserPanelData = false;
 
   constructor(private categoriesService: FilterCategoriesService,
     private localStorageService: LocalStorageService) {
@@ -68,5 +71,8 @@ export class AppComponent implements OnInit {
     this.categoriesService.updateParamSearcher(baseProduct);
   }
 
+  showUserPanelComponent(data: boolean){
+    this.showUserPanelData = data;
+  }
 
 }
