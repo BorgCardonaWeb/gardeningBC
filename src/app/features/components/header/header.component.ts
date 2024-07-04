@@ -8,6 +8,7 @@ import { product } from '../../models/models';
 import { productsToCartKeyStorage, userkeystorage } from '../../../../assets/emuns/const';
 import { CommonModule } from '@angular/common';
 import { LocalStorageService } from '../../../services/local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +50,7 @@ export class HeaderComponent implements OnInit {
   loginTitle = userSession.login;
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService,
+    private router: Router,
     private categoriesService: FilterCategoriesService,
     private localStorageService: LocalStorageService) { }
 
@@ -128,6 +130,7 @@ export class HeaderComponent implements OnInit {
     this.products = [];
     this.showLogout = false;
     this.showUserPanel.emit(false);
+    this.router.navigate(["home"]);
   }
 
 }

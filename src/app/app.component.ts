@@ -1,63 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from './features/components/header/header.component';
-import { PrincipalBannerComponent } from './features/components/principal-banner/principal-banner.component';
-import { SearcherComponent } from './features/components/searcher/searcher.component';
 import { FilterCategoriesService } from './services/filter-categories.service';
-import { CardCategoriesComponent } from './features/components/card-categories/card-categories.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './features/components/footer/FooterComponent';
-import { ProductsComponent } from './features/components/products/products.component';
-import { BreadcrumbComponent } from './features/components/breadcrumb/breadcrumb.component';
 
-import { productsKeyStorage } from '../assets/emuns/const';
-import { LocalStorageService } from './services/local-storage.service';
 import { NavUserComponent } from './features/components/nav-user/nav-user.component';
+import { HomePageComponent } from './features/components/home-page/home-page.component';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   standalone: true,
-  //imports: [RouterOutlet, FontAwesomeModule, RouterLink],
+ // imports: [RouterOutlet, FontAwesomeModule, RouterLink],
   imports: [HeaderComponent,
-    PrincipalBannerComponent,
-    SearcherComponent,
-    CardCategoriesComponent,
+    NavUserComponent,
     CommonModule,
+    HomePageComponent,
     FooterComponent,
-    ProductsComponent,
-    BreadcrumbComponent,
-    NavUserComponent
+    RouterOutlet, 
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'gardeningMalta';
   categories: any;
   showProducts = false;
   showUserPanelData = false;
 
-  constructor(private categoriesService: FilterCategoriesService,
-    private localStorageService: LocalStorageService) {
+  constructor(private categoriesService: FilterCategoriesService, private router: Router) {
   }
 
-  ngOnInit(): void {
-    this.getCategories();
-    this.categoriesService.getProducts();
-  }
-
-  getCategories() {
-    this.categoriesService.getCategories().subscribe(data => {
-      this.categories = data;
-    });
-
-  }
-
-  findProducts(data: any) {
-    this.showProducts = true;
-    this.categoriesService.updateSearcher("");
-    this.categoriesService.updateParamSearcher("");
-    this.categoriesService.updateCategorieSearcher(data);
-  }
 
   showPrincipalBanner(data: any) {
     this.showProducts = false;
@@ -65,14 +38,12 @@ export class AppComponent implements OnInit {
     this.categoriesService.getProducts();
   }
 
-  searchProductsByName(baseProduct: any) {
-    this.showProducts = true;
-    this.categoriesService.updateCategorieSearcher("");
-    this.categoriesService.updateParamSearcher(baseProduct);
+  showUserPanelComponent(data: boolean) {
+    this.showUserPanelData = data;
   }
 
-  showUserPanelComponent(data: boolean){
-    this.showUserPanelData = data;
+  loadHomePage(data: any){
+    this.router.navigate(["home"]);
   }
 
 }

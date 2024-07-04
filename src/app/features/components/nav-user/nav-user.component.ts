@@ -5,6 +5,7 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { userkeystorage } from '../../../../assets/emuns/const';
 import { navOptions } from '../../../../assets/emuns/generalEnums';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-user',
@@ -18,7 +19,7 @@ export class NavUserComponent implements OnInit {
   userInfo = navOptions.userInfo;
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService,
-    private categoriesService: FilterCategoriesService,
+    private router: Router,
     private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
@@ -28,6 +29,18 @@ export class NavUserComponent implements OnInit {
   openModal(type: number, option: string) {
     this.generalInfoServiceService.openModal(type, option);
   }
+
+  
+  showOrders(){
+    this.router.navigate(["orders"]);
+  }
+
+  showPersonalData(){
+    this.router.navigate(["user"]);
+  }
+
+
+  
 
 
 }

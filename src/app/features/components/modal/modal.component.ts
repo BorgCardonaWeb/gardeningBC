@@ -21,9 +21,7 @@ import { UserInfoComponent } from '../user-info/user-info.component';
     ShoppingCartComponent,
     CommonModule,
     ContactComponent,
-    LoginPageComponent,
-    UserOrdersComponent,
-    UserInfoComponent
+    LoginPageComponent
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
