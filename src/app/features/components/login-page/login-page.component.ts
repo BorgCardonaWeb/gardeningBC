@@ -95,7 +95,6 @@ export class LoginPageComponent implements OnInit {
 
   generateMockStogareUser() {
     this.loading = true;
-    console.log("entra a la funcion desde el login")
     let data = [{
       name: "Xiomara Pulido",
       id: "123"

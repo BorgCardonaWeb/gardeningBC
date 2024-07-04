@@ -23,20 +23,30 @@ export class HeaderComponent implements OnInit {
   userLoginData$: Observable<any> | undefined;
   dataCounter$: Observable<any> | undefined;
   products: product[] = [];
-  counter = 0;
+  counter: number | undefined;
   showLogout = false;
 
 
   get showCounter() {
-    this.counter = this.products.length;
-    return this.products.length;
+    let counterstorage = this.categoriesService.getDataByStorage(productsToCartKeyStorage)?.length;
+    let getCounterProducts = this.products.length;
+
+    if (counterstorage > 0) {
+      this.counter = counterstorage;
+      return true;
+    } else if (getCounterProducts > 0) {
+      this.counter = getCounterProducts;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   contactTitle = navOptions.contact;
   shoppingTitle = navOptions.ShoppingCart;
   loginTitle = userSession.login;
 
-  constructor(private generalInfoServiceService: GeneralInfoServiceService, 
+  constructor(private generalInfoServiceService: GeneralInfoServiceService,
     private categoriesService: FilterCategoriesService,
     private localStorageService: LocalStorageService) { }
 
@@ -67,6 +77,7 @@ export class HeaderComponent implements OnInit {
     const storage = this.categoriesService.getDataByStorage(productsToCartKeyStorage);
     if (storage) {
       this.products = storage;
+      this.counter = this.products.length;
     }
   }
 
@@ -80,7 +91,10 @@ export class HeaderComponent implements OnInit {
   getLoginUserData() {
     this.userLoginData$ = this.categoriesService.userLoginDataSubject$;
     this.userLoginData$.subscribe(_data => {
-      this.storageUser(_data);
+      if(_data.length > 0){
+        this.storageUser(_data);
+      }
+      
     });
   }
 
@@ -96,17 +110,19 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  validateStorageLoginUser(){
+  validateStorageLoginUser() {
     let storage = JSON.parse(String(this.localStorageService.getItem(userkeystorage)));
-    if (storage !== null && storage.length > 0 ) {
+    if (storage !== null && storage.length > 0) {
       this.showLogout = true;
-    }else{
+    } else {
       this.showLogout = false;
     }
   }
 
   logout() {
+    this.categoriesService.getProducts();
     this.categoriesService.clearStorage();
+    this.products = [];
     this.showLogout = false;
   }
 

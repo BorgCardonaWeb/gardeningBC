@@ -42,6 +42,18 @@ export class FilterCategoriesService {
     return this.http.get<any[]>('/assets/data/country-codes.json');
   }
 
+  getProducts() {
+    const storage = this.localStorageService.getItem(productsKeyStorage);
+    if (storage) {
+      this.updateData(JSON.parse(storage));
+    } else {
+      this.getAllProducts().subscribe(data => {
+        this.localStorageService.setItem(productsKeyStorage, JSON.stringify(data));
+        this.updateData(data);
+      });
+    }
+  }
+
   updateModal(data: boolean): void {
     this.dataModalSubject.next(data);
   };
@@ -55,7 +67,6 @@ export class FilterCategoriesService {
   };
 
   updateUserLoginData(data: any[]): void {
-    console.log("ingresa a ;as funciones del servicio")
     this.userLoginDataSubject.next(data);
   };
 

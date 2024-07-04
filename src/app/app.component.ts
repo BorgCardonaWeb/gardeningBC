@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
-    this.getProducts();
+    this.categoriesService.getProducts();
   }
 
   getCategories() {
@@ -48,19 +48,6 @@ export class AppComponent implements OnInit {
     });
 
   }
-
-  getProducts() {
-    const storage = this.localStorageService.getItem(productsKeyStorage);
-    if (storage) {
-      this.categoriesService.updateData(JSON.parse(storage));
-    } else {
-      this.categoriesService.getAllProducts().subscribe(data => {
-        this.localStorageService.setItem(productsKeyStorage, JSON.stringify(data));
-        this.categoriesService.updateData(data);
-      });
-    }
-  }
-
 
   findProducts(data: any) {
     this.showProducts = true;
@@ -72,7 +59,7 @@ export class AppComponent implements OnInit {
   showPrincipalBanner(data: any) {
     this.showProducts = false;
     this.categoriesService.updateCategorieSearcher("");
-    this.getProducts();
+    this.categoriesService.getProducts();
   }
 
   searchProductsByName(baseProduct: any) {
