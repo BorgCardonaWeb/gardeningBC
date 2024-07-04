@@ -73,7 +73,7 @@ export class FilterCategoriesService {
 
  
 
-  getDataByStorage(key: string, updateData = false,) {
+  getDataByStorage(key: string, updateData = false) {
     const storage = this.localStorageService.getItem(key);
     if (storage) {
       if (updateData) {
@@ -84,6 +84,11 @@ export class FilterCategoriesService {
       return undefined;
     }
   }
+
+  clearStorage() {
+    this.localStorageService.clear();
+  }
+
 
   setDataStorage(key: string, data: any) {
     const storage = this.localStorageService.getItem(key);
@@ -96,13 +101,6 @@ export class FilterCategoriesService {
     }
 
   }
-
-
-  clearStorage() {
-    this.localStorageService.removeItem(categoriesKeyStorage);
-    this.localStorageService.removeItem(productsKeyStorage);
-  }
-
 
 
 }

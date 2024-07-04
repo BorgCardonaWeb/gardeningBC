@@ -20,7 +20,7 @@ export class LocalStorageService {
   }
 
   clear(): void {
-    localStorage.clear();
+    //localStorage.clear();
   }
 
   updateItem(key: string, value: string) {

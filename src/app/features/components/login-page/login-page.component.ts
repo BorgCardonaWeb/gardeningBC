@@ -98,7 +98,11 @@ export class LoginPageComponent implements OnInit {
     }]
 
     this.categoriesService.setDataStorage(userkeystorage, data);
-    this.categoriesService.updateUserLoginData(data);
+    
+    setTimeout(() => {
+      let userStorage = this.categoriesService.getDataByStorage(userkeystorage);
+      this.categoriesService.updateUserLoginData(userStorage);
+    });
     setTimeout(() => {
       this.generalInfoServiceService.closeModal();
     });

@@ -11,7 +11,6 @@ import { BreadcrumbComponent } from './features/components/breadcrumb/breadcrumb
 
 import { productsKeyStorage } from '../assets/emuns/const';
 import { LocalStorageService } from './services/local-storage.service';
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -25,6 +24,7 @@ import { LocalStorageService } from './services/local-storage.service';
     ProductsComponent,
     BreadcrumbComponent
   ],
+  providers:[LocalStorageService, FilterCategoriesService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

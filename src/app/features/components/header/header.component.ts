@@ -5,7 +5,7 @@ import { GeneralInfoServiceService } from '../../../services/general-info-servic
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Observable } from 'rxjs';
 import { product } from '../../models/models';
-import { productsToCartKeyStorage } from '../../../../assets/emuns/const';
+import { productsToCartKeyStorage, userkeystorage } from '../../../../assets/emuns/const';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   dataCounter$: Observable<any> | undefined;
   products: product[] = [];
   counter = 0;
+  showLogout = false;
 
 
   get showCounter() {
@@ -41,6 +42,7 @@ export class HeaderComponent implements OnInit {
     this.getCounterProducts();
     this.closeModal();
     this.getLoginUserData();
+    this.validateStorageLoginUser();
   }
 
   openModal(type: number, option: string) {
@@ -75,9 +77,24 @@ export class HeaderComponent implements OnInit {
   getLoginUserData() {
     this.userLoginData$ = this.categoriesService.userLoginDataSubject$;
     this.userLoginData$.subscribe(_data => {
-      
+      this.validateStorageLoginUser();
     });
   }
 
+  validateStorageLoginUser(){
+    let storage = this.categoriesService.getDataByStorage(userkeystorage);
+    if (storage) {
+      this.showLogout = true;
+    }else{
+      this.showLogout = false;
+    }
+  }
+
+ 
+
+  logout() {
+    this.categoriesService.clearStorage();
+    this.showLogout = false;
+  }
 
 }
