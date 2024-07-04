@@ -1,32 +1,39 @@
-<div class="table-container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ORDER ID</th>
-        <th scope="col">DATE</th>
-        <th scope="col">DELIVERY TO</th>
-        <th scope="col">ORDER TOTAL</th>
-        <th scope="col">PAYMENT STATUS</th>
-        <th scope="col">PAYMENT METHOD</th>
-        <th scope="col">ACTIONS</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">6626073c60b49d21239b0da9</th>
-        <td>22/04/2024</td>
-        <td>TRIQ IL-BIES, TRIQ ĠDIDA FI</td>
-        <td>€15.75</td>
-        <td>Pending</td>
-        <td>Card Online</td>
-        <td>
-          <button class="btn btn-primary">
-            DETAILS
-          </button>
-        </td>
-        <div class="col-12"></div>
-      </tr>
+<div class="wrap-orders-panel">
+  <i class="fa-solid fa-arrow-left icon-back" (click)="goToInit()"></i>
+  <div class="col-10 offset-1">
+    <div class="content-table">
+      <div class="table-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="title-table-info">ORDER ID</th>
+              <th scope="col" class="title-table-info">DATE</th>
+              <th scope="col" class="title-table-info">DELIVERY TO</th>
+              <th scope="col" class="title-table-info">ORDER TOTAL</th>
+              <th scope="col" class="title-table-info">PAYMENT STATUS</th>
+              <th scope="col" class="title-table-info">PAYMENT METHOD</th>
+              <th scope="col" class="title-table-info">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">6626073c60b49d21239b0da9</th>
+              <td>22/04/2024</td>
+              <td>TRIQ IL-BIES, TRIQ ĠDIDA FI</td>
+              <td>€15.75</td>
+              <td>Pending</td>
+              <td>Card Online</td>
+              <td>
+                <button class="btn btn-primary">
+                  DETAILS
+                </button>
+              </td>
+              <div class="col-12"></div>
+            </tr>
 
-    </tbody>
-  </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

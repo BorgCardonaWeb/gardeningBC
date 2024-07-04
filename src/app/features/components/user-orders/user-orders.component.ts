@@ -3,6 +3,7 @@ import { GeneralInfoServiceService } from '../../../services/general-info-servic
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { userkeystorage } from '../../../../assets/emuns/const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-orders',
@@ -13,12 +14,15 @@ import { userkeystorage } from '../../../../assets/emuns/const';
 })
 export class UserOrdersComponent implements OnInit {
 
-  constructor(private generalInfoServiceService: GeneralInfoServiceService,
-    private categoriesService: FilterCategoriesService,
+  constructor(private router: Router,
     private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     console.log(this.localStorageService.getItem(userkeystorage))
+  }
+
+  goToInit(){
+    this.router.navigate(["home"]);
   }
 
 }
