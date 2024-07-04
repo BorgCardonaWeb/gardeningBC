@@ -6,7 +6,9 @@ export enum footerOptions {
 
   export enum navOptions {
     contact = "Contact",
-    ShoppingCart = "Shopping Cart"
+    ShoppingCart = "Shopping Cart",
+    userOrders ="Orders",
+    userInfo ="Personal Information"
   }
 
   export enum userSession {

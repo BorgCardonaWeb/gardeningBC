@@ -1,0 +1,10 @@
+@import "../../../../styles.scss";
+
+.table-container {
+
+  overflow-y: auto;
+
+  .title-table {
+    color: $color-blue-actions-header;
+  }
+}

@@ -1,21 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { userkeystorage } from '../../../../assets/emuns/const';
-import { navOptions } from '../../../../assets/emuns/generalEnums';
 
 @Component({
-  selector: 'app-nav-user',
+  selector: 'app-user-info',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './nav-user.component.html',
-  styleUrl: './nav-user.component.scss'
+  imports: [],
+  templateUrl: './user-info.component.html',
+  styleUrl: './user-info.component.css'
 })
-export class NavUserComponent implements OnInit {
-  userOrders = navOptions.userOrders;
-  userInfo = navOptions.userInfo;
+export class UserInfoComponent implements OnInit {
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService,
     private categoriesService: FilterCategoriesService,
@@ -24,10 +20,5 @@ export class NavUserComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.localStorageService.getItem(userkeystorage))
   }
-
-  openModal(type: number, option: string) {
-    this.generalInfoServiceService.openModal(type, option);
-  }
-
 
 }

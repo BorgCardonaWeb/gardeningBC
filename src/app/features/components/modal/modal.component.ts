@@ -8,6 +8,8 @@ import { DeliveriesComponent } from '../deliveries/deliveries.component';
 import { ContactComponent } from '../contact/contact.component';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { LoginPageComponent } from '../login-page/login-page.component';
+import { UserOrdersComponent } from '../user-orders/user-orders.component';
+import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
   selector: 'app-modal',
@@ -19,7 +21,9 @@ import { LoginPageComponent } from '../login-page/login-page.component';
     ShoppingCartComponent,
     CommonModule,
     ContactComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    UserOrdersComponent,
+    UserInfoComponent
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
