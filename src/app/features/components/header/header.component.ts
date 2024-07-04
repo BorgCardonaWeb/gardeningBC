@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { product } from '../../models/models';
 import { productsToCartKeyStorage, userkeystorage } from '../../../../assets/emuns/const';
 import { CommonModule } from '@angular/common';
+import { LocalStorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -35,7 +36,9 @@ export class HeaderComponent implements OnInit {
   shoppingTitle = navOptions.ShoppingCart;
   loginTitle = userSession.login;
 
-  constructor(private generalInfoServiceService: GeneralInfoServiceService, private categoriesService: FilterCategoriesService) { }
+  constructor(private generalInfoServiceService: GeneralInfoServiceService, 
+    private categoriesService: FilterCategoriesService,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.getCounterStorage();
@@ -77,20 +80,30 @@ export class HeaderComponent implements OnInit {
   getLoginUserData() {
     this.userLoginData$ = this.categoriesService.userLoginDataSubject$;
     this.userLoginData$.subscribe(_data => {
-      this.validateStorageLoginUser();
+      this.storageUser(_data);
     });
   }
 
-  validateStorageLoginUser(){
-    let storage = this.categoriesService.getDataByStorage(userkeystorage);
+  storageUser(data: any) {
+    const storage = this.localStorageService.getItem(userkeystorage);
     if (storage) {
+      this.localStorageService.removeItem(userkeystorage);
+      this.localStorageService.setItem(userkeystorage, JSON.stringify(data));
+      this.validateStorageLoginUser();
+    } else {
+      this.localStorageService.setItem(userkeystorage, JSON.stringify(data));
+      this.validateStorageLoginUser();
+    }
+  }
+
+  validateStorageLoginUser(){
+    let storage = JSON.parse(String(this.localStorageService.getItem(userkeystorage)));
+    if (storage !== null && storage.length > 0 ) {
       this.showLogout = true;
     }else{
       this.showLogout = false;
     }
   }
-
- 
 
   logout() {
     this.categoriesService.clearStorage();

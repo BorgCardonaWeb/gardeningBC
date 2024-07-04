@@ -7,8 +7,6 @@
 </div>
 
 
-
-
 <div class="row wrap-session" [ngClass]="{'login-page': !showGeneralInf}">
   <div *ngIf="showGeneralInf" class="col-12">
     <p class="text-title">
@@ -44,6 +42,10 @@
         <div class="col-4">
           <button type="submit" class="btn btn-primary btn-login" [disabled]="loginForm.invalid"
             [ngClass]="{'inactive-class': loginForm.invalid}">Login</button>
+            <div *ngIf="loading" class="spinner-border text-success wrap-spinner" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            
         </div>
         <div class="col-8 hyperlink" (click)="toggleSignupForm()"><label>Create an account</label></div>
       </div>
@@ -148,9 +150,14 @@
         <div class="col-4">
           <button type="submit" class="btn btn-primary btn-login" [disabled]="signupForm.invalid"
             [ngClass]="{'inactive-class': signupForm.invalid}">Create Account</button>
+            <div *ngIf="loading" class="spinner-border text-success wrap-spinner" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            
         </div>
         <div class="col-8 hyperlink"><label (click)="toggleSignupForm()">Back to Login</label></div>
       </div>
     </form>
   </div>
+  
 </div>

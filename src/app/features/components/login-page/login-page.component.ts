@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
 import { userkeystorage } from '../../../../assets/emuns/const';
+import { LocalStorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-login-page',
@@ -18,12 +19,13 @@ export class LoginPageComponent implements OnInit {
   showSignupForm = false;
   error = false;
   alertSuccess = false;
+  loading = false;
 
   @Input() showGeneralInf: boolean = false;
   countryCodes: any[] = [];
 
   get isValidConfirm() {
-    if(this.signupForm){
+    if (this.signupForm) {
       const password = this.signupForm.value['password'];
       const confirmPassword = this.signupForm.value['confirmPassword'];
       if (password !== confirmPassword) {
@@ -31,20 +33,21 @@ export class LoginPageComponent implements OnInit {
       } else {
         return true;
       }
-    } else{
+    } else {
       return true;
     }
   }
 
 
-  constructor(private fb: FormBuilder, private categoriesService: FilterCategoriesService, private generalInfoServiceService: GeneralInfoServiceService) {
+  constructor(private fb: FormBuilder,
+    private categoriesService: FilterCategoriesService,
+    private generalInfoServiceService: GeneralInfoServiceService,
+    private localStorageService: LocalStorageService) {
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(20),
-        Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,20}$')
+        Validators.required
       ]]
     });
 
@@ -90,24 +93,25 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  generateMockStogareUser(){
+  generateMockStogareUser() {
+    this.loading = true;
     console.log("entra a la funcion desde el login")
     let data = [{
       name: "Xiomara Pulido",
       id: "123"
     }]
 
-    this.categoriesService.setDataStorage(userkeystorage, data);
-    
+
     setTimeout(() => {
-      let userStorage = this.categoriesService.getDataByStorage(userkeystorage);
-      this.categoriesService.updateUserLoginData(userStorage);
+      this.categoriesService.updateUserLoginData(data);
     });
     setTimeout(() => {
       this.generalInfoServiceService.closeModal();
-    });
+      this.loading = false
+    }, 100);
   }
 
+ 
 
   toggleSignupForm(): void {
     this.showSignupForm = !this.showSignupForm;

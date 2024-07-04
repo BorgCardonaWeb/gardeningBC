@@ -24,7 +24,6 @@ import { LocalStorageService } from './services/local-storage.service';
     ProductsComponent,
     BreadcrumbComponent
   ],
-  providers:[LocalStorageService, FilterCategoriesService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
