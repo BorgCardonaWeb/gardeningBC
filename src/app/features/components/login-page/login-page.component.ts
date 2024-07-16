@@ -5,6 +5,8 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
 import { userkeystorage } from '../../../../assets/emuns/const';
 import { LocalStorageService } from '../../../services/local-storage.service';
+import { UserManagementService } from '../../../services/user-management.service';
+import { userModel } from '../../models/models';
 
 @Component({
   selector: 'app-login-page',
@@ -42,7 +44,8 @@ export class LoginPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private categoriesService: FilterCategoriesService,
     private generalInfoServiceService: GeneralInfoServiceService,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService,
+    private userManagementService: UserManagementService) {
 
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -110,7 +113,7 @@ export class LoginPageComponent implements OnInit {
     }, 100);
   }
 
- 
+
 
   toggleSignupForm(): void {
     this.showSignupForm = !this.showSignupForm;
@@ -128,14 +131,44 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmitSignup(): void {
+    /*
+    
+
+
+    */
+    console.log(this.signupForm)
     if (this.signupForm.valid) {
-      this.alertSuccess = true;
-      setTimeout(() => {
-        this.toggleSignupForm();
-      }, 500);
-      setTimeout(() => {
-        this.alertSuccess = false;
-      }, 5000);
+      this.error = false;
+      let user: userModel ={
+        name: this.signupForm.value.firstName,
+        lastName: this.signupForm.value.lastName,
+        address: this.signupForm.value.address,
+        city: this.signupForm.value.city,
+        email: this.signupForm.value.email,
+        password: this.signupForm.value.password,
+        phoneNumber: this.signupForm.value.phoneNumber,
+        
+        postalCode: this.signupForm.value.postalCode
+      } 
+
+      this.userManagementService.createUser(user).subscribe(
+        data =>{
+          console.log(data);
+          this.alertSuccess = true;
+          this.toggleSignupForm();
+          setTimeout(() => {
+            this.alertSuccess = false;
+          }, 5000);
+        },
+        error =>{
+          console.log(error);
+          this.alertSuccess = false;
+          this.error = true;
+          setTimeout(() => {
+            this.error = false;
+          }, 5000);
+        }
+      )
     }
   }
 

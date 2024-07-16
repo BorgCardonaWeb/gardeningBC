@@ -30,4 +30,15 @@ export class product {
     isLoading : boolean = false
 }
 
+export class userModel {
+    name!: string;
+    lastName!: string;
+    address!: string;
+    city!: string;
+    postalCode!: string;
+    phoneNumber!: string;
+    email!: string;
+    password!: string;
+}
+
 
