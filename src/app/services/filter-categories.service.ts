@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { categoriesKeyStorage, productsKeyStorage } from '../../assets/emuns/const';
 import { LocalStorageService } from './local-storage.service';
+import { environment } from '../../enviroment/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,8 @@ export class FilterCategoriesService {
   constructor(private http: HttpClient,
     private localStorageService: LocalStorageService) { }
 
+  apiUrl = `${environment.apiUrl}`;
+
   getCategories(): Observable<any> {
     return this.http.get<any>('/assets/data/categories.json');
   }
@@ -37,6 +40,11 @@ export class FilterCategoriesService {
   getAllProducts(): Observable<any> {
     return this.http.get<any>('/assets/data/products.json');
   }
+
+  _getAllProducts(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/products`);
+  }
+
 
   getCountryCodes(): Observable<any[]> {
     return this.http.get<any[]>('/assets/data/country-codes.json');
@@ -82,7 +90,7 @@ export class FilterCategoriesService {
     this.searcherCategorie.next(data);
   };
 
- 
+
 
   getDataByStorage(key: string, updateData = false) {
     const storage = this.localStorageService.getItem(key);
