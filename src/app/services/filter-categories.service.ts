@@ -34,7 +34,8 @@ export class FilterCategoriesService {
   apiUrl = `${environment.apiUrl}`;
 
   getCategories(): Observable<any> {
-    return this.http.get<any>('/assets/data/categories.json');
+    //return this.http.get<any>('/assets/data/categories.json');
+    return this.http.get<any>(`${this.apiUrl}/categories`);
   }
 
   getAllProducts(): Observable<any> {
