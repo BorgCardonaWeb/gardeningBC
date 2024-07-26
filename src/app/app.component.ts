@@ -35,7 +35,6 @@ export class AppComponent {
   showPrincipalBanner(data: any) {
     this.showProducts = false;
     this.categoriesService.updateCategorieSearcher("");
-    this.categoriesService.getProducts();
   }
 
   showUserPanelComponent(data: boolean) {

@@ -42,7 +42,6 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
-    this.categoriesService.getProducts();
   }
 
   getCategories() {
@@ -62,7 +61,6 @@ export class HomePageComponent implements OnInit {
   showPrincipalBanner(data: any) {
     this.showProducts = false;
     this.categoriesService.updateCategorieSearcher("");
-    this.categoriesService.getProducts();
   }
 
   searchProductsByName(baseProduct: any) {

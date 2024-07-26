@@ -125,7 +125,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.categoriesService.getProducts();
     this.categoriesService.clearStorage();
     this.products = [];
     this.showLogout = false;

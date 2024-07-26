@@ -3,7 +3,6 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { productsKeyStorage } from '../../../../assets/emuns/const';
 
 @Component({
   selector: 'app-searcher',
@@ -16,6 +15,7 @@ import { productsKeyStorage } from '../../../../assets/emuns/const';
 export class SearcherComponent {
 
   productsData: any;
+  productsInitialData: any;
   showSearcherBoxError = false;
   showSearcherBox = false;
   searcherProduct = signal('');
@@ -37,7 +37,7 @@ export class SearcherComponent {
       this.showSearcherBox = true;
     } else {
       this.showSearcherBox = false;
-      this.productsData = this.categoriesService.getDataByStorage(productsKeyStorage);
+      this.productsData = this.productsInitialData;
     }
   }
 
@@ -52,7 +52,7 @@ export class SearcherComponent {
   filterProductBySearchingControl() {
     this.productsData = this.productsData.filter((data: any) => {
       return (String(data.name).toLocaleLowerCase().includes(this.searcherProduct().toLocaleLowerCase()) ||
-        String(data.SKU).toLocaleLowerCase().includes(this.searcherProduct().toLocaleLowerCase()))
+        String(data.sku).toLocaleLowerCase().includes(this.searcherProduct().toLocaleLowerCase()))
     });
   }
 
@@ -63,9 +63,9 @@ export class SearcherComponent {
   }
 
   getProducts() {
-    this.data$ = this.categoriesService.data$;
-    this.data$.subscribe(data => {
+    this.categoriesService.getAllProducts().subscribe(data => {
       this.productsData = data;
+      this.productsInitialData = data;
     });
   }
 
@@ -73,7 +73,7 @@ export class SearcherComponent {
     this.dataSearcher$ = this.categoriesService.dataSearcher$;
     this.dataSearcher$.subscribe(data => {
       this.searcherProduct.set("");
-      this.productsData = this.categoriesService.getDataByStorage(productsKeyStorage);
+      this.productsData = this.productsInitialData;
     });
     
   }

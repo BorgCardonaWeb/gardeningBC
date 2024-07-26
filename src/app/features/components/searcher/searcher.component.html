@@ -12,10 +12,10 @@
                         <button class="btn btn-outline-secondary" type="button" (click)="emmitSearching()" (keyup.enter)="emmitSearching()">Search</button>
                     </div>
                 </div>
-                <div *ngIf="showSearcherBox" class="wrap-searcher-box">
+                <div  *ngIf="showSearcherBox" class="wrap-searcher-box">
                     <div class="searcher-box" *ngFor="let product of productsData; index as i;"
                         (click)="selectProductForSearching(product.name)">
-                        {{product.name}}
+                        {{product.name}} / {{product.sku}} 
                     </div>
                 </div>
                 <p *ngIf="showSearcherBoxError" class="error-text">*No products found matching your selected filters.

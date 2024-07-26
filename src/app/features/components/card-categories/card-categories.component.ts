@@ -36,11 +36,6 @@ export class CardCategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoriesService.getDataByStorage(productsKeyStorage, true);
-
-    this.categoriesService._getAllProducts().subscribe(data => {
-      this.testProducts = data;
-      console.log(this.testProducts)
-    });
   }
 
   getImageSrc(base64String: string): string {

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { categoriesKeyStorage, productsKeyStorage } from '../../assets/emuns/const';
@@ -38,10 +38,6 @@ export class FilterCategoriesService {
   }
 
   getAllProducts(): Observable<any> {
-    return this.http.get<any>('/assets/data/products.json');
-  }
-
-  _getAllProducts(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/products`);
   }
 
@@ -50,17 +46,11 @@ export class FilterCategoriesService {
     return this.http.get<any[]>('/assets/data/country-codes.json');
   }
 
-  getProducts() {
-    const storage = this.localStorageService.getItem(productsKeyStorage);
-    if (storage) {
-      this.updateData(JSON.parse(storage));
-    } else {
-      this.getAllProducts().subscribe(data => {
-        this.localStorageService.setItem(productsKeyStorage, JSON.stringify(data));
-        this.updateData(data);
-      });
-    }
+  getProductsByFilter(filter: string): Observable<any[]> {
+    const params = new HttpParams().set('filter', filter);
+    return this.http.get<any[]>(`${this.apiUrl}/products/filter`, { params });
   }
+
 
   updateModal(data: boolean): void {
     this.dataModalSubject.next(data);

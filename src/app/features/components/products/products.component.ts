@@ -51,17 +51,15 @@ export class ProductsComponent implements OnInit {
   }
 
   getProductsByParam() {
+   
     this.dataSearcherParam$ = this.categoriesService.dataSearcherParam$;
     this.dataSearcherParam$.subscribe(_data => {
-      if (this.idCategorie == "" && this.idSubCategorie == "") {
-        this.products = this.categoriesService.getDataByStorage(productsKeyStorage);
-      }
       if (_data !== "") {
-        this.products = this.categoriesService.getDataByStorage(productsKeyStorage);
-        this.products = this.products.filter((data: any) => {
-          return (String(data.name).toLocaleLowerCase().includes(_data.toLocaleLowerCase()) ||
-            String(data.SKU).toLocaleLowerCase().includes(_data.toLocaleLowerCase()))
-        });
+        this.categoriesService.getProductsByFilter(_data).subscribe(
+          data=>{
+            this.products = data;
+          }
+        )   
       }
     });
   }
