@@ -19,7 +19,7 @@ export class product {
     categoriID!: string;
     subcategoriID!: string;
     id!: string;
-    SKU!: string;
+    sku!: string;
     name!: string;
     description!: string;
     value!: string;

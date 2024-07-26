@@ -38,10 +38,6 @@ export class CardCategoriesComponent implements OnInit {
     this.categoriesService.getDataByStorage(productsKeyStorage, true);
   }
 
-  getImageSrc(base64String: string): string {
-    return `data:image/jpeg;base64,${base64String}`;
-  }
-
   toggleSubMenu(index: number) {
     this.currentCategorie = `categorie-${index}`;
     this.closeSubMenu();

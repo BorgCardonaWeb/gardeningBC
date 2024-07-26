@@ -19,10 +19,11 @@
         color: $orange-acctions;
     }
 
-    .wrap-card-products {
+    .card {
         border: 1px solid $color-blue-tooltip;
         border-radius: 5px;
-        margin: 5px;
+        display: flex;
+        flex-direction: column;
     }
 
     .wrap-images {
@@ -31,7 +32,33 @@
     }
 
     .img-product {
-        max-width: 200px;
+        max-width: 100%;
+        height: auto;
+        max-height: 150px; 
+        object-fit: contain;
+    }
+
+    .wrap-details {
+        padding: 5px;
+        flex-grow: 1;
+    }
+
+    .product-name {
+        font-size: 1rem;  
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .sku-details {
+        color: $color-blue-tooltip;
+        font-size: 0.75rem;  
+        margin-top: -5px;
+    }
+
+    .wrap-amount {
+        font-weight: bold;
+        display: block; 
+        margin-top: 5px;
     }
 
     .wrap-btn-cart {
@@ -40,7 +67,7 @@
         color: $color-white;
         font-weight: bold;
         text-align: center;
-        padding: 10px;
+        padding: 8px;  
         cursor: pointer;
     }
 
@@ -48,33 +75,11 @@
         background-color: $color-red-acctions;
     }
 
-    .product-name {
-        font-size: 1.125rem;
-        font-weight: bold;
-        margin-top: 20px;
-    }
-
-    .wrap-details {
-        padding: 5px;
-    }
-
-    .sku-details {
-        color: $color-blue-tooltip;
-        font-size: 0.875rem;
-        margin-top: -10px;
-    }
-
-    .wrap-amount {
-        font-weight: bold;
-    }
-
     .wrap-spinner {
-        float: right;
-        margin-top: -29px;
+        margin-top: 5px;
     }
 
-    .wrap-check{
+    .wrap-check {
         color: $color-green-logo;
     }
-
 }

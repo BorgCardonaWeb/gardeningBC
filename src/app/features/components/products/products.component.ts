@@ -107,4 +107,8 @@ export class ProductsComponent implements OnInit {
 
     return Array.from(productMap.values());
   }
+
+  getImageSrc(base64String: string): string {
+    return `data:image/jpeg;base64,${base64String}`;
+  }
 }
