@@ -6,6 +6,14 @@
     cursor: pointer;
     font-size: 1.188rem;
 
+    .content-card-info{
+      
+    }
+
+    .content-img{
+        max-height: 285px !important;
+    }
+
     h1 {
         color: $color-blue-actions-header;
         font-size: 1.5rem;
