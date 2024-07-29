@@ -1,20 +1,11 @@
 <div class="wrap-categories col-10 offset-1">
   <div>
     <h1>Categories</h1>
-
-   <!--
-    <div *ngFor="let product of testProducts">
-      <h2>{{ product.nameProduct }}</h2>
-      <p>{{ product.description }}</p>
-      <img *ngIf="product.image" [src]="getImageSrc(product.image)" alt="{{ product.nameProduct }}" />
-    </div>
-   --> 
-
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="row">
           <div *ngFor="let categorie of categories; index as i;" class="col-md-3 col-lg-3 col-xl">
-            <div id="categorie-{{i}}" class="card mb-3 mx-md-auto" (click)="toggleSubMenu(i)">
+            <div *ngIf="categorie.stock" id="categorie-{{i}}" class="card mb-3 mx-md-auto" (click)="toggleSubMenu(i)">
               <img src="./assets/images/categories/{{categorie.image}}" class="card-img-top" alt="...">
               <div class="card-body">
                 <label class="card-text">{{categorie.name}}</label>

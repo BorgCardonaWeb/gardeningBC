@@ -3,7 +3,7 @@ export class subcategorie {
     id!: string;
     name!: string;
     image!: string;
-    stock!: boolean
+    stock!: boolean;
 }
 
 export class categorie {
@@ -11,7 +11,8 @@ export class categorie {
     name!: string;
     image!: string;
     subcategories!:subcategorie[];
-    showSubMenu: boolean = false
+    showSubMenu: boolean = false;
+    stock!: boolean;
 }
 
 

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { productsKeyStorage, productsToCartKeyStorage } from '../../../../assets/emuns/const';
 import { product } from '../../models/models';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -20,8 +21,11 @@ export class ProductsComponent implements OnInit {
   idSubCategorie: string = "";
   products: product[] = [];
 
+
   dataSearcherParam$: Observable<any> | undefined;
   dataSearcherCategorie$: Observable<any> | undefined;
+  dataSearcherCategorieSubscription: Subscription | undefined;
+  dataSearcherFilterSubscription: Subscription | undefined;
 
   get showProducts() {
     return this.products?.length > 0;
@@ -30,32 +34,44 @@ export class ProductsComponent implements OnInit {
   constructor(private categoriesService: FilterCategoriesService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.products = this.categoriesService.getDataByStorage(productsKeyStorage);
     this.getProductsBycategorie();
     this.getProductsByParam();
   }
 
   getProductsBycategorie() {
+    if (this.dataSearcherCategorieSubscription) {
+      this.dataSearcherCategorieSubscription.unsubscribe();
+    }
+
     this.dataSearcherCategorie$ = this.categoriesService.dataSearcherCategorie$;
-    this.dataSearcherCategorie$.subscribe(_data => {
-      if (_data !== "") {
+    this.dataSearcherCategorieSubscription = this.dataSearcherCategorie$.pipe(take(1)).subscribe(_data => {
+      if(_data !== ""){
         this.idCategorie = _data[0].id;
         this.idSubCategorie = _data[1].id;
-        this.products = this.categoriesService.getDataByStorage(productsKeyStorage);
-        this.products = this.products.filter((data: any) =>
-          data.categoriID == this.idCategorie &&
-          data.subcategoriID == this.idSubCategorie
-        );
+
+        this.categoriesService.getProductsBySubcategory(String(this.idSubCategorie)).subscribe(
+          data=>{
+            this.products = data;
+            console.log(this.products)
+          }
+        )
       }
     });
   }
 
   getProductsByParam() {
    
+    if (this.dataSearcherFilterSubscription) {
+      this.dataSearcherFilterSubscription.unsubscribe();
+    }
+
     this.dataSearcherParam$ = this.categoriesService.dataSearcherParam$;
-    this.dataSearcherParam$.subscribe(_data => {
+    this.dataSearcherFilterSubscription = this.dataSearcherParam$.subscribe(_data => {
       if (_data !== "") {
-        this.categoriesService.getProductsByFilter(_data).subscribe(
+       /* debugger
+        let arraySKU = this.products.filter( dataFilter => { String(dataFilter.name).includes(_data)});
+        console.log(arraySKU)*/
+        this.categoriesService.getProductsByFilter(_data).pipe(take(1)).subscribe(
           data=>{
             this.products = data;
           }

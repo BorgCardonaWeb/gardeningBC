@@ -41,15 +41,18 @@ export class FilterCategoriesService {
     return this.http.get<any>(`${this.apiUrl}/products`);
   }
 
+  getProductsBySubcategory(subcategoryId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products/subcategory/${subcategoryId}`);
+  }
 
   getCountryCodes(): Observable<any[]> {
     return this.http.get<any[]>('/assets/data/country-codes.json');
   }
 
   getProductsByFilter(filter: string): Observable<any[]> {
-    const params = new HttpParams().set('filter', filter);
-    return this.http.get<any[]>(`${this.apiUrl}/products/filter`, { params });
+    return this.http.post<any[]>(`${this.apiUrl}/products/filterParam`, { filter });
   }
+
 
 
   updateModal(data: boolean): void {
