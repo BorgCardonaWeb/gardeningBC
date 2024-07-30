@@ -11,12 +11,14 @@ export class GeneralInfoServiceService {
 
   constructor(private modalService: MdbModalService) { }
 
-  openModal(type: number, title: string) {
+  openModal(type: number, title: string, shortDescription?: string, description?: string) {
     this.modalRef = this.modalService.open(ModalComponent, {
       modalClass: 'modal-xl',
       data: {
         title,
-        type
+        type,
+        shortDescription,
+        description
       }
     });
   }

@@ -8,8 +8,7 @@ import { DeliveriesComponent } from '../deliveries/deliveries.component';
 import { ContactComponent } from '../contact/contact.component';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { LoginPageComponent } from '../login-page/login-page.component';
-import { UserOrdersComponent } from '../user-orders/user-orders.component';
-import { UserInfoComponent } from '../user-info/user-info.component';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
   selector: 'app-modal',
@@ -21,7 +20,8 @@ import { UserInfoComponent } from '../user-info/user-info.component';
     ShoppingCartComponent,
     CommonModule,
     ContactComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ProductDetailComponent
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
@@ -29,7 +29,9 @@ import { UserInfoComponent } from '../user-info/user-info.component';
 export class ModalComponent {
 
   title: string | null = null;
-  type: number | null = null;;
-  constructor(public modalRef: MdbModalRef<ModalComponent>) {}
+  type: number | null = null;
+  shortDescription: number | null = null;
+  description: number | null = null;
+  constructor(public modalRef: MdbModalRef<ModalComponent>) { }
 
 }

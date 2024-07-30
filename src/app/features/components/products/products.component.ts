@@ -7,6 +7,8 @@ import { productsKeyStorage, productsToCartKeyStorage } from '../../../../assets
 import { product } from '../../models/models';
 import { take } from 'rxjs/operators';
 import { ProductsServicesService } from '../../../services/products-services.service';
+import { Title } from '@angular/platform-browser';
+import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +22,7 @@ export class ProductsComponent implements OnInit {
 
   idCategorie: string = "";
   idSubCategorie: string = "";
+  productModal = 7;
   products: product[] = [];
   error = false
 
@@ -35,6 +38,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(private categoriesService: FilterCategoriesService,
     private localStorageService: LocalStorageService,
+    private generalInfoServiceService: GeneralInfoServiceService,
     private productsServicesService: ProductsServicesService) { }
 
   ngOnInit(): void {
@@ -56,6 +60,7 @@ export class ProductsComponent implements OnInit {
         this.categoriesService.getProductsBySubcategory(String(this.idSubCategorie)).subscribe(
           data => {
             this.products = data;
+            console.log(this.products)
             this.getProductDetails(data)
           },
           () => {
@@ -196,5 +201,10 @@ export class ProductsComponent implements OnInit {
 
   getImageSrc(base64String: string): string {
     return `data:image/jpeg;base64,${base64String}`;
+  }
+
+  openModal(product: any) {
+    console.log(this.productModal, product.name, product.shortDescription, product.description)
+    this.generalInfoServiceService.openModal(this.productModal, product.name, product.shortDescription, product.description);
   }
 }

@@ -1,7 +1,7 @@
 <div *ngIf="error" class="alert alert-danger" role="alert">
     Oops! Something went wrong while creating your account. Please try again later or contact support for assistance.
-  </div>
-  
+</div>
+
 <div class="wrap-products col-10 offset-1">
     <h1>Products</h1>
 
@@ -14,9 +14,11 @@
                             alt="{{ product.name}}" />
                     </div>
                     <div class="wrap-details flex-grow-1">
-                        <p class="text-uppercase product-name">{{product.name}}</p>
-                        <p class="text-uppercase sku-details">SKU: {{product.sku}}</p>
-                        <span class="wrap-amount">{{ product.value | currency: 'EUR'}}</span>
+                        <p class="text-uppercase product-name">{{product.name}} </p>
+                        <p class="text-uppercase sku-details">SKU: {{product.sku}} <i
+                                class="fa-solid fa-eye icon-detail" (click)="openModal(product)"></i></p>
+                        <span class="wrap-amount">{{ product.value | currency: 'EUR'}}
+                        </span>
                     </div>
                     <div *ngIf="product.loadindData" class="spinner-border text-danger wrap-spinner" role="status">
                         <span class="visually-hidden">Loading...</span>
