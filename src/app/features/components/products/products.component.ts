@@ -134,7 +134,7 @@ export class ProductsComponent implements OnInit {
     const matchingProduct = this.products.find(product => product.sku.trim() === dataItem.StockCode.trim());
     if (matchingProduct) {
       matchingProduct.value = dataItem.Selling2IncVAT;
-      matchingProduct.quantities = dataItem.Quantity;
+      matchingProduct.stockQuantity = dataItem.Quantity;
       matchingProduct.loadindData = false;
     }
   }
@@ -156,6 +156,7 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(index: number, product: product) {
+    debugger
     this.products[index].isLoading = true;
     this.products[index].quantities = 1;
     this.products[index].originalValue = Number(this.products[index].value)

@@ -23,13 +23,13 @@
                     <div *ngIf="product.loadindData" class="spinner-border text-danger wrap-spinner" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    <div *ngIf="product.quantities > 0" (click)="addToCart(i, product)" class="wrap-btn-cart mt-auto">
+                    <div *ngIf="product.stockQuantity > 0" (click)="addToCart(i, product)" class="wrap-btn-cart mt-auto">
                         <div>ADD TO CART</div>
                         <div *ngIf="product.isLoading" class="spinner-border text-success wrap-spinner" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                     </div>
-                    <div *ngIf="product.quantities < 1" class="wrap-btn-cart-inactive mt-auto">
+                    <div *ngIf="product.stockQuantity < 1" class="wrap-btn-cart-inactive mt-auto">
                         <div>OUT OF STOCK</div>
                     </div>
                 </div>

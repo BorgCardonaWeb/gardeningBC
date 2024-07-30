@@ -28,6 +28,7 @@ export class product {
     image!: string;
     loadindData: boolean = false;
     quantities: number = 1;
+    stockQuantity: number = 0;
     originalValue: number = 1;
     isLoading : boolean = false
 }
