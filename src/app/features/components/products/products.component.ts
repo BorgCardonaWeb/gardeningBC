@@ -6,6 +6,7 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { productsKeyStorage, productsToCartKeyStorage } from '../../../../assets/emuns/const';
 import { product } from '../../models/models';
 import { take } from 'rxjs/operators';
+import { ProductsServicesService } from '../../../services/products-services.service';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +21,7 @@ export class ProductsComponent implements OnInit {
   idCategorie: string = "";
   idSubCategorie: string = "";
   products: product[] = [];
+  error = false
 
 
   dataSearcherParam$: Observable<any> | undefined;
@@ -31,7 +33,9 @@ export class ProductsComponent implements OnInit {
     return this.products?.length > 0;
   }
 
-  constructor(private categoriesService: FilterCategoriesService, private localStorageService: LocalStorageService) { }
+  constructor(private categoriesService: FilterCategoriesService,
+    private localStorageService: LocalStorageService,
+    private productsServicesService: ProductsServicesService) { }
 
   ngOnInit(): void {
     this.getProductsBycategorie();
@@ -45,14 +49,17 @@ export class ProductsComponent implements OnInit {
 
     this.dataSearcherCategorie$ = this.categoriesService.dataSearcherCategorie$;
     this.dataSearcherCategorieSubscription = this.dataSearcherCategorie$.pipe(take(1)).subscribe(_data => {
-      if(_data !== ""){
+      if (_data !== "") {
         this.idCategorie = _data[0].id;
         this.idSubCategorie = _data[1].id;
 
         this.categoriesService.getProductsBySubcategory(String(this.idSubCategorie)).subscribe(
-          data=>{
+          data => {
             this.products = data;
-            console.log(this.products)
+            this.getProductDetails(data)
+          },
+          () => {
+            this.showErrorAlert()
           }
         )
       }
@@ -60,7 +67,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getProductsByParam() {
-   
+
     if (this.dataSearcherFilterSubscription) {
       this.dataSearcherFilterSubscription.unsubscribe();
     }
@@ -68,23 +75,86 @@ export class ProductsComponent implements OnInit {
     this.dataSearcherParam$ = this.categoriesService.dataSearcherParam$;
     this.dataSearcherFilterSubscription = this.dataSearcherParam$.subscribe(_data => {
       if (_data !== "") {
-       /* debugger
-        let arraySKU = this.products.filter( dataFilter => { String(dataFilter.name).includes(_data)});
-        console.log(arraySKU)*/
+
         this.categoriesService.getProductsByFilter(_data).pipe(take(1)).subscribe(
-          data=>{
+          (data: any) => {
             this.products = data;
+            this.getProductDetails(data);
+          },
+          () => {
+            this.showErrorAlert()
           }
-        )   
+        )
       }
     });
+  }
+
+  getProductDetails(data: any) {
+    for (let product of this.products) {
+      product.loadindData = true;
+    }
+
+    let skuArray: string[] = [];
+
+    data.forEach((element: any) => {
+      skuArray.push(element.sku);
+    });
+
+    const chunkedSkuArrays = this.chunkArray(skuArray, 5);
+
+    const processChunk = (chunk: string[]) => {
+      return new Promise<void>((resolve) => {
+        this.productsServicesService.getProductsBySKUArray(chunk).subscribe(
+          productsData => {
+            productsData.forEach((dataItem) => {
+              this.addValueAndStockToProducts(dataItem);
+            });
+            resolve();
+          },
+          () => {
+            this.showErrorAlert();
+            resolve();
+          }
+        );
+      });
+    };
+    (async () => {
+      for (const chunk of chunkedSkuArrays) {
+        await processChunk(chunk);
+      }
+    })();
+  }
+
+  addValueAndStockToProducts(dataItem: any) {
+    const matchingProduct = this.products.find(product => product.sku.trim() === dataItem.StockCode.trim());
+    if (matchingProduct) {
+      matchingProduct.value = dataItem.Selling2IncVAT;
+      matchingProduct.quantities = dataItem.Quantity;
+      matchingProduct.loadindData = false;
+    }
+  }
+
+  chunkArray(array: string[], chunkSize: number): string[][] {
+    const results = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      results.push(array.slice(i, i + chunkSize));
+    }
+    return results;
+  }
+
+
+  showErrorAlert() {
+    this.error = true;
+    setTimeout(() => {
+      this.error = false;
+    }, 5000);
   }
 
   addToCart(index: number, product: product) {
     this.products[index].isLoading = true;
     this.products[index].quantities = 1;
     this.products[index].originalValue = Number(this.products[index].value)
-    
+
     const storage = this.localStorageService.getItem(productsToCartKeyStorage);
     let arrayData: product[] = [];
 
@@ -107,7 +177,7 @@ export class ProductsComponent implements OnInit {
 
     let testdata: any = this.localStorageService.getItem(productsToCartKeyStorage)
     this.categoriesService.updateCartProducts(JSON.parse(testdata));
-    
+
 
     setTimeout(() => {
       this.products[index].isLoading = false;

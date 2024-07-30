@@ -71,12 +71,21 @@
         cursor: pointer;
     }
 
+    .wrap-btn-cart-inactive {
+        border-radius: 0px 0px 5px 5px;
+        color: $color-white;
+        font-weight: bold;
+        text-align: center;
+        padding: 8px;  
+        background-color: gray;
+    }
+
     .wrap-btn-cart:hover {
         background-color: $color-red-acctions;
     }
 
     .wrap-spinner {
-        margin-top: 5px;
+        position: absolute;
     }
 
     .wrap-check {

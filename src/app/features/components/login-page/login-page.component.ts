@@ -85,7 +85,6 @@ export class LoginPageComponent implements OnInit {
         this.countryCodes = data;
       },
       error => {
-        console.error('Error loading country codes', error);
       }
     );
   }
