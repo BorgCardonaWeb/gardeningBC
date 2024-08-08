@@ -3,8 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
-import { userkeystorage } from '../../../../assets/emuns/const';
-import { LocalStorageService } from '../../../services/local-storage.service';
 import { UserManagementService } from '../../../services/user-management.service';
 import { userModel } from '../../models/models';
 
@@ -18,10 +16,14 @@ import { userModel } from '../../models/models';
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
+  forgotPasswordForm: FormGroup;
+
   showSignupForm = false;
   error = false;
   alertSuccess = false;
   loading = false;
+  showForgotPassword = false;
+  loadingForgotPassword = false;
 
   @Input() showGeneralInf: boolean = false;
   countryCodes: any[] = [];
@@ -44,8 +46,12 @@ export class LoginPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private categoriesService: FilterCategoriesService,
     private generalInfoServiceService: GeneralInfoServiceService,
-    private localStorageService: LocalStorageService,
     private userManagementService: UserManagementService) {
+
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+
 
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -89,29 +95,39 @@ export class LoginPageComponent implements OnInit {
     );
   }
 
+  hideForgotPassword(){
+    this.showForgotPassword = false;
+  }
+
   onSubmitLogin(): void {
     if (this.loginForm.valid) {
-      this.generateMockStogareUser();
+      this.generateMockStogareUser(this.loginForm.value.email, this.loginForm.value.password,);
     }
   }
 
-  generateMockStogareUser() {
-    this.loading = true;
-    let data = [{
-      name: "Xiomara Pulido",
-      id: "123"
-    }]
-
-
-    setTimeout(() => {
-      this.categoriesService.updateUserLoginData(data);
-    });
-    setTimeout(() => {
-      this.generalInfoServiceService.closeModal();
-      this.loading = false
-    }, 100);
+  onForgotPassword(): void {
+    this.loadingForgotPassword = true;
+    if (this.forgotPasswordForm.valid) {
+      this.userManagementService.forgotPassword(this.forgotPasswordForm.value.email).subscribe(
+        data=> {
+        },
+        error => {
+          this.errorManagement();
+        });
+    }
   }
 
+  generateMockStogareUser(emailData: string, passwordaData: string) {
+
+    this.userManagementService.login({ email: emailData, password: passwordaData }).subscribe(response => {
+      this.categoriesService.updateUserLoginData(response.user);
+      this.generalInfoServiceService.closeModal();
+      this.loading = false
+    }, error => {
+      this.errorManagement();
+    });
+
+  }
 
 
   toggleSignupForm(): void {
@@ -130,15 +146,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmitSignup(): void {
-    /*
-    
-
-
-    */
-    console.log(this.signupForm)
     if (this.signupForm.valid) {
       this.error = false;
-      let user: userModel ={
+      let userData: userModel = {
         name: this.signupForm.value.firstName,
         lastName: this.signupForm.value.lastName,
         address: this.signupForm.value.address,
@@ -146,29 +156,42 @@ export class LoginPageComponent implements OnInit {
         email: this.signupForm.value.email,
         password: this.signupForm.value.password,
         phoneNumber: this.signupForm.value.phoneNumber,
-        
         postalCode: this.signupForm.value.postalCode
-      } 
-
-      this.userManagementService.createUser(user).subscribe(
-        data =>{
-          console.log(data);
-          this.alertSuccess = true;
-          this.toggleSignupForm();
-          setTimeout(() => {
-            this.alertSuccess = false;
-          }, 5000);
-        },
-        error =>{
-          console.log(error);
-          this.alertSuccess = false;
-          this.error = true;
-          setTimeout(() => {
-            this.error = false;
-          }, 5000);
-        }
-      )
+      }
+      this.createUser(userData);
     }
+  }
+
+  createUser(userData: any) {
+    this.userManagementService.register(userData).subscribe(
+      data => {
+        this.alertSuccess = true;
+        this.toggleSignupForm();
+        this.hideSuccessAlert();
+      },
+      error => {
+        this.errorManagement();
+      }
+    )
+  }
+
+  hideSuccessAlert() {
+    setTimeout(() => {
+      this.alertSuccess = false;
+    }, 5000);
+  }
+
+  errorManagement() {
+    this.alertSuccess = false;
+    this.error = true;
+    setTimeout(() => {
+      this.error = false;
+    }, 5000);
+  }
+
+
+  forgotPassword() {
+    this.showForgotPassword = true;
   }
 
 }

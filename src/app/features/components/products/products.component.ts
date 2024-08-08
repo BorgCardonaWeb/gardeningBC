@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DebugElement, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Observable, Subscription } from 'rxjs';
@@ -60,7 +60,6 @@ export class ProductsComponent implements OnInit {
         this.categoriesService.getProductsBySubcategory(String(this.idSubCategorie)).subscribe(
           data => {
             this.products = data;
-            console.log(this.products)
             this.getProductDetails(data)
           },
           () => {
@@ -190,11 +189,11 @@ export class ProductsComponent implements OnInit {
     }, 100);
   }
 
-  cleanArray(array: product[]): product[] {
-    const productMap = new Map<string, product>();
+  cleanArray(array: any) {
+    const productMap = new Map<string, any>();
 
-    array.forEach((product: product) => {
-      productMap.set(product.id, product);
+    array.forEach((product: any) => {
+      productMap.set(product.productID, product);
     });
 
     return Array.from(productMap.values());
@@ -205,7 +204,6 @@ export class ProductsComponent implements OnInit {
   }
 
   openModal(product: any) {
-    console.log(this.productModal, product.name, product.shortDescription, product.description)
     this.generalInfoServiceService.openModal(this.productModal, product.name, product.shortDescription, product.description);
   }
 }

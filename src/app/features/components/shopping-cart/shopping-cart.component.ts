@@ -74,6 +74,10 @@ export class ShoppingCartComponent {
     this.total = summaryTotal;
   }
 
+  getImageSrc(base64String: string): string {
+    return `data:image/jpeg;base64,${base64String}`;
+  }
+
   validateLogin() {
     this.categoriesService.updateModal(true);
     setTimeout(() => {

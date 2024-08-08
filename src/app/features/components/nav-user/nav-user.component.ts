@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
-import { FilterCategoriesService } from '../../../services/filter-categories.service';
-import { LocalStorageService } from '../../../services/local-storage.service';
-import { userkeystorage } from '../../../../assets/emuns/const';
+import { UserManagementService } from '../../../services/user-management.service';
 import { navOptions } from '../../../../assets/emuns/generalEnums';
 import { Router } from '@angular/router';
 
@@ -17,30 +15,35 @@ import { Router } from '@angular/router';
 export class NavUserComponent implements OnInit {
   userOrders = navOptions.userOrders;
   userInfo = navOptions.userInfo;
+  userData: any;
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService,
     private router: Router,
-    private localStorageService: LocalStorageService) { }
+    private userManagementService: UserManagementService) { }
 
   ngOnInit(): void {
-    console.log(this.localStorageService.getItem(userkeystorage))
+    this.getUserData();
+  }
+
+  getUserData(){
+    this.userData = this.userManagementService.getUser();
   }
 
   openModal(type: number, option: string) {
     this.generalInfoServiceService.openModal(type, option);
   }
 
-  
-  showOrders(){
+
+  showOrders() {
     this.router.navigate(["orders"]);
   }
 
-  showPersonalData(){
+  showPersonalData() {
     this.router.navigate(["user"]);
   }
 
 
-  
+
 
 
 }

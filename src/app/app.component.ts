@@ -39,6 +39,9 @@ export class AppComponent {
 
   showUserPanelComponent(data: boolean) {
     this.showUserPanelData = data;
+    if(this.showUserPanelData){
+      
+    }
   }
 
   loadHomePage(data: any){

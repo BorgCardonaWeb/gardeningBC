@@ -5,7 +5,7 @@ import { GeneralInfoServiceService } from '../../../services/general-info-servic
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Observable } from 'rxjs';
 import { product } from '../../models/models';
-import { productsToCartKeyStorage, userkeystorage } from '../../../../assets/emuns/const';
+import { productsToCartKeyStorage } from '../../../../assets/emuns/const';
 import { CommonModule } from '@angular/common';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
@@ -51,15 +51,14 @@ export class HeaderComponent implements OnInit {
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService,
     private router: Router,
-    private categoriesService: FilterCategoriesService,
-    private localStorageService: LocalStorageService) { }
+    private categoriesService: FilterCategoriesService) 
+    { }
 
   ngOnInit(): void {
     this.getCounterStorage();
     this.getCounterProducts();
     this.closeModal();
     this.getLoginUserData();
-    this.validateStorageLoginUser();
   }
 
   openModal(type: number, option: string) {
@@ -95,34 +94,14 @@ export class HeaderComponent implements OnInit {
   getLoginUserData() {
     this.userLoginData$ = this.categoriesService.userLoginDataSubject$;
     this.userLoginData$.subscribe(_data => {
-      if(_data.length > 0){
-        this.storageUser(_data);
+      if(_data){
+        this.showLogout = true;
+        this.showUserPanel.emit(true);
       }
       
     });
   }
 
-  storageUser(data: any) {
-    const storage = this.localStorageService.getItem(userkeystorage);
-    if (storage) {
-      this.localStorageService.removeItem(userkeystorage);
-      this.localStorageService.setItem(userkeystorage, JSON.stringify(data));
-      this.validateStorageLoginUser();
-    } else {
-      this.localStorageService.setItem(userkeystorage, JSON.stringify(data));
-      this.validateStorageLoginUser();
-    }
-  }
-
-  validateStorageLoginUser() {
-    let storage = JSON.parse(String(this.localStorageService.getItem(userkeystorage)));
-    if (storage !== null && storage.length > 0) {
-      this.showLogout = true;
-      this.showUserPanel.emit(true);
-    } else {
-      this.showLogout = false;
-    }
-  }
 
   logout() {
     this.categoriesService.clearStorage();

@@ -5,7 +5,8 @@
                 <div class="col-10 offset-1">
                     <div class="wrap-card-products">
                         <div class="wrap-images">
-                            <img src="./assets/images/products/test.jpg" class="card-img-top img-product" alt="...">
+                            <img *ngIf="product.image" [src]="getImageSrc(product.image)"
+                                class="card-img-top img-product" alt="{{ product.name}}" />
                         </div>
                         <div class="wrap-details">
                             <div class="row">
@@ -21,9 +22,15 @@
                                                 <label class="simbol-txt" (click)="deleteCounterProduct(i)"><i
                                                         class="fa-solid fa-minus"></i></label>
                                                 <label class="counter-txt">{{product.quantities}}</label>
-                                                <label class="simbol-txt" (click)="addCounterProduct(i)"><i
+
+                                                <label *ngIf="product.quantities < product.stockQuantity"
+                                                    class="simbol-txt" (click)="addCounterProduct(i)"><i
                                                         class="fa-solid fa-plus"></i></label>
+
+                                                <label *ngIf="product.quantities >= product.stockQuantity"
+                                                    class="simbol-txt"><i class="fa-solid fa-plus"></i></label>
                                             </div>
+                                            <label class="stock-limit" *ngIf="product.quantities >= product.stockQuantity">Quantity Limit reache</label>
                                         </div>
                                         <div (click)="removeItemStorage(i)" class="col-6 wrap-trash-control">
                                             <i class="fa-solid fa-trash"></i>
@@ -32,6 +39,9 @@
                                     </div>
 
                                 </div>
+
+
+
 
                             </div>
                         </div>

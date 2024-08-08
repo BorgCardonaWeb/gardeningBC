@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
-import { FilterCategoriesService } from '../../../services/filter-categories.service';
-import { LocalStorageService } from '../../../services/local-storage.service';
-import { userkeystorage } from '../../../../assets/emuns/const';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,11 +10,10 @@ import { Router } from '@angular/router';
 })
 export class UserOrdersComponent implements OnInit {
 
-  constructor(private router: Router,
-    private localStorageService: LocalStorageService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.localStorageService.getItem(userkeystorage))
+  
   }
 
   goToInit(){
