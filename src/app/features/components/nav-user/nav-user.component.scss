@@ -14,3 +14,11 @@
         font-size: 1.313rem;
     }
 }
+.txt-user-data {
+    cursor: pointer;
+    color: $color-white; 
+  
+    &.active {
+      color: $color-yellow-header;  
+    }
+  }

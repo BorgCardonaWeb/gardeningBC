@@ -9,6 +9,7 @@ import { productsToCartKeyStorage } from '../../../../assets/emuns/const';
 import { CommonModule } from '@angular/common';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
+import { UserManagementService } from '../../../services/user-management.service';
 
 @Component({
   selector: 'app-header',
@@ -50,15 +51,16 @@ export class HeaderComponent implements OnInit {
   loginTitle = userSession.login;
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService,
+    private userManagementService: UserManagementService,
     private router: Router,
-    private categoriesService: FilterCategoriesService) 
-    { }
+    private categoriesService: FilterCategoriesService) { }
 
   ngOnInit(): void {
     this.getCounterStorage();
     this.getCounterProducts();
     this.closeModal();
     this.getLoginUserData();
+    this.getUserByStorage();
   }
 
   openModal(type: number, option: string) {
@@ -66,7 +68,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToInitLogo() {
-    this.initPageLogo.emit(true);
+    this.router.navigate(["home"]);
   }
 
   getCounterProducts() {
@@ -94,12 +96,18 @@ export class HeaderComponent implements OnInit {
   getLoginUserData() {
     this.userLoginData$ = this.categoriesService.userLoginDataSubject$;
     this.userLoginData$.subscribe(_data => {
-      if(_data){
+      if (_data.id) {
         this.showLogout = true;
         this.showUserPanel.emit(true);
       }
-      
     });
+  }
+
+  getUserByStorage() {
+    let user = this.userManagementService.getUser();
+    if (user?.id) {
+      this.categoriesService.updateUserLoginData(user);
+    }
   }
 
 

@@ -155,7 +155,6 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(index: number, product: product) {
-    debugger
     this.products[index].isLoading = true;
     this.products[index].quantities = 1;
     this.products[index].originalValue = Number(this.products[index].value)

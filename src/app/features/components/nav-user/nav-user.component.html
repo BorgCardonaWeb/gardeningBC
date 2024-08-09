@@ -2,13 +2,18 @@
     <div class="col-12">
         <div class="row">
             <div class="offset-1 col">
-                <p class="txt-user-name">Welcome, {{userData?.name}}!</p>
+                <p class="txt-user-name"> <label (click)="goToInit()" style="cursor: pointer;">Welcome, {{userData?.name}}!</label></p>
             </div>
             <div class="col">
-                <p class="txt-user-data" (click)="showOrders()">My Orders</p>
+                <p class="txt-user-data" [ngClass]="{'active': activeTab === 'orders'}" (click)="showOrders()">
+                    My Orders
+                </p>
             </div>
             <div class="col">
-                <p class="txt-user-data" (click)="showPersonalData()">Personal Information</p>
+                <p class="txt-user-data" [ngClass]="{'active': activeTab === 'personalInfo'}"
+                    (click)="showPersonalData()">
+                    Personal Information
+                </p>
             </div>
         </div>
     </div>

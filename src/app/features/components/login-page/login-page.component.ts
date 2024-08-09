@@ -118,7 +118,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   generateMockStogareUser(emailData: string, passwordaData: string) {
-
     this.userManagementService.login({ email: emailData, password: passwordaData }).subscribe(response => {
       this.categoriesService.updateUserLoginData(response.user);
       this.generalInfoServiceService.closeModal();
