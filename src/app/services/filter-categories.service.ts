@@ -67,7 +67,7 @@ export class FilterCategoriesService {
     this.dataCartProductsSubject.next(data);
   };
 
-  updateUserLoginData(data: any[]): void {
+  updateUserLoginData(data: any): void {
     this.userLoginDataSubject.next(data);
   };
 

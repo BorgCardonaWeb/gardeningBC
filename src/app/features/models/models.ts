@@ -42,6 +42,7 @@ export class userModel {
     phoneNumber!: string;
     email!: string;
     password!: string;
+    phonePrefix!: string;
 }
 
 

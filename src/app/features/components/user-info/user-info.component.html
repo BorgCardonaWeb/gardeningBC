@@ -1,6 +1,14 @@
 <div class="row wrap-session">
+    <div *ngIf="alertError" class="alert alert-danger" style="position: absolute;" role="alert">
+        {{erroralertTxt}}
+    </div>
+    
+<div *ngIf="alertSuccess" class="alert alert-success" style="position: absolute;" role="alert">
+    Your information has been updated successfully.
+  </div>
+
     <i class="fa-solid fa-arrow-left icon-back" (click)="goToInit()"></i>
-    <div class="wrap-login  col-8 offset-2">
+    <div class="wrap-login col-8 offset-2">
         <form [formGroup]="signupForm" (ngSubmit)="onUpdateUser()">
             <div class="mb-3">
                 <label for="signupFirstName" class="form-label text-login">First Name</label>

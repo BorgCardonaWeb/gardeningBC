@@ -5,6 +5,8 @@ import { UserManagementService } from '../../../services/user-management.service
 import { navOptions } from '../../../../assets/emuns/generalEnums';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { FilterCategoriesService } from '../../../services/filter-categories.service';
 
 @Component({
   selector: 'app-nav-user',
@@ -17,17 +19,20 @@ export class NavUserComponent implements OnInit {
   userOrders = navOptions.userOrders;
   userInfo = navOptions.userInfo;
   userData: any;
-  activeTab: string = '';  // Variable para rastrear la pestaña activa
+  activeTab: string = '';
+  userLoginData$: Observable<any> | undefined;
 
   constructor(private generalInfoServiceService: GeneralInfoServiceService,
-              private router: Router,
-              private userManagementService: UserManagementService) { }
+    private router: Router,
+    private categoriesService: FilterCategoriesService,
+    private userManagementService: UserManagementService) { }
 
   ngOnInit(): void {
     this.getUserData();
-    this.setActiveTabBasedOnRoute();  // Configura la pestaña activa basada en la ruta
+    this.setActiveTabBasedOnRoute();
+    this.getLoginUserData();
 
-    // Escucha cambios en la ruta
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -35,8 +40,20 @@ export class NavUserComponent implements OnInit {
     });
   }
 
-  getUserData(){
+  getUserData() {
     this.userData = this.userManagementService.getUser();
+  }
+
+  getLoginUserData() {
+    this.userLoginData$ = this.categoriesService.userLoginDataSubject$;
+    this.userLoginData$.subscribe(_data => {
+      console.log("Llega aca")
+      console.log(_data )
+      if (_data.name) {
+        this.userData = _data;
+
+      }
+    });
   }
 
   openModal(type: number, option: string) {
@@ -51,8 +68,8 @@ export class NavUserComponent implements OnInit {
     this.router.navigate(["user"]);
   }
 
-  goToInit(){
-    this.activeTab = '';  
+  goToInit() {
+    this.activeTab = '';
     this.router.navigate(["home"]);
   }
 
@@ -63,7 +80,7 @@ export class NavUserComponent implements OnInit {
     } else if (currentRoute === '/user') {
       this.activeTab = 'personalInfo';
     } else {
-      this.activeTab = ''; 
+      this.activeTab = '';
     }
   }
 }

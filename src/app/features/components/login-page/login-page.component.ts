@@ -155,7 +155,8 @@ export class LoginPageComponent implements OnInit {
         email: this.signupForm.value.email,
         password: this.signupForm.value.password,
         phoneNumber: this.signupForm.value.phoneNumber,
-        postalCode: this.signupForm.value.postalCode
+        postalCode: this.signupForm.value.postalCode,
+        phonePrefix: this.signupForm.value.phonePrefix
       }
       this.createUser(userData);
     }

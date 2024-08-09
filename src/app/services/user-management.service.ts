@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -45,5 +45,13 @@ export class UserManagementService {
 
   resetPassword(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/reset-password`, data);
+  }
+
+  updateUser(user: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.apiUrl}/update-user`, user, { headers });
   }
 }
