@@ -47,11 +47,8 @@ export class NavUserComponent implements OnInit {
   getLoginUserData() {
     this.userLoginData$ = this.categoriesService.userLoginDataSubject$;
     this.userLoginData$.subscribe(_data => {
-      console.log("Llega aca")
-      console.log(_data )
       if (_data.name) {
         this.userData = _data;
-
       }
     });
   }

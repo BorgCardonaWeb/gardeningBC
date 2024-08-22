@@ -1,5 +1,5 @@
 <div *ngIf="error" class="alert alert-danger" style="position: absolute;" role="alert">
-  Oops! Something went wrong while creating your account. Please try again later or contact support for assistance.
+  {{txtAlertError}}
 </div>
 
 <div *ngIf="alertSuccess" class="alert alert-success" style="position: absolute;" role="alert">
@@ -43,8 +43,8 @@
             </div>
             
         </div>
-        <div class="col-8 hyperlink" (click)="toggleSignupForm()"><label>Create an account</label></div>
-        <div class="col-8 hyperlink" (click)="forgotPassword()"><label>Forgot Password</label></div>
+        <div class="col-4 hyperlink" (click)="toggleSignupForm()"><label>Create an account</label></div>
+        <div class="col-4 hyperlink" (click)="forgotPassword()"><label>Forgot Password</label></div>
         
       </div>
     </form>

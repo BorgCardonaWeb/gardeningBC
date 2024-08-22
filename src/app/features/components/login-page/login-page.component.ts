@@ -24,6 +24,7 @@ export class LoginPageComponent implements OnInit {
   loading = false;
   showForgotPassword = false;
   loadingForgotPassword = false;
+  txtAlertError = "";
 
   @Input() showGeneralInf: boolean = false;
   countryCodes: any[] = [];
@@ -101,7 +102,7 @@ export class LoginPageComponent implements OnInit {
 
   onSubmitLogin(): void {
     if (this.loginForm.valid) {
-      this.generateMockStogareUser(this.loginForm.value.email, this.loginForm.value.password,);
+      this.loginUser(this.loginForm.value.email, this.loginForm.value.password,);
     }
   }
 
@@ -112,18 +113,19 @@ export class LoginPageComponent implements OnInit {
         data=> {
         },
         error => {
-          this.errorManagement();
+          this.errorManagement("An error occurred while trying to recover the password");
         });
     }
   }
 
-  generateMockStogareUser(emailData: string, passwordaData: string) {
+  loginUser(emailData: string, passwordaData: string) {
     this.userManagementService.login({ email: emailData, password: passwordaData }).subscribe(response => {
       this.categoriesService.updateUserLoginData(response.user);
       this.generalInfoServiceService.closeModal();
       this.loading = false
     }, error => {
-      this.errorManagement();
+      console.log(error)
+      this.errorManagement("Invalid username or password");
     });
 
   }
@@ -170,7 +172,7 @@ export class LoginPageComponent implements OnInit {
         this.hideSuccessAlert();
       },
       error => {
-        this.errorManagement();
+        this.errorManagement("An unexpected error occurred while creating the account");
       }
     )
   }
@@ -181,7 +183,8 @@ export class LoginPageComponent implements OnInit {
     }, 5000);
   }
 
-  errorManagement() {
+  errorManagement(msmError: string) {
+    this.txtAlertError = msmError;
     this.alertSuccess = false;
     this.error = true;
     setTimeout(() => {
