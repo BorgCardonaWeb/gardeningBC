@@ -1,0 +1,8 @@
+.wrap-banner{
+   margin-top: 30px;
+   margin-bottom: 100px;
+    .content-images{
+        max-height: 500px;
+        height: 100%;
+    }
+}

@@ -1,0 +1,19 @@
+@import "../../../../styles.scss";
+
+.wrap-contact-info {
+    p {
+        line-height: 1;
+    }
+
+    .title-contact {
+        font-weight: bold;
+        color: $color-blue-actions-header;
+    }
+
+    .subtitla-contact {
+        font-weight: bold;
+        color: gray;
+        margin-top: 10%;
+    }
+
+}

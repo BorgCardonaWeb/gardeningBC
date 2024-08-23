@@ -1,0 +1,12 @@
+@import "../../../../styles.scss";
+.wrap-terms-info{
+    padding: 10px;
+    .subtitle{
+        font-weight: bold;
+        color: gray;
+    }
+    .title{
+        font-weight: bold;
+        color: $color-blue-actions-header;
+    }
+}

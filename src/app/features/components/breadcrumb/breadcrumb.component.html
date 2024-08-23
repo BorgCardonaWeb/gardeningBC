@@ -1,0 +1,10 @@
+<div class="row wrap-breadcrumb">
+    <div class="col-12">
+        <p>
+            <i class="fa-solid fa-arrow-left icon-back" (click)="goToInit()"></i>
+            <span *ngIf="showBreadcrumb" class="wrap-labels"><label (click)="goToInit()"
+                    style="cursor: pointer;">{{categorieName}}</label> / <label>{{subcategorieName}}</label></span>
+        </p>
+    </div>
+
+</div>

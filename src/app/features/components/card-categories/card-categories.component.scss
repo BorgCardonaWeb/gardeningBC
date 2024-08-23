@@ -1,0 +1,82 @@
+@import "../../../../styles.scss";
+
+
+
+.wrap-categories {
+    cursor: pointer;
+    font-size: 1.188rem;
+
+    .content-card-info{
+      
+    }
+
+    .content-img{
+        max-height: 285px !important;
+    }
+
+    h1 {
+        color: $color-blue-actions-header;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        color: $color-white;
+        background-color: $color-blue-tooltip;
+        word-break: break-all;
+    }
+
+    .card:hover {
+        .card-text {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s,
+        box-shadow 0.3s;
+
+        img {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+            border-radius: 5px 5px 5px 5px;
+        }
+    }
+
+
+    .submenu {
+        padding-top: 10px;
+        color: $orange-acctions;
+        width: 100%;
+        position: absolute;
+        top: calc(100% + 0px);
+        left: 0;
+        background-color: $color-white;
+        border: 1px solid $color-white;
+        z-index: 9999;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+        font-weight: bold;
+
+    }
+
+    .submenu ul {
+        list-style-type: none;
+        list-style: url ("./assets/icons/icon-collapse.svg");
+        padding-left: 15px;
+    }
+
+    .submenu ul li:before {
+        color: $color-blue-tooltip;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+
+    li:hover {
+        font-weight: bold;
+        color: $color-blue-tooltip;
+    }
+
+}

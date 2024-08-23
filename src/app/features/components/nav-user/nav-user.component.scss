@@ -1,0 +1,24 @@
+@import "../../../../styles.scss";
+
+.wrap-panel-user {
+    padding-top: 10px;
+    font-weight: bold;
+    color: $color-white;
+    background-color: $color-blue-tooltip;
+
+    .txt-user-data {
+        cursor: pointer;
+    }
+
+    .txt-user-name {
+        font-size: 1.313rem;
+    }
+}
+.txt-user-data {
+    cursor: pointer;
+    color: $color-white; 
+  
+    &.active {
+      color: $color-yellow-header;  
+    }
+  }

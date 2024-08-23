@@ -1,0 +1,16 @@
+@import "../../../../styles.scss";
+
+.wrap-terms-privacy {
+    padding: 10px;
+    .subtitle {
+        font-weight: bold;
+        color: gray;
+    }
+
+    .title {
+        color: $color-blue-actions-header;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+}

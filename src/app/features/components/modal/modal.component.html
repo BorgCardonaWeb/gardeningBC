@@ -1,0 +1,18 @@
+<div class="wrap-modal wrap-modal-general">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" (click)="modalRef.close()" class="btn-close close pull-right" aria-label="Close">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-terms-and-conditions *ngIf="type == 0"></app-terms-and-conditions>
+        <app-deliveries *ngIf="type == 1"></app-deliveries>
+        <app-privacy-policy *ngIf="type == 2"></app-privacy-policy>
+        <app-contact *ngIf="type == 3"></app-contact>
+        <app-shopping-cart *ngIf="type == 4"></app-shopping-cart>
+        <app-login-page [showGeneralInf]="true" id="{{type}}" *ngIf="type == 5"></app-login-page>
+        <app-login-page [showGeneralInf]="false" id="{{type}}" *ngIf="type == 6"></app-login-page>
+        <app-product-detail id="{{type}}" *ngIf="type == 7" [shortDescription]="shortDescription" [description]="description"></app-product-detail>
+    </div>
+</div>

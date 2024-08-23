@@ -1,0 +1,181 @@
+<div *ngIf="error" class="alert alert-danger" style="position: absolute;" role="alert">
+  {{txtAlertError}}
+</div>
+
+<div *ngIf="alertSuccess" class="alert alert-success" style="position: absolute;" role="alert">
+  Your account has been successfully created!
+</div>
+
+
+<div class="row wrap-session" [ngClass]="{'login-page': !showGeneralInf}">
+  <div *ngIf="showGeneralInf" class="col-12">
+    <p class="text-title">
+      Complete Your Purchase
+    </p>
+    <p class="text-subtitle">
+      To continue with your order, please log in or create an account. It only takes a minute!
+    </p>
+  </div>
+
+  <div *ngIf="!showSignupForm && !showForgotPassword" class="wrap-login col-8 offset-2">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+      <div class="mb-3">
+        <label for="loginEmail" class="form-label text-login">Email address</label>
+        <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" formControlName="email">
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+          Email is required and must be a valid email address.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="loginPassword" class="form-label text-login">Password</label>
+        <input type="password" id="loginPassword" class="form-control" aria-describedby="passwordHelpBlock"
+          formControlName="password">
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+          Password is required.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <button type="submit" class="btn btn-primary btn-login" [disabled]="loginForm.invalid"
+            [ngClass]="{'inactive-class': loginForm.invalid}">Login</button>
+            <div *ngIf="loading" class="spinner-border text-success wrap-spinner" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            
+        </div>
+        <div class="col-4 hyperlink" (click)="toggleSignupForm()"><label>Create an account</label></div>
+        <div class="col-4 hyperlink" (click)="forgotPassword()"><label>Forgot Password</label></div>
+        
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="showForgotPassword" class="wrap-login col-8 offset-2">
+    <i class="fa-solid fa-arrow-left icon-back" (click)="hideForgotPassword()"></i>
+    <form [formGroup]="forgotPasswordForm" (ngSubmit)="onForgotPassword()">
+      <div class="mb-3">
+        <label for="loginEmail" class="form-label text-login">Email address</label>
+        <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" formControlName="email">
+        <div *ngIf="forgotPasswordForm.get('email')?.invalid && forgotPasswordForm.get('email')?.touched" class="text-danger">
+          Email is required and must be a valid email address.
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-login" [disabled]="forgotPasswordForm.invalid"
+          [ngClass]="{'inactive-class': forgotPasswordForm.invalid}">Submit</button>
+          <div *ngIf="loadingForgotPassword" class="spinner-border text-success wrap-spinner" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="showSignupForm !showForgotPassword" class="wrap-login col-8 offset-2">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup()">
+      <div class="mb-3">
+        <label for="signupFirstName" class="form-label text-login">First Name</label>
+        <input id="signupFirstName" class="form-control" formControlName="firstName">
+        <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="text-danger">
+          <small *ngIf="signupForm.get('firstName')?.errors?.['required']">First Name is required.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="signupLastName" class="form-label text-login">Last Name</label>
+        <input id="signupLastName" class="form-control" formControlName="lastName">
+        <div *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched" class="text-danger">
+          <small *ngIf="signupForm.get('lastName')?.errors?.['required']">Last Name is required.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="signupAddress" class="form-label text-login">Address</label>
+        <input id="signupAddress" class="form-control" formControlName="address">
+        <div *ngIf="signupForm.get('address')?.invalid && signupForm.get('address')?.touched" class="text-danger">
+          <small *ngIf="signupForm.get('address')?.errors?.['required']">Address is required.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="signupCity" class="form-label text-login">City</label>
+        <input id="signupCity" class="form-control" formControlName="city">
+        <div *ngIf="signupForm.get('city')?.invalid && signupForm.get('city')?.touched" class="text-danger">
+          <small *ngIf="signupForm.get('city')?.errors?.['required']">City is required.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="signupPostalCode" class="form-label text-login">Postal Code</label>
+        <input id="signupPostalCode" class="form-control" formControlName="postalCode">
+        <div *ngIf="signupForm.get('postalCode')?.invalid && signupForm.get('postalCode')?.touched" class="text-danger">
+          <small *ngIf="signupForm.get('postalCode')?.errors?.['required']">Postal Code is required.</small>
+          <small *ngIf="signupForm.get('postalCode')?.errors?.['pattern']">Postal Code must match the pattern
+            'MXR1363'.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="signupPhonePrefix" class="form-label text-login">Phone Number</label>
+        <div class="input-group">
+          <div class="input-group-prepend" style="width: 30%;">
+            <select class="form-select" id="signupPhonePrefix" formControlName="phonePrefix">
+              <option *ngFor="let code of countryCodes" [value]="code.code">{{ code.name }} ({{ code.code }})</option>
+            </select>
+          </div>
+          <input id="signupPhoneNumber" class="form-control" style="width: 70%;" formControlName="phoneNumber">
+        </div>
+        <div *ngIf="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched"
+          class="text-danger mt-2">
+          <small *ngIf="signupForm.get('phoneNumber')?.errors?.['required']">Phone Number is required.</small>
+          <small *ngIf="signupForm.get('phoneNumber')?.errors?.['pattern']">Phone Number must be numeric.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="signupEmail" class="form-label text-login">Email</label>
+        <input id="signupEmail" class="form-control" formControlName="email">
+        <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-danger">
+          <small *ngIf="signupForm.get('email')?.errors?.['required']">Email is required.</small>
+          <small *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email format.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="signupPassword" class="form-label text-login">Password</label>
+        <input type="password" id="signupPassword" class="form-control" formControlName="password">
+        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-danger">
+          <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters
+            long.</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['maxlength']">Password cannot be more than 20 characters
+            long.</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['pattern']">Password must contain at least one letter and
+            one number.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label text-login">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword">
+        <div class="text-danger">
+          <small *ngIf="!isValidConfirm">
+            Passwords do not match.
+          </small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <button type="submit" class="btn btn-primary btn-login" [disabled]="signupForm.invalid"
+            [ngClass]="{'inactive-class': signupForm.invalid}">Create Account</button>
+            <div *ngIf="loading" class="spinner-border text-success wrap-spinner" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            
+        </div>
+        <div class="col-8 hyperlink"><label (click)="toggleSignupForm()">Back to Login</label></div>
+      </div>
+    </form>
+  </div>
+  
+</div>

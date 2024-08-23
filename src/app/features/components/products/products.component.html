@@ -1,0 +1,46 @@
+<div *ngIf="error" class="alert alert-danger" role="alert">
+    Oops! Something went wrong while creating your account. Please try again later or contact support for assistance.
+</div>
+
+<div class="wrap-products col-10 offset-1">
+    <h1>Products</h1>
+
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4" *ngFor="let product of products; index as i;">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <div class="wrap-images mb-3">
+                        <img *ngIf="product.image" [src]="getImageSrc(product.image)" class="card-img-top img-product"
+                            alt="{{ product.name}}" />
+                    </div>
+                    <div class="wrap-details flex-grow-1">
+                        <p class="text-uppercase product-name">{{product.name}} </p>
+                        <p class="text-uppercase sku-details">SKU: {{product.sku}} <i
+                                class="fa-solid fa-eye icon-detail" (click)="openModal(product)"></i></p>
+                        <span class="wrap-amount">{{ product.value | currency: 'EUR'}}
+                        </span>
+                    </div>
+                    <div *ngIf="product.loadindData" class="spinner-border text-danger wrap-spinner" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div *ngIf="product.stockQuantity > 0" (click)="addToCart(i, product)" class="wrap-btn-cart mt-auto">
+                        <div>ADD TO CART</div>
+                        <div *ngIf="product.isLoading" class="spinner-border text-success wrap-spinner" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div *ngIf="product.stockQuantity < 1" class="wrap-btn-cart-inactive mt-auto">
+                        <div>OUT OF STOCK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!showProducts" class="row">
+        <p class="txt-searching-error">
+            <i class="fa-solid fa-triangle-exclamation icon-info"></i>
+            No products found matching your selected filters.
+        </p>
+    </div>
+</div>
