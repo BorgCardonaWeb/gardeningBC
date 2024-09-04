@@ -30,7 +30,6 @@ export class SearcherComponent {
   }
 
   filterProductProsses() {
-
     if (this.searcherProduct().length > 0) {
       this.filterProductBySearchingControl();
       this.showOrHideNoProductsMessagges();
@@ -50,6 +49,7 @@ export class SearcherComponent {
   }
 
   filterProductBySearchingControl() {
+    this.productsData = this.productsInitialData;
     this.productsData = this.productsData.filter((data: any) => {
       return (String(data.name).toLocaleLowerCase().includes(this.searcherProduct().toLocaleLowerCase()) ||
         String(data.sku).toLocaleLowerCase().includes(this.searcherProduct().toLocaleLowerCase()))
@@ -75,7 +75,7 @@ export class SearcherComponent {
       this.searcherProduct.set("");
       this.productsData = this.productsInitialData;
     });
-    
+
   }
 
   emmitSearching() {
