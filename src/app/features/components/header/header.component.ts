@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { product } from '../../models/models';
 import { productsToCartKeyStorage } from '../../../../assets/emuns/const';
 import { CommonModule } from '@angular/common';
-import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
 import { UserManagementService } from '../../../services/user-management.service';
 
