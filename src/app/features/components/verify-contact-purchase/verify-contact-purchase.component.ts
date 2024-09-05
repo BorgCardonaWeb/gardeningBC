@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './verify-contact-purchase.component.css'
 })
 export class VerifyContactPurchaseComponent {
-
+  
+ 
 }
