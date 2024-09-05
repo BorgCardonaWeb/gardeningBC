@@ -1,26 +1,29 @@
-<div class="content-header row">
-  <div class="col-3">
-    <img src="./assets/images/headerLogo.png" class="img-fluid logo" style="cursor: pointer;" (click)="goToInitLogo()">
-  </div>
-  <div id="icon-faceboock" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1 offset-md-5 offset-lg-5">
-    <a href="https://www.facebook.com/profile.php?id=61565484356894" target="_blank">
-      <i class="icon fa-brands fa-square-facebook"></i>
-      <span class="title-span">Facebook</span>
-    </a>
-  </div>
-  <div id="icon-Contact" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1">
-    <i class="icon fa-solid fa-envelope-open" (click)="openModal(3, contactTitle)"></i>
-    <span class="title-span">Contact Us</span>
-  </div>
-  <div id="icon-cart" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1">
-    <i class="icon fa-solid fa-cart-shopping" (click)="openModal(4, shoppingTitle)"></i>
-    <span class="title-span">Shopping cart</span>
-    <div *ngIf="showCounter" class="wrap-notification">{{counter}}</div>
-  </div>
-  <div id="icon-login" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1">
-    <i *ngIf="!showLogout" class="icon fa-regular fa-user"  (click)="openModal(6, loginTitle)"></i>
-    <i *ngIf="showLogout" class="icon fa-sharp fa-solid fa-arrow-right-from-bracket" (click)="logout()"></i>
-    <span *ngIf="!showLogout"  class="title-span">Login</span>
-    <span *ngIf="showLogout"  class="title-span">Log Out</span>
+<div class="container-fluid wrap-content-header">
+  <div class="row no-gutters">
+    <div class="col-3">
+      <img src="./assets/images/headerLogo.png" class="img-fluid logo" style="cursor: pointer;"
+        (click)="goToInitLogo()">
+    </div>
+    <div id="icon-faceboock" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1 offset-md-5 offset-lg-5">
+      <a href="https://www.facebook.com/profile.php?id=61565484356894" target="_blank">
+        <i class="icon fa-brands fa-square-facebook"></i>
+        <span class="title-span">Facebook</span>
+      </a>
+    </div>
+    <div id="icon-Contact" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1">
+      <i class="icon fa-solid fa-envelope-open" (click)="openModal(3, contactTitle)"></i>
+      <span class="title-span">Contact Us</span>
+    </div>
+    <div id="icon-cart" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1">
+      <i class="icon fa-solid fa-cart-shopping" (click)="openModal(4, shoppingTitle)"></i>
+      <span class="title-span">Shopping cart</span>
+      <div *ngIf="showCounter" class="wrap-notification">{{counter}}</div>
+    </div>
+    <div id="icon-login" class="col-2 col-sm-2 col-xs-2 col-md-1 col-lg-1">
+      <i *ngIf="!showLogout" class="icon fa-regular fa-user" (click)="openModal(6, loginTitle)"></i>
+      <i *ngIf="showLogout" class="icon fa-sharp fa-solid fa-arrow-right-from-bracket" (click)="logout()"></i>
+      <span *ngIf="!showLogout" class="title-span">Login</span>
+      <span *ngIf="showLogout" class="title-span">Log Out</span>
+    </div>
   </div>
 </div>

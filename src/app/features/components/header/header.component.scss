@@ -1,6 +1,11 @@
 @import "../../../../styles.scss";
 
-.content-header {
+.logo-init{
+width: 100px;
+height: 50px;
+}
+
+.wrap-content-header {
     background-color: $color-yellow-header;
     border-bottom: 3px solid $color-border-shadow;
     padding-left: 30px;
