@@ -5,11 +5,12 @@ import { productsToCartKeyStorage, purchaseTotalkeystorage } from '../../../../a
 import { Observable } from 'rxjs';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Router } from '@angular/router';
+import { StepperComponent } from '../stepper/stepper.component';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [],
+  imports: [StepperComponent],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
