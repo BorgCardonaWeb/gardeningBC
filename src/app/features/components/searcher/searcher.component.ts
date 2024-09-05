@@ -29,6 +29,13 @@ export class SearcherComponent {
     effect(() => { this.filterProductProsses(); })
   }
 
+  restrictSpecialChars(event: any) {
+    const input = event.target as HTMLInputElement;
+    const filteredValue = input.value.replace(/[^a-zA-Z0-9 ]/g, '');
+    this.searcherProduct.set(filteredValue);
+    input.value = filteredValue; // Update the input value to the filtered one
+  }
+
   filterProductProsses() {
     if (this.searcherProduct().length > 0) {
       this.filterProductBySearchingControl();
