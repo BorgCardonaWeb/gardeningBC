@@ -1,6 +1,11 @@
 @import "../../../../styles.scss";
 
-.stepper .step {
+.wrap-stepper {
+
+  margin-top: 65px;
+}
+
+  .stepper .step {
     width: 100px;
     text-align: center;
     padding: 10px;
@@ -9,14 +14,31 @@
     background-color: #f8f9fa;
     cursor: pointer;
   }
-  
+
   .stepper .step.active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+    font-weight: bold;
+    background-color: $color-blue-tooltip;
+    color: $color-white;
+    border-color: $color-blue-tooltip;
+    border: 1px solid $orange-acctions;
   }
-  
+
   .stepper .step:not(:last-child) {
     margin-right: 10px;
   }
-  
+
+  .step-action {
+    margin-top: -25px;
+  }
+
+  .container-step {
+    border-top: 2px solid $orange-acctions;
+  }
+
+  .btn-active-stepper{
+    min-width: 95px;
+    font-weight: bold;
+    background-color: $color-blue-tooltip;
+    color: $color-white;
+  }
+

@@ -1,24 +1,27 @@
 <div class="container mt-5">
-    <div class="stepper">
-      <!-- Stepper Header -->
-      <div class="d-flex justify-content-between mb-4">
-        <div class="step" [class.active]="currentStep === 1">Step 1</div>
-        <div class="step" [class.active]="currentStep === 2">Step 2</div>
-        <div class="step" [class.active]="currentStep === 3">Step 3</div>
-      </div>
-  
-      <!-- Stepper Content -->
-      <div class="step-content">
-        <app-verify-purchase *ngIf="currentStep === 1"></app-verify-purchase>
-        <app-verify-contact-purchase *ngIf="currentStep === 2"></app-verify-contact-purchase>
-        <app-verify-payment-metod *ngIf="currentStep === 3"></app-verify-payment-metod>
-      </div>
-  
-      <!-- Stepper Navigation -->
-      <div class="d-flex justify-content-between mt-4">
-        <button class="btn btn-secondary" (click)="previousStep()" [disabled]="currentStep === 1">Previous</button>
-        <button class="btn btn-primary" (click)="nextStep()" [disabled]="currentStep === 3">Next</button>
-      </div>
+  <div class="stepper wrap-stepper">
+    <!-- Stepper Header -->
+    <div class="d-flex justify-content-between mb-4 container-step">
+
+      <div class="step step-action" [class.active]="currentStep === 1" style="margin-left: -3px;">Purchase Details</div>
+      <div class="step step-action" [class.active]="currentStep === 2">Step 2</div>
+      <div class="step step-action" [class.active]="currentStep === 3" style="margin-right: -3px;">Step 3</div>
+    </div>
+
+
+    <!-- Stepper Content -->
+    <div class="step-content">
+      <app-verify-purchase *ngIf="currentStep === 1"></app-verify-purchase>
+      <app-verify-contact-purchase *ngIf="currentStep === 2"></app-verify-contact-purchase>
+      <app-verify-payment-metod *ngIf="currentStep === 3"></app-verify-payment-metod>
+    </div>
+
+    <!-- Stepper Navigation -->
+    <div class="d-flex justify-content-between mt-4" style="margin-bottom: 130px;">
+      <button class="btn btn-primary btn-active-stepper" (click)="previousStep()"
+        [disabled]="currentStep === 1">Previous</button>
+      <button class="btn btn-primary btn-active-stepper" (click)="nextStep()"
+        [disabled]="currentStep === 3">Next</button>
     </div>
   </div>
-  
+</div>

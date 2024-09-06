@@ -12,11 +12,11 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
   providers: [CurrencyPipe],
   imports: [CommonModule],
   templateUrl: './verify-purchase.component.html',
-  styleUrl: './verify-purchase.component.css'
+  styleUrl: './verify-purchase.component.scss'
 })
 export class VerifyPurchaseComponent {
 
-  products: product[] = [];
+  cartItems: product[] = [];
   total: number = 0;
 
   purchaseSubject$: Observable<any> | undefined;
@@ -33,12 +33,12 @@ export class VerifyPurchaseComponent {
     this.purchaseSubject$ = this.categoriesService.purchaseSubject$;
 
     this.purchaseSubject$.subscribe(_data => {
-      this.products = _data;
+      this.cartItems = _data;
       this.getTotal()
     });
 
     setTimeout(() => {
-      if (this.products.length < 1) {
+      if (this.cartItems.length < 1) {
         this.generalInfoServiceService.closeModal();
         this.router.navigate(["home"]);
       }
@@ -48,8 +48,8 @@ export class VerifyPurchaseComponent {
 
   getTotal() {
     let summaryTotal = 0;
-    for (let i = 0; i < this.products.length; i++) {
-      summaryTotal += parseFloat(this.products[i].value);
+    for (let i = 0; i < this.cartItems.length; i++) {
+      summaryTotal += parseFloat(this.cartItems[i].value);
     }
     this.total = summaryTotal;
   }

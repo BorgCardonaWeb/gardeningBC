@@ -1,0 +1,27 @@
+@import "../../../../styles.scss";
+
+.wrap-detail-cart {
+    .content-info-cart {
+        margin-top: 20px;
+        font-weight: 500;
+
+        .content-value {
+            color: $color-blue-actions-header;
+        }
+
+        .content-line {
+            border-top: 2px solid $color-green-actions;
+        }
+
+    }
+
+}
+
+
+.total-detail{
+    text-align: right;
+    font-size: 1.188rem;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
