@@ -34,8 +34,8 @@
           Password is required.
         </div>
       </div>
-      <div class="row">
-        <div class="col-4">
+      <div class="row" style="text-align: center;">
+        <div class="col-12 col-sm-12 col-xs-12 col-md-2 col-lg-2">
           <button type="submit" class="btn btn-primary btn-login" [disabled]="loginForm.invalid"
             [ngClass]="{'inactive-class': loginForm.invalid}">Login</button>
             <div *ngIf="loading" class="spinner-border text-success wrap-spinner" role="status">
@@ -43,8 +43,8 @@
             </div>
             
         </div>
-        <div class="col-4 hyperlink" (click)="toggleSignupForm()"><label>Create an account</label></div>
-        <div class="col-4 hyperlink" (click)="forgotPassword()"><label>Forgot Password</label></div>
+        <div class="col-12 col-sm-12 col-xs-12 col-md-4 col-lg-4 hyperlink offset-md-2 offset-lg-2" (click)="toggleSignupForm()"><label>Create an account</label></div>
+        <div class="col-12 col-sm-12 col-xs-12 col-md-4 col-lg-4 hyperlink" (click)="forgotPassword()"><label>Forgot Password</label></div>
         
       </div>
     </form>
@@ -117,12 +117,12 @@
       <div class="mb-3">
         <label for="signupPhonePrefix" class="form-label text-login">Phone Number</label>
         <div class="input-group">
-          <div class="input-group-prepend" style="width: 30%;">
+          <div class="input-group-prepend" style="width: 40%;">
             <select class="form-select" id="signupPhonePrefix" formControlName="phonePrefix">
               <option *ngFor="let code of countryCodes" [value]="code.code">{{ code.name }} ({{ code.code }})</option>
             </select>
           </div>
-          <input id="signupPhoneNumber" class="form-control" style="width: 70%;" formControlName="phoneNumber">
+          <input id="signupPhoneNumber" class="form-control" style="width: 60%;" formControlName="phoneNumber">
         </div>
         <div *ngIf="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched"
           class="text-danger mt-2">
