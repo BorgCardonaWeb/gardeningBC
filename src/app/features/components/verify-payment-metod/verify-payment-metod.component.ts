@@ -10,10 +10,10 @@ import { VerifyPurchaseComponent } from '../verify-purchase/verify-purchase.comp
   styleUrl: './verify-payment-metod.component.scss'
 })
 export class VerifyPaymentMetodComponent {
-  @Input() summaryData: any; 
-  isCollapsed = true; 
-  isCollapsedPurchase = true;
-  classGrid = "col-12 col-sm-12 col-xs-12 col-md-12 col-lg-12"
+  @Input() summaryData: any;
+  isCollapsed = true;
+  isCollapsedPurchase = false;
+  classGrid = "col-12 col-sm-12 col-xs-12 col-md-12 col-lg-12";
 
 
   toggleCollapse(): void {
@@ -23,4 +23,5 @@ export class VerifyPaymentMetodComponent {
   toggleCollapsePurchase(): void {
     this.isCollapsedPurchase = !this.isCollapsedPurchase;
   }
+
 }

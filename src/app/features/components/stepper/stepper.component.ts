@@ -18,6 +18,7 @@ export class StepperComponent {
 
   currentStep: number = 1;
   formIsValid = true;
+  contactInfoValues: any;
 
   nextStep() {
     if (this.currentStep < 3) {
@@ -25,9 +26,10 @@ export class StepperComponent {
     }
   }
 
-  handleFormValidity(isValid: boolean): void {
-    if(this.currentStep === 2){
-      this.formIsValid = isValid;
+  handleFormValidity(event: any): void {
+    if (this.currentStep === 2) {
+      this.formIsValid = event.isValid;
+      this.contactInfoValues = event.formValues;
     }
   }
 

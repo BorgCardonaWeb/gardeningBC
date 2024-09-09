@@ -169,7 +169,6 @@ export class ProductsComponent implements OnInit {
           arrayData = [];
         }
       } catch (e) {
-        console.error('Error parsing storage data:', e);
         arrayData = [];
       }
     }

@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Router } from '@angular/router';
 import { UserManagementService } from '../../../services/user-management.service';
-import { userkeystorage } from '../../../../assets/emuns/const';
+import { valueDefaultIsland } from '../../../../assets/emuns/const';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -22,7 +22,9 @@ export class VerifyContactPurchaseComponent {
   userData: any;
   erroralertTxt = "";
   showPriceWarning = false;
-  @Output() formValidityChange = new EventEmitter<boolean>(); 
+  @Output() formValidityChange = new EventEmitter<any>();
+  @Input() summaryData: any = undefined;
+ 
 
   constructor(
     private fb: FormBuilder,
@@ -41,7 +43,10 @@ export class VerifyContactPurchaseComponent {
     });
 
     this.signupForm.statusChanges.subscribe((status) => {
-      this.formValidityChange.emit(status === 'VALID'); 
+      this.formValidityChange.emit({
+        isValid: status === 'VALID',
+        formValues: this.signupForm.value
+      });
     });
   }
 
@@ -51,7 +56,29 @@ export class VerifyContactPurchaseComponent {
   }
 
   getUserData() {
+    if (this.summaryData) {
+      this.getUserDataByForm();
+    } else {
+      this.getUserDataByModel();
+    }
+    this.islandChange();
 
+  }
+
+  getUserDataByForm() {
+
+    this.signupForm.patchValue({
+      island: this.summaryData.island,
+      address: this.summaryData.address,
+      city: this.summaryData.city,
+      postalCode: this.summaryData.postalCode,
+      phonePrefix: this.summaryData.phonePrefix?.trim(),
+      phoneNumber: this.summaryData.phoneNumber,
+      deliveryNote: this.summaryData.deliveryNote
+    });
+  }
+
+  getUserDataByModel() {
     this.userData = this.userManagementService.getUser();
 
     if (this.userData) {
@@ -69,9 +96,14 @@ export class VerifyContactPurchaseComponent {
   }
 
   onIslandChange(): void {
-    const selectedIsland = this.signupForm.get('island')?.value;
-    this.showPriceWarning = selectedIsland === 'Gozo';
+    this.islandChange();
   }
+
+  islandChange(): void {
+    const selectedIsland = this.signupForm.get('island')?.value;
+    this.showPriceWarning = selectedIsland === valueDefaultIsland;
+  }
+
 
 
 
@@ -103,9 +135,8 @@ export class VerifyContactPurchaseComponent {
     );
   }
 
-  validateDetails(){
+  validateDetails() {
     if (this.signupForm.valid) {
-      console.log("Is valid")
     }
   }
 
