@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { product } from '../../models/models';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ export class VerifyPurchaseComponent {
 
   cartItems: product[] = [];
   total: number = 0;
+  @Input() classGrid = "col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6"
 
   purchaseSubject$: Observable<any> | undefined;
 

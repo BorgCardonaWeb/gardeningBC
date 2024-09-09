@@ -1,7 +1,22 @@
 <div class="summary-container">
-    <button (click)="toggleCollapse()" class="btn btn-info">
-      {{ isCollapsed ? 'Show Summary' : 'Hide Summary' }}
-    </button>
+    <div (click)="toggleCollapsePurchase()" class="collapse-info-data">
+        Purchase Details
+    <i *ngIf="isCollapsedPurchase" class="icon-collapse-info fa-solid fa-plus"></i>
+    <i *ngIf="!isCollapsedPurchase"class="icon-collapse-info fa-solid fa-minus"></i> 
+    </div>
+  
+    <div *ngIf="!isCollapsedPurchase" class="summary-content">
+      <app-verify-purchase [classGrid]="classGrid"></app-verify-purchase>
+    </div>
+  </div>
+  
+  
+  <div class="summary-container">
+    <div (click)="toggleCollapse()" class="collapse-info-data">
+    Delivery Details
+    <i *ngIf="isCollapsed" class="icon-collapse-info fa-solid fa-plus"></i>
+    <i *ngIf="!isCollapsed"class="icon-collapse-info fa-solid fa-minus"></i> 
+    </div>
   
     <div *ngIf="!isCollapsed" class="summary-content">
       <p><strong>Address:</strong> adaadasd</p>
@@ -12,4 +27,6 @@
       <p><strong>Delivery Note:</strong> sadasd</p>
     </div>
   </div>
-  
+
+
+ 

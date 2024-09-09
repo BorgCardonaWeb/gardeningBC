@@ -1,7 +1,7 @@
 <div class="container-fluid wrap-detail-cart">
   <div class="row no-gutters">
 
-    <div class="content-info-cart col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6">
+    <div class="content-info-cart {{classGrid}}">
       <div *ngFor="let product of cartItems">
         {{ product.name }} - <span class="content-value">{{ product.value|currency: 'EUR'}}</span>  X ({{ product.quantities }})
         <hr class="content-line">
