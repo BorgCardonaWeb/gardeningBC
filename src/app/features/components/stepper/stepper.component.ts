@@ -17,10 +17,17 @@ import { CommonModule } from '@angular/common';
 export class StepperComponent {
 
   currentStep: number = 1;
+  formIsValid = true;
 
   nextStep() {
     if (this.currentStep < 3) {
       this.currentStep++;
+    }
+  }
+
+  handleFormValidity(isValid: boolean): void {
+    if(this.currentStep === 2){
+      this.formIsValid = isValid;
     }
   }
 

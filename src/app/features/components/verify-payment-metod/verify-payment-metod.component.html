@@ -1,1 +1,15 @@
-<p>verify-payment-metod works!</p>
+<div class="summary-container">
+    <button (click)="toggleCollapse()" class="btn btn-info">
+      {{ isCollapsed ? 'Show Summary' : 'Hide Summary' }}
+    </button>
+  
+    <div *ngIf="!isCollapsed" class="summary-content">
+      <p><strong>Address:</strong> adaadasd</p>
+      <p><strong>City:</strong> asdasd</p>
+      <p><strong>Postal Code:</strong> asdas</p>
+      <p><strong>Phone Number:</strong> asdasdasd</p>
+      <p><strong>Island:</strong> asdasd</p>
+      <p><strong>Delivery Note:</strong> sadasd</p>
+    </div>
+  </div>
+  

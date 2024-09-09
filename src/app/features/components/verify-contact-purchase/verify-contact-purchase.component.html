@@ -1,1 +1,80 @@
-<p>verify-contact-purchase works! </p>
+<div class="container-fluid wrap-session">
+
+    <div class="row no-gutters">
+        <div *ngIf="alertError" class="alert alert-danger" style="position: absolute;" role="alert">
+            {{erroralertTxt}}
+        </div>
+
+        <div class="wrap-login col-8 offset-2">
+            <form [formGroup]="signupForm">
+                <div class="mb-3">
+                    <label for="signupIsland" class="form-label text-login">Island</label>
+                    <select id="signupIsland" class="form-select" formControlName="island" (change)="onIslandChange()">
+                        <option value="Malta">Malta</option>
+                        <option value="Gozo">Gozo</option>
+                    </select>
+                </div>
+                <div *ngIf="showPriceWarning" class="alert alert-warning mt-2">
+                    <small>Now delivering to Gozo at an additional charge of 5 euros. The maximum order weight is set at 20kg. We assure next-day delivery, excluding weekends and public holidays, for orders placed by 8 am the day before.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="signupAddress" class="form-label text-login">Delivery Address</label>
+                    <input id="signupAddress" class="form-control" formControlName="address">
+                    <div *ngIf="signupForm.get('address')?.invalid && signupForm.get('address')?.touched"
+                        class="text-danger">
+                        <small *ngIf="signupForm.get('address')?.errors?.['required']">Address is required.</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="signupCity" class="form-label text-login">City</label>
+                    <input id="signupCity" class="form-control" formControlName="city">
+                    <div *ngIf="signupForm.get('city')?.invalid && signupForm.get('city')?.touched" class="text-danger">
+                        <small *ngIf="signupForm.get('city')?.errors?.['required']">City is required.</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="signupPostalCode" class="form-label text-login">Postal Code</label>
+                    <input id="signupPostalCode" class="form-control" formControlName="postalCode">
+                    <div *ngIf="signupForm.get('postalCode')?.invalid && signupForm.get('postalCode')?.touched"
+                        class="text-danger">
+                        <small *ngIf="signupForm.get('postalCode')?.errors?.['required']">Postal Code is
+                            required.</small>
+                        <small *ngIf="signupForm.get('postalCode')?.errors?.['pattern']">Postal Code must match the
+                            pattern
+                            'MXR1363'.</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="signupPhonePrefix" class="form-label text-login">Phone Number</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend" style="width: 30%;">
+                            <select class="form-select" id="signupPhonePrefix" formControlName="phonePrefix">
+                                <option *ngFor="let code of countryCodes" [value]="code.code">{{ code.name }} ({{
+                                    code.code
+                                    }})</option>
+                            </select>
+                        </div>
+                        <input id="signupPhoneNumber" class="form-control" style="width: 70%;"
+                            formControlName="phoneNumber">
+                    </div>
+                    <div *ngIf="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched"
+                        class="text-danger mt-2">
+                        <small *ngIf="signupForm.get('phoneNumber')?.errors?.['required']">Phone Number is
+                            required.</small>
+                        <small *ngIf="signupForm.get('phoneNumber')?.errors?.['pattern']">Phone Number must be
+                            numeric.</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="signupEmail" class="form-label text-login">Delivery Note</label>
+                    <input id="signupEmail" class="form-control" formControlName="deliveryNote">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

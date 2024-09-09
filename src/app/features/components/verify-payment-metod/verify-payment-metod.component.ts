@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-verify-payment-metod',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './verify-payment-metod.component.html',
-  styleUrl: './verify-payment-metod.component.css'
+  styleUrl: './verify-payment-metod.component.scss'
 })
 export class VerifyPaymentMetodComponent {
+  @Input() summaryData: any; // Recibe datos del componente padre
+  isCollapsed = true; // Estado inicial colapsado
 
+  toggleCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }
