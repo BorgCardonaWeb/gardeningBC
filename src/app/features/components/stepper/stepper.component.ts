@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { VerifyContactPurchaseComponent } from '../verify-contact-purchase/verify-contact-purchase.component';
 import { VerifyPurchaseComponent } from '../verify-purchase/verify-purchase.component';
 import { VerifyPaymentMetodComponent } from '../verify-payment-metod/verify-payment-metod.component';
@@ -19,10 +19,24 @@ export class StepperComponent {
   currentStep: number = 1;
   formIsValid = true;
   contactInfoValues: any;
+  idClient: any;
+  summaryPurchaseInfo: any;
+
+  @ViewChild(VerifyPaymentMetodComponent) paymentMethodComponent!: VerifyPaymentMetodComponent;
+  @ViewChild(VerifyPurchaseComponent) verifyPurchaseComponent!: VerifyPurchaseComponent;
+
 
   nextStep() {
     if (this.currentStep < 3) {
       this.currentStep++;
+    }
+
+    if (this.currentStep == 2) {
+      this.executeSummaryPurchaseMethod();
+    }
+
+    if (this.currentStep == 3) {
+      this.executePaymentMethodFunction();
     }
   }
 
@@ -30,12 +44,25 @@ export class StepperComponent {
     if (this.currentStep === 2) {
       this.formIsValid = event.isValid;
       this.contactInfoValues = event.formValues;
+      this.idClient = event.idClient;
     }
   }
 
   previousStep() {
     if (this.currentStep > 1) {
       this.currentStep--;
+    }
+  }
+
+  executePaymentMethodFunction() {
+    if (this.paymentMethodComponent) {
+      this.paymentMethodComponent.customFunction();
+    }
+  }
+
+  executeSummaryPurchaseMethod() {
+    if (this.verifyPurchaseComponent) {
+      this.summaryPurchaseInfo = this.verifyPurchaseComponent.getSummaryPurchaseInfo();
     }
   }
 

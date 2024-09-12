@@ -1,32 +1,61 @@
 <div class="summary-container">
-    <div (click)="toggleCollapsePurchase()" class="collapse-info-data">
-        Purchase Details
+  <div (click)="toggleCollapsePurchase()" class="collapse-info-data">
+    Purchase Details
     <i *ngIf="isCollapsedPurchase" class="icon-collapse-info fa-solid fa-plus"></i>
-    <i *ngIf="!isCollapsedPurchase"class="icon-collapse-info fa-solid fa-minus"></i> 
-    </div>
-  
-    <div *ngIf="!isCollapsedPurchase" class="summary-content">
-      <app-verify-purchase [classGrid]="classGrid" [summaryData]="summaryData"></app-verify-purchase>
-    </div>
+    <i *ngIf="!isCollapsedPurchase" class="icon-collapse-info fa-solid fa-minus"></i>
   </div>
-  
-  
-  <div class="summary-container">
-    <div (click)="toggleCollapse()" class="collapse-info-data">
+
+  <div *ngIf="!isCollapsedPurchase" class="summary-content">
+    <app-verify-purchase [classGrid]="classGrid" [summaryData]="summaryData"></app-verify-purchase>
+  </div>
+</div>
+
+
+<div class="summary-container">
+  <div (click)="toggleCollapse()" class="collapse-info-data">
     Delivery Details
     <i *ngIf="isCollapsed" class="icon-collapse-info fa-solid fa-plus"></i>
-    <i *ngIf="!isCollapsed"class="icon-collapse-info fa-solid fa-minus"></i> 
-    </div>
-  
-    <div *ngIf="!isCollapsed" class="summary-content">
-      <p><strong>Address:</strong> {{summaryData?.address}}</p>
-      <p><strong>City:</strong> {{summaryData?.city}}</p>
-      <p><strong>Postal Code:</strong> {{summaryData?.postalCode}}</p>
-      <p><strong>Phone Number:</strong> {{summaryData?.phonePrefix}}&nbsp;{{summaryData?.phoneNumber}}</p>
-      <p><strong>Island:</strong> {{summaryData?.island}}</p>
-      <p><strong>Delivery Note:</strong> {{summaryData?.deliveryNote}}</p>
-    </div>
+    <i *ngIf="!isCollapsed" class="icon-collapse-info fa-solid fa-minus"></i>
   </div>
 
+  <div *ngIf="!isCollapsed" class="summary-content">
+    <p><strong>Address:</strong> {{summaryData?.address}}</p>
+    <p><strong>City:</strong> {{summaryData?.city}}</p>
+    <p><strong>Postal Code:</strong> {{summaryData?.postalCode}}</p>
+    <p><strong>Phone Number:</strong> {{summaryData?.phonePrefix}}&nbsp;{{summaryData?.phoneNumber}}</p>
+    <p><strong>Island:</strong> {{summaryData?.island}}</p>
+    <p><strong>Delivery Note:</strong> {{summaryData?.deliveryNote}}</p>
+  </div>
+</div>
 
- 
+<div class="container-fluid wrap-selected-method">
+  <div class="row no-gutters">
+    <div class="col-12">
+      <h1>Payment Methods</h1>
+      <form [formGroup]="paymentForm" class="wrap-form-payment">
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="radio" id="payByCard" formControlName="payByCard" value="Card">
+          <label class="form-check-label" for="payByCard">
+            <i class="icons-payment fas fa-credit-card"></i> <span>Pay by Card</span>
+          </label>
+          <div class="text-muted">
+            <small>This option is currently unavailable.</small>
+          </div>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="radio" id="payByCash" formControlName="paymentMethod" value="Cash">
+          <label class="form-check-label" for="payByCash">
+            <i class="icons-payment icons-payment-cash fas fa-money-bill-wave"></i> <span>Pay by Cash</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="payOnDeliveryWithCard" formControlName="paymentMethod"
+            value="CardDelivery">
+          <label class="form-check-label" for="payOnDeliveryWithCard">
+            <i class="icons-payment fas fa-credit-card" style="color: orange;"></i> <span>Card Payment on Delivery</span>
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

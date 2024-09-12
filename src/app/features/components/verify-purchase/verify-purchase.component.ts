@@ -6,6 +6,7 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { valueDefaultIsland } from '../../../../assets/emuns/const';
+import { OrdersService } from '../../../services/orders.service';
 
 @Component({
   selector: 'app-verify-purchase',
@@ -69,10 +70,16 @@ export class VerifyPurchaseComponent {
   validateExtraChague() {
     if (this.summaryData) {
       if (this.summaryData?.island == valueDefaultIsland) {
-        if(this.currentStep != 1){
+        if (this.currentStep != 1) {
           this.extraChargueDelivery = true;
         }
       }
+    }
+  }
+
+  getSummaryPurchaseInfo() {
+    return {
+      cartItems: this.cartItems
     }
   }
 

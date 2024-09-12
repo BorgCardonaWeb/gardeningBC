@@ -1,17 +1,38 @@
 export enum footerOptions {
-    TermsAndConditions = "Terms and Conditions",
-    Deliveries = "Deliveries",
-    Police = "Privacy Policy",
-  }
+  TermsAndConditions = "Terms and Conditions",
+  Deliveries = "Deliveries",
+  Police = "Privacy Policy",
+}
 
-  export enum navOptions {
-    contact = "Contact",
-    ShoppingCart = "Shopping Cart",
-    userOrders ="Orders",
-    userInfo ="Personal Information"
-  }
+export enum navOptions {
+  contact = "Contact",
+  ShoppingCart = "Shopping Cart",
+  userOrders = "Orders",
+  userInfo = "Personal Information"
+}
 
-  export enum userSession {
-    login = "Login"
-  }
- 
+export enum userSession {
+  login = "Login"
+}
+
+export enum orderStatus {
+  pending = "Pending",
+  rejected = "Rejected",
+  sended = "Sended",
+  delivered = "Delivered"
+}
+
+export enum paymentType {
+  card = "Card",
+  cash = "Cash",
+  cardDelivery = "CardDelivery"
+}
+
+export enum islandType {
+  gozo = "Gozo",
+  malta = "Malta"
+}
+
+
+
+

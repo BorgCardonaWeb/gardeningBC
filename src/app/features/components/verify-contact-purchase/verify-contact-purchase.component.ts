@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { Router } from '@angular/router';
@@ -13,8 +13,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './verify-contact-purchase.component.html',
   styleUrl: './verify-contact-purchase.component.scss'
 })
-export class VerifyContactPurchaseComponent {
+export class VerifyContactPurchaseComponent implements AfterViewInit {
   countryCodes: any[] = [];
+
   signupForm: FormGroup;
   loading = false;
   alertError = false;
@@ -24,12 +25,12 @@ export class VerifyContactPurchaseComponent {
   showPriceWarning = false;
   @Output() formValidityChange = new EventEmitter<any>();
   @Input() summaryData: any = undefined;
+  idClient: any;
  
 
   constructor(
     private fb: FormBuilder,
     private categoriesService: FilterCategoriesService,
-    private router: Router,
     private userManagementService: UserManagementService
   ) {
     this.signupForm = this.fb.group({
@@ -45,14 +46,16 @@ export class VerifyContactPurchaseComponent {
     this.signupForm.statusChanges.subscribe((status) => {
       this.formValidityChange.emit({
         isValid: status === 'VALID',
-        formValues: this.signupForm.value
+        formValues: this.signupForm.value,
+        idClient: this.idClient
       });
     });
   }
 
-  ngOnInit(): void {
-    this.getCountryCodes();
+ 
+  ngAfterViewInit(): void {
     this.getUserData();
+    this.getCountryCodes();
   }
 
   getUserData() {
@@ -80,8 +83,9 @@ export class VerifyContactPurchaseComponent {
 
   getUserDataByModel() {
     this.userData = this.userManagementService.getUser();
-
+    
     if (this.userData) {
+      this.idClient = this.userData.id;
       const cleanPhonePrefix = this.userData.phonePrefix?.trim();
 
       this.signupForm.patchValue({

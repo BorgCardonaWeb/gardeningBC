@@ -13,7 +13,7 @@
     <div class="step-content">
       <app-verify-purchase [currentStep]="currentStep" *ngIf="currentStep === 1" [summaryData]="contactInfoValues"></app-verify-purchase>
       <app-verify-contact-purchase *ngIf="currentStep === 2" [summaryData]="contactInfoValues" (formValidityChange)="handleFormValidity($event)"></app-verify-contact-purchase>
-      <app-verify-payment-metod *ngIf="currentStep === 3" [summaryData]="contactInfoValues"></app-verify-payment-metod>
+      <app-verify-payment-metod *ngIf="currentStep === 3" [summaryData]="contactInfoValues" [idClient]="idClient" [summaryPurchaseInfo]="summaryPurchaseInfo"></app-verify-payment-metod>
     </div>
 
     <!-- Stepper Navigation -->
