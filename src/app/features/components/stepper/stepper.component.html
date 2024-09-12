@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div *ngIf="!showConfirmation" class="container mt-5">
   <div class="stepper wrap-stepper">
     <!-- Stepper Header -->
     <div class="d-flex justify-content-between mb-4 container-step">
@@ -13,7 +13,7 @@
     <div class="step-content">
       <app-verify-purchase [currentStep]="currentStep" *ngIf="currentStep === 1" [summaryData]="contactInfoValues"></app-verify-purchase>
       <app-verify-contact-purchase *ngIf="currentStep === 2" [summaryData]="contactInfoValues" (formValidityChange)="handleFormValidity($event)"></app-verify-contact-purchase>
-      <app-verify-payment-metod *ngIf="currentStep === 3" [summaryData]="contactInfoValues" [idClient]="idClient" [summaryPurchaseInfo]="summaryPurchaseInfo"></app-verify-payment-metod>
+      <app-verify-payment-metod *ngIf="currentStep === 3" [summaryData]="contactInfoValues" [idClient]="idClient" [summaryPurchaseInfo]="summaryPurchaseInfo" (orderID)="handleShowConfirmation($event)"></app-verify-payment-metod>
     </div>
 
     <!-- Stepper Navigation -->
@@ -25,3 +25,5 @@
     </div>
   </div>
 </div>
+
+<app-confirmation-purchase *ngIf="showConfirmation" [orderID]="orderID"></app-confirmation-purchase>

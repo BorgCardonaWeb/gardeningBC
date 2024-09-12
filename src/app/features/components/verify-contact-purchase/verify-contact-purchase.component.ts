@@ -26,7 +26,7 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
   @Output() formValidityChange = new EventEmitter<any>();
   @Input() summaryData: any = undefined;
   idClient: any;
- 
+
 
   constructor(
     private fb: FormBuilder,
@@ -47,12 +47,23 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
       this.formValidityChange.emit({
         isValid: status === 'VALID',
         formValues: this.signupForm.value,
-        idClient: this.idClient
+        idClient: this.getIdClient()
       });
     });
   }
 
- 
+  getIdClient() {
+    if (this.idClient) {
+      return this.idClient
+    } else {
+      this.userData = this.userManagementService.getUser();
+      if (this.userData) {
+        return this.userData.id;
+      }
+    }
+  }
+
+
   ngAfterViewInit(): void {
     this.getUserData();
     this.getCountryCodes();
@@ -83,7 +94,7 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
 
   getUserDataByModel() {
     this.userData = this.userManagementService.getUser();
-    
+
     if (this.userData) {
       this.idClient = this.userData.id;
       const cleanPhonePrefix = this.userData.phonePrefix?.trim();

@@ -3,6 +3,7 @@ import { VerifyContactPurchaseComponent } from '../verify-contact-purchase/verif
 import { VerifyPurchaseComponent } from '../verify-purchase/verify-purchase.component';
 import { VerifyPaymentMetodComponent } from '../verify-payment-metod/verify-payment-metod.component';
 import { CommonModule } from '@angular/common';
+import { ConfirmationPurchaseComponent } from '../confirmation-purchase/confirmation-purchase.component';
 
 @Component({
   selector: 'app-stepper',
@@ -10,6 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [VerifyContactPurchaseComponent,
     VerifyPurchaseComponent,
     VerifyPaymentMetodComponent,
+    ConfirmationPurchaseComponent,
     CommonModule],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.scss'
@@ -18,9 +20,11 @@ export class StepperComponent {
 
   currentStep: number = 1;
   formIsValid = true;
+  showConfirmation = false;
   contactInfoValues: any;
   idClient: any;
   summaryPurchaseInfo: any;
+  orderID = 0;
 
   @ViewChild(VerifyPaymentMetodComponent) paymentMethodComponent!: VerifyPaymentMetodComponent;
   @ViewChild(VerifyPurchaseComponent) verifyPurchaseComponent!: VerifyPurchaseComponent;
@@ -48,6 +52,12 @@ export class StepperComponent {
     }
   }
 
+  handleShowConfirmation(event: any): void {
+    this.showConfirmation = true;
+    this.orderID = event;
+
+  }
+
   previousStep() {
     if (this.currentStep > 1) {
       this.currentStep--;
@@ -62,7 +72,7 @@ export class StepperComponent {
 
   executeSummaryPurchaseMethod() {
     if (this.verifyPurchaseComponent) {
-      this.summaryPurchaseInfo = this.verifyPurchaseComponent.getSummaryPurchaseInfo();
+      this.summaryPurchaseInfo = this.verifyPurchaseComponent.cartItems;
     }
   }
 

@@ -13,7 +13,7 @@ export class OrdersService {
   apiUrl = `${environment.apiUrl}`;
 
   createOrder(orderData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/create`, orderData);
+    return this.http.post<any>(`${this.apiUrl}/orders/create`, orderData);
   }
 
 }
