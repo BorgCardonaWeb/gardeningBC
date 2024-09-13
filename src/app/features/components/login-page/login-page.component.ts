@@ -124,7 +124,6 @@ export class LoginPageComponent implements OnInit {
       this.generalInfoServiceService.closeModal();
       this.loading = false
     }, error => {
-      console.log(error)
       this.errorManagement("Invalid username or password");
     });
 

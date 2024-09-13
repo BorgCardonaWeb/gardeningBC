@@ -33,7 +33,7 @@
 
         .text-login {
             color: $color-blue-actions-header;
-            font-weight: bold;
+            font-weight: 500;
         }
 
     }
@@ -41,12 +41,12 @@
     .text-title {
         color: $color-blue-actions-header;
         font-size: 1.125rem;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .text-subtitle {
         color: black;
-        font-weight: bold;
+        font-weight: 500;
         margin-bottom: 50px;
     }
 
@@ -54,7 +54,7 @@
         text-align: right;
 
         label {
-            font-weight: bold;
+            font-weight: 500;
             color: $color-blue-actions-header;
             text-decoration: underline;
             cursor: pointer;

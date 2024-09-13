@@ -19,7 +19,8 @@ export class FilterCategoriesService {
   private searcherParamSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private searcherCategorie: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private userLoginDataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-
+  private purchaseSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  
   public data$: Observable<any[]> = this.dataSubject.asObservable();
   public dataModal$: Observable<boolean> = this.dataModalSubject.asObservable();
   public dataCartProducts$: Observable<any[]> = this.dataCartProductsSubject.asObservable();
@@ -27,6 +28,7 @@ export class FilterCategoriesService {
   public dataSearcherParam$: Observable<string> = this.searcherParamSubject.asObservable();
   public dataSearcherCategorie$: Observable<string> = this.searcherCategorie.asObservable();
   public userLoginDataSubject$: Observable<any[]> = this.userLoginDataSubject.asObservable();
+  public purchaseSubject$: Observable<any> = this.purchaseSubject.asObservable();
 
   constructor(private http: HttpClient,
     private localStorageService: LocalStorageService) { }
@@ -81,6 +83,10 @@ export class FilterCategoriesService {
 
   updateCategorieSearcher(data: ""): void {
     this.searcherCategorie.next(data);
+  };
+
+  updatePurchase(data: any): void {
+    this.purchaseSubject.next(data);
   };
 
 

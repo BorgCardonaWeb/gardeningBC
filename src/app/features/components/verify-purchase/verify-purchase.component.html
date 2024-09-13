@@ -1,0 +1,32 @@
+<div class="container-fluid wrap-detail-cart">
+  <div class="row no-gutters">
+
+    <div class="content-info-cart {{classGrid}}">
+      <div *ngFor="let product of cartItems">
+        {{ product.name }} - <span class="content-value">{{ product.value|currency: 'EUR'}}</span> X ({{
+        product.quantities }})
+        <hr class="content-line">
+      </div>
+
+      <div *ngIf="!extraChargueDelivery" class="total-detail">
+        Total: &nbsp;<span class="content-value">{{ total|currency: 'EUR'}}</span>
+      </div>
+
+      <div *ngIf="extraChargueDelivery">
+        <div class="total-detail">
+          Subtotal: &nbsp;<span class="content-value">{{ subtotal|currency: 'EUR'}}</span>
+        </div>
+        <div class="total-detail">
+          <span class="content-value">+{{ 5|currency: 'EUR'}} Delivery Gozo</span>
+        </div>
+        <div class="total-detail">
+          Total: &nbsp;<span class="content-value">{{ total|currency: 'EUR'}}</span>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>

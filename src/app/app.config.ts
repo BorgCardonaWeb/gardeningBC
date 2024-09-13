@@ -6,9 +6,10 @@ import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { LocalStorageService } from './services/local-storage.service';
 import { FilterCategoriesService } from './services/filter-categories.service';
 import { UserManagementService } from './services/user-management.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(), MdbModalService, FilterCategoriesService, LocalStorageService, UserManagementService]
+  providers: [provideRouter(routes), provideHttpClient(), MdbModalService, FilterCategoriesService, LocalStorageService, UserManagementService, provideAnimationsAsync()]
 };
 
 

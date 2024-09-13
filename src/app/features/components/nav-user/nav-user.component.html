@@ -1,19 +1,22 @@
-<div class="wrap-panel-user row">
-    <div class="col-12">
-        <div class="row">
-            <div class="offset-1 col">
-                <p class="txt-user-name"> <label (click)="goToInit()" style="cursor: pointer;">Welcome, {{userData?.name}}!</label></p>
-            </div>
-            <div class="col">
-                <p class="txt-user-data" [ngClass]="{'active': activeTab === 'orders'}" (click)="showOrders()">
-                    My Orders
-                </p>
-            </div>
-            <div class="col">
-                <p class="txt-user-data" [ngClass]="{'active': activeTab === 'personalInfo'}"
-                    (click)="showPersonalData()">
-                    Personal Information
-                </p>
+<div class="container-fluid wrap-panel-user">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-4" style="padding-left: 20px">
+                    <p class="txt-user-name"> <label (click)="goToInit()" style="cursor: pointer;">Welcome,
+                            {{userData?.name}}!</label></p>
+                </div>
+                <div class="col-4" style="text-align: center;">
+                    <p class="txt-user-data" [ngClass]="{'active': activeTab === 'orders'}" (click)="showOrders()">
+                        My Orders
+                    </p>
+                </div>
+                <div class="col-4" style="text-align: center;">
+                    <p class="txt-user-data" [ngClass]="{'active': activeTab === 'personalInfo'}"
+                        (click)="showPersonalData()">
+                        Personal Information
+                    </p>
+                </div>
             </div>
         </div>
     </div>

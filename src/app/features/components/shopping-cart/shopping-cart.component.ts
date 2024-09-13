@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { product } from '../../models/models';
-import { productsToCartKeyStorage } from '../../../../assets/emuns/const';
+import { productsToCartKeyStorage, purchaseTotalkeystorage } from '../../../../assets/emuns/const';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
 import { userSession } from '../../../../assets/emuns/generalEnums';
+import { UserManagementService } from '../../../services/user-management.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,12 +26,15 @@ export class ShoppingCartComponent {
 
   total = 0;
   typeAction = 5;
+  userData: any;
 
   products: product[] = [];
 
   constructor(private categoriesService: FilterCategoriesService,
     private localStorageService: LocalStorageService,
-    private generalInfoServiceService: GeneralInfoServiceService) { }
+    private generalInfoServiceService: GeneralInfoServiceService,
+    private userManagementService: UserManagementService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getShoppingCartData();
@@ -78,17 +83,15 @@ export class ShoppingCartComponent {
     return `data:image/jpeg;base64,${base64String}`;
   }
 
-  validateLogin() {
-    this.categoriesService.updateModal(true);
-    setTimeout(() => {
+  checkout() {
+    this.userData = this.userManagementService.getUser();
+    if(this.userData.id){
+      this.router.navigate(["checkout"]);
+      this.categoriesService.updatePurchase(this.products);
+      this.generalInfoServiceService.closeModal();
+    } else{
       this.loadLogin();
-    }, 300);
-   /* console.log("Validar datos en secion para saber si se inicio sesion");
-    console.log("En caso que no haya creado el usuario");
-    //this.loadLogin();
-    //Pantalla de login, registro y olvido de contrasenia
-    console.log("En caso que si haya creado el usuario");
-    //Enviar al epet de confirmar datos personales*/
+    }
   }
 
   loadLogin() {

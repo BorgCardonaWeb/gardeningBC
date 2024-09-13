@@ -1,0 +1,48 @@
+@import "../../../../styles.scss";
+
+.wrap-stepper {
+
+  margin-top: 65px;
+}
+
+  .stepper .step {
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    cursor: pointer;
+  }
+
+  .stepper .step.active {
+    font-weight: 500;
+    background-color: $color-blue-tooltip;
+    color: $color-white;
+    border-color: $color-blue-tooltip;
+    border: 1px solid $orange-acctions;
+  }
+
+  .stepper .step:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  .step-action {
+    margin-top: -25px;
+    font-size:  1rem;
+  }
+
+  .container-step {
+    border-top: 2px solid $orange-acctions;
+  }
+
+  .btn-active-stepper{
+    min-width: 95px;
+    font-weight: 500;
+    background-color: $color-blue-tooltip;
+    color: $color-white;
+  }
+
+  .mat-mdc-paginator-outer-container{
+    margin-bottom: 500px;
+  }

@@ -1,0 +1,29 @@
+<div *ngIf="!showConfirmation" class="container mt-5">
+  <div class="stepper wrap-stepper">
+    <!-- Stepper Header -->
+    <div class="d-flex justify-content-between mb-4 container-step">
+
+      <div class="step step-action" [class.active]="currentStep === 1" style="margin-left: -3px;">Purchase Details</div>
+      <div class="step step-action" [class.active]="currentStep === 2">Delivery Details</div>
+      <div class="step step-action" [class.active]="currentStep === 3" style="margin-right: -3px;">Payment Details</div>
+    </div>
+
+
+    <!-- Stepper Content -->
+    <div class="step-content">
+      <app-verify-purchase [currentStep]="currentStep" *ngIf="currentStep === 1" [summaryData]="contactInfoValues"></app-verify-purchase>
+      <app-verify-contact-purchase *ngIf="currentStep === 2" [summaryData]="contactInfoValues" (formValidityChange)="handleFormValidity($event)"></app-verify-contact-purchase>
+      <app-verify-payment-metod *ngIf="currentStep === 3" [summaryData]="contactInfoValues" [idClient]="idClient" [summaryPurchaseInfo]="summaryPurchaseInfo" (orderID)="handleShowConfirmation($event)"></app-verify-payment-metod>
+    </div>
+
+    <!-- Stepper Navigation -->
+    <div class="d-flex justify-content-between mt-4" style="margin-bottom: 130px;">
+      <button class="btn btn-primary btn-active-stepper" (click)="previousStep()"
+        [disabled]="currentStep === 1">Previous</button>
+      <button class="btn btn-primary btn-active-stepper" (click)="nextStep()"
+        [disabled]="!formIsValid">Next</button>
+    </div>
+  </div>
+</div>
+
+<app-confirmation-purchase *ngIf="showConfirmation" [orderID]="orderID"></app-confirmation-purchase>

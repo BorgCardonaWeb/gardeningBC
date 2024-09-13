@@ -7,6 +7,7 @@ import { FooterComponent } from './features/components/footer/FooterComponent';
 import { NavUserComponent } from './features/components/nav-user/nav-user.component';
 import { HomePageComponent } from './features/components/home-page/home-page.component';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,7 +17,7 @@ import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/route
     CommonModule,
     HomePageComponent,
     FooterComponent,
-    RouterOutlet, 
+    RouterOutlet
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
