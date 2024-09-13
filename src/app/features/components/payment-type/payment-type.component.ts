@@ -26,6 +26,7 @@ export class PaymentTypeComponent implements OnInit {
   }
 
   asingTypes() {
+    console.log(this.type)
     if (this.type == paymentType.card) {
       this.isCard = true;
     }
