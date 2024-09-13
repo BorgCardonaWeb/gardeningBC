@@ -13,7 +13,7 @@
                 <ul>
                   <span *ngFor="let subcategorie of categorie.subcategories; index as i;">
                     <li *ngIf="subcategorie.stock" (click)="getProductsByCategorie(categorie, subcategorie)">
-                      <i class="fa-solid fa-bars" style="margin-right: 5px;"></i> {{subcategorie.name}}
+                      <i class="fa-solid fa-bars" style="margin-right: 5px; margin-top: 5px;"></i> {{subcategorie.name}}
                     </li>
                   </span>
 

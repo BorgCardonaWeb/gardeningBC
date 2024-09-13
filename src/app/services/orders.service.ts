@@ -16,4 +16,12 @@ export class OrdersService {
     return this.http.post<any>(`${this.apiUrl}/orders/create`, orderData);
   }
 
+  getOrdersByClientId(clientId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/orders/client/${clientId}`);
+  }
+
+  getOrderById(orderId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/orders/order/${orderId}`);
+  }
+
 }

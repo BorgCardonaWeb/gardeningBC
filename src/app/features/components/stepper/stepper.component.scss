@@ -16,7 +16,7 @@
   }
 
   .stepper .step.active {
-    font-weight: bold;
+    font-weight: 500;
     background-color: $color-blue-tooltip;
     color: $color-white;
     border-color: $color-blue-tooltip;
@@ -29,6 +29,7 @@
 
   .step-action {
     margin-top: -25px;
+    font-size:  1rem;
   }
 
   .container-step {
@@ -37,8 +38,11 @@
 
   .btn-active-stepper{
     min-width: 95px;
-    font-weight: bold;
+    font-weight: 500;
     background-color: $color-blue-tooltip;
     color: $color-white;
   }
 
+  .mat-mdc-paginator-outer-container{
+    margin-bottom: 500px;
+  }

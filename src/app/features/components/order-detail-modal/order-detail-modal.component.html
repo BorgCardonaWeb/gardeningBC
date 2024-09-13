@@ -1,0 +1,16 @@
+<div class="summary-container">
+    <div (click)="toggleCollapse()" class="collapse-info-data">
+      Delivery Details
+      <i *ngIf="isCollapsed" class="icon-collapse-info fa-solid fa-plus"></i>
+      <i *ngIf="!isCollapsed" class="icon-collapse-info fa-solid fa-minus"></i>
+    </div>
+  
+    <div *ngIf="!isCollapsed" class="summary-content">
+      <p><strong>Address:</strong> {{summaryData?.DeliveryAddress}}</p>
+      <p><strong>City:</strong> {{summaryData?.City}}</p>
+      <p><strong>Postal Code:</strong> {{summaryData?.PostalCode}}</p>
+      <p><strong>Phone Number:</strong> {{summaryData?.Prefix}}&nbsp;{{summaryData?.Phonenumber}}</p>
+      <p><strong>Island:</strong> {{summaryData?.Island}}</p>
+      <p><strong *ngIf="summaryData?.DeliveryNote !== ''">Delivery Note:</strong> {{summaryData?.DeliveryNote}}</p>
+    </div>
+  </div>

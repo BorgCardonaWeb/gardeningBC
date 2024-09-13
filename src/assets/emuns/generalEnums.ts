@@ -15,6 +15,11 @@ export enum userSession {
   login = "Login"
 }
 
+export enum order {
+  title = "Order Details"
+}
+
+
 export enum orderStatus {
   pending = "Pending",
   rejected = "Rejected",

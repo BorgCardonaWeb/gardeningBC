@@ -1,6 +1,27 @@
-Your order is confirmed!
-Order #{{orderID}} has been received and is on its way! Delivery will follow the estimated times in our Terms & Conditions and Delivery Policy.
+<div class="container-fluid wrap-content-confirmation">
+    <div class="row no-gutters">
+        <div class="col-12">
+            <p>
+                <i class="fa-solid fa-arrow-left icon-back" (click)="goToInit()"></i>
+            </p>
+        </div>
+        <div class="col-12 col-sm-12 col-xs-12 col-md-6 col-lg-6  offset-md-3 offset-lg-3">
+            <div class="wrap-icon">
+                <i class="icon-confirmation fa-solid fa-thumbs-up"></i>
+            </div>
+            <div class="wrapinfo-confirmation">
+                <p class="title-confirm">Your order is confirmed!</p>
+                <p class="general-info-confirm">The order <span class="order-info">#00{{orderID}}</span>
+                    has been received and is on its way! Delivery will follow the estimated times in our Terms &
+                    Conditions and Delivery Policy.
+                </p>
+                <p class="general-info-confirm">
+                    Track your order status anytime <span class="order-link" (click)="showOrders()">here</span>.
+                    Thanks for choosing us!
+                </p>
+            </div>
 
-Track your order status anytime here.
+        </div>
 
-Thanks for choosing us!
+    </div>
+</div>
