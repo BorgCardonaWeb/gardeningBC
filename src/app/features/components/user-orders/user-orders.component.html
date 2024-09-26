@@ -7,7 +7,7 @@
           <!-- Column Definitions -->
           <ng-container matColumnDef="OrderID" >
             <th mat-header-cell *matHeaderCellDef  style="text-align: center; color: white !important;" > ORDER </th>
-            <td mat-cell style="text-align: center; ; font-weight: bold;" *matCellDef="let order">#00{{order.OrderID}}</td>
+            <td mat-cell style="text-align: center; ; font-weight: bold;" *matCellDef="let order">{{order.OrderID}}</td>
           </ng-container>
           <ng-container matColumnDef="Status">
             <th mat-header-cell style="color: white !important;" *matHeaderCellDef> DELIVERY STATUS </th>
