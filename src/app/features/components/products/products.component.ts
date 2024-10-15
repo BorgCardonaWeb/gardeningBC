@@ -113,6 +113,9 @@ export class ProductsComponent implements OnInit {
             productsData.forEach((dataItem) => {
               this.addValueAndStockToProducts(dataItem);
             });
+            setTimeout(() => {
+              this.validateStockAndSetValueCero();
+            });
             resolve();
           },
           () => {
@@ -136,6 +139,19 @@ export class ProductsComponent implements OnInit {
       matchingProduct.stockQuantity = dataItem.Quantity;
       matchingProduct.loadindData = false;
     }
+  }
+
+  validateStockAndSetValueCero(){
+    this.products.forEach(element => {
+      if(!element.value){
+        element.value = "0";
+        element.loadindData = false;
+      }
+      if(!element.stockQuantity){
+        element.stockQuantity = 0;
+        element.loadindData = false;
+      }
+    });
   }
 
   chunkArray(array: string[], chunkSize: number): string[][] {
