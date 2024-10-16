@@ -13,7 +13,7 @@
   .collapse-info-data {
     font-weight: 500;
     color: $color-white;
-    background-color: gray;
+    background-color: $color-green-logo;
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
@@ -32,7 +32,7 @@
   margin-top: 30px;
 
   h1 {
-    color: $color-blue-actions-header;
+    color: $color-green-logo;
     font-size: 1.5rem;
     margin-bottom: 30px;
   }

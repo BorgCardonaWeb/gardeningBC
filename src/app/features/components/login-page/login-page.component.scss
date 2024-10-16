@@ -10,28 +10,35 @@
     cursor: not-allowed;
 }
 
-.wrap-spinner{
+.wrap-spinner {
     margin-top: 30px;
     margin-left: 30px;
 }
-.text-danger{
+
+.text-danger {
     color: $color-red-acctions;
 }
+
 .wrap-session {
     padding-bottom: 50px;
 
+    label {
+        font-size: 1rem;
+
+    }
+
     .wrap-login {
-        background-color: $color-gray-actions;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px gray;
-        border: 2px solid $color-blue-tooltip;
-        padding: 20px;
+        background-color: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.3s ease;
+        border: 1px solid $color-yellow-header;
 
         .text-login {
             color: $color-blue-actions-header;
             font-weight: 500;
         }
-
     }
 
     .text-title {
@@ -59,12 +66,27 @@
         label:hover {
             color: $orange-acctions;
         }
-
-
     }
 
 }
 
-.btn-login{
-    width: 100%;
+.btn-login {
+    background: linear-gradient(90deg, #333 0%, #555 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: auto;
+    min-width: 150px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    margin: 10px auto;
+}
+
+.btn-login:hover {
+    background: linear-gradient(90deg, #222 0%, #444 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

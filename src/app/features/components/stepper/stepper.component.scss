@@ -17,10 +17,10 @@
 
   .stepper .step.active {
     font-weight: 500;
-    background-color: $color-blue-tooltip;
+    background-color: $color-yellow-header;
     color: $color-white;
-    border-color: $color-blue-tooltip;
-    border: 1px solid $orange-acctions;
+    border-color: $color-green-logo;
+    border: 2px solid $color-green-logo;
   }
 
   .stepper .step:not(:last-child) {
@@ -33,13 +33,12 @@
   }
 
   .container-step {
-    border-top: 2px solid $orange-acctions;
+    border-top: 2px solid $color-green-logo;
   }
 
   .btn-active-stepper{
     min-width: 95px;
     font-weight: 500;
-    background-color: $color-blue-tooltip;
     color: $color-white;
   }
 
