@@ -58,7 +58,6 @@ export class OrderDetailModalComponent implements OnInit {
     this.productsServicesService.getProductsByIds(idsArray).subscribe(
       (data) => {
         this.products = data;
-        console.log(this.products)
       }
     )
   }
