@@ -40,7 +40,7 @@ export class RestorePasswordComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(20),
-          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
+          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
         ]
       ],
       confirmPassword: ['', Validators.required]
@@ -74,7 +74,7 @@ export class RestorePasswordComponent implements OnInit {
           this.alertSuccess = true;
         },
         () => {
-          this.txtAlertError = "An unexpected error occurred";
+          this.txtAlertError = "Your session has expired. Please request a new password reset link.";
           this.alertSuccess = false;
           this.error = true;
           this.loading = false;
