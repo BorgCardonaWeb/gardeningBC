@@ -6,6 +6,10 @@
   Your account has been successfully created!
 </div>
 
+<div *ngIf="alertForgotSUccess" class="alert alert-success" style="position: absolute;" role="alert">
+  Please reset your password using the link sent to your email.
+</div>
+
 
 <div class="row wrap-session" [ngClass]="{'login-page': !showGeneralInf}">
   <div *ngIf="showGeneralInf" class="col-12">

@@ -19,6 +19,7 @@ export class LoginPageComponent implements OnInit {
   forgotPasswordForm: FormGroup;
 
   showSignupForm = false;
+  alertForgotSUccess = false;
   error = false;
   alertSuccess = false;
   loading = false;
@@ -111,9 +112,15 @@ export class LoginPageComponent implements OnInit {
     if (this.forgotPasswordForm.valid) {
       this.userManagementService.forgotPassword(this.forgotPasswordForm.value.email).subscribe(
         data=> {
+          this.loadingForgotPassword = false;
+          this.alertForgotSUccess = true;
+          setTimeout(() => {
+            this.alertForgotSUccess = false;
+          }, 7000);
         },
         error => {
-          this.errorManagement("An error occurred while trying to recover the password");
+          this.loadingForgotPassword = false;
+          this.errorManagement("User not found");
         });
     }
   }
