@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { userkeystorage } from '../../assets/emuns/const';
+import { environment } from '../../enviroment/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserManagementService {
 
-  private apiUrl = 'http://localhost:3000/auth';
+  private apiUrl = `${environment.apiUrl}/auth'`;
 
   constructor(private http: HttpClient) { }
 
