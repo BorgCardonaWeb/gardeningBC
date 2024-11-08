@@ -10,7 +10,7 @@ import { environment } from '../../enviroment/environment.prod';
 })
 export class UserManagementService {
 
-  private apiUrl = `${environment.apiUrl}/auth'`;
+  private apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) { }
 

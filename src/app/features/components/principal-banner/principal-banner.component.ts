@@ -22,6 +22,7 @@ export class PrincipalBannerComponent implements OnInit {
   }
 
   getAllImages() {
+
     this.productsServicesService.getAllBannerImages().subscribe(
       (data) => {
         this.bannerImages = data;

@@ -17,6 +17,7 @@
           <div *ngFor="let image of bannerImages; let i = index" 
             class="carousel-item" 
             [class.active]="i === 0">
+            <p>{{ getImageSrc(image.image) }}</p>
             <img [src]="getImageSrc(image.image)" class="d-block w-100">
           </div>
         </div>
