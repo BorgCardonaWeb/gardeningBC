@@ -76,7 +76,7 @@ export class UserInfoComponent implements OnInit {
       let token = this.userManagementService.getToken();
 
       if (token) {
-        this.userManagementService.updateUser(updatedUser, token).subscribe(
+        this.userManagementService.updateUser(updatedUser,  this.userData.id, token).subscribe(
           response => {
             this.alertSuccessManagement();
 

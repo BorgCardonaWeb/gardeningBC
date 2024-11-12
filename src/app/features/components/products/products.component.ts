@@ -82,8 +82,8 @@ export class ProductsComponent implements OnInit {
 
         this.categoriesService.getProductsByFilter(_data).pipe(take(1)).subscribe(
           (data: any) => {
-            this.products = data;
-            this.getProductDetails(data);
+            this.products = data.products;
+            this.getProductDetails(data.products);
           },
           () => {
             this.showErrorAlert()
@@ -109,8 +109,8 @@ export class ProductsComponent implements OnInit {
     const processChunk = (chunk: string[]) => {
       return new Promise<void>((resolve) => {
         this.productsServicesService.getProductsBySKUArray(chunk).subscribe(
-          productsData => {
-            productsData.forEach((dataItem) => {
+          (productsData: any )=> {
+            productsData.data.forEach((dataItem: any) => {
               this.addValueAndStockToProducts(dataItem);
             });
             setTimeout(() => {

@@ -39,8 +39,7 @@ export class RestorePasswordComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.maxLength(20),
-          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+          Validators.maxLength(20)
         ]
       ],
       confirmPassword: ['', Validators.required]

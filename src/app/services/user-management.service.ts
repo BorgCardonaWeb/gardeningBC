@@ -20,7 +20,7 @@ export class UserManagementService {
 
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
-      tap((response: any) => {
+      tap((response: any) => {        
         localStorage.setItem('token', response.token);
         localStorage.setItem(userkeystorage, JSON.stringify(response.user));
       })
@@ -48,11 +48,11 @@ export class UserManagementService {
     return this.http.post(`${this.apiUrl}/reset-password`, data);
   }
 
-  updateUser(user: any, token: string): Observable<any> {
+  updateUser(user: any, id:any, token: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.put(`${this.apiUrl}/update-user`, user, { headers });
+    return this.http.put(`${this.apiUrl}/users/${id}`, user, { headers });
   }
 }

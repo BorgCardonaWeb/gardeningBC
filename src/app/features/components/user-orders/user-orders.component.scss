@@ -2,6 +2,13 @@
 
 .wrap-orders-panel {
 
+  .txt-searching-error {
+    color: gray;
+    font-size: 1.5rem;
+    margin-top: 50px;
+}
+
+
   .title-table-info {
     color: $color-blue-actions-header !important;
   }
