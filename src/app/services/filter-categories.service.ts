@@ -48,7 +48,8 @@ export class FilterCategoriesService {
   }
 
   getCountryCodes(): Observable<any[]> {
-    return this.http.get<any[]>('/assets/data/country-codes.json');
+    const url = `/assets/data/country-codes.json?timestamp=${new Date().getTime()}`;
+    return this.http.get<any[]>(url);
   }
 
   getProductsByFilter(filter: string): Observable<any[]> {

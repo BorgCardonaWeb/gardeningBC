@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToInitLogo() {
-    this.router.navigate(["home"]);
+    this.router.navigate(['']);
   }
 
   getCounterProducts() {
@@ -115,7 +115,7 @@ export class HeaderComponent implements OnInit {
     this.products = [];
     this.showLogout = false;
     this.showUserPanel.emit(false);
-    this.router.navigate(["home"]);
+    this.router.navigate(['']);
   }
 
 }

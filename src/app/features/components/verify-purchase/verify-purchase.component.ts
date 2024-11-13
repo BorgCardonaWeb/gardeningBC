@@ -47,7 +47,7 @@ export class VerifyPurchaseComponent {
     setTimeout(() => {
       if (this.cartItems.length < 1) {
         this.generalInfoServiceService.closeModal();
-        this.router.navigate(["home"]);
+        this.router.navigate(['']);
       }
     });
 

@@ -5,6 +5,8 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 import { GeneralInfoServiceService } from '../../../services/general-info-service.service';
 import { UserManagementService } from '../../../services/user-management.service';
 import { userModel } from '../../models/models';
+import countriesJson from '../../../../assets/data/country-codes.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -48,7 +50,8 @@ export class LoginPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private categoriesService: FilterCategoriesService,
     private generalInfoServiceService: GeneralInfoServiceService,
-    private userManagementService: UserManagementService) {
+    private userManagementService: UserManagementService, 
+    private router: Router) {
 
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -84,17 +87,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCountryCodes();
-  }
-
-  getCountryCodes() {
-    this.categoriesService.getCountryCodes().subscribe(
-      data => {
-        this.countryCodes = data;
-      },
-      error => {
-      }
-    );
+    this.countryCodes = countriesJson;
   }
 
   hideForgotPassword(){
@@ -130,6 +123,7 @@ export class LoginPageComponent implements OnInit {
       this.categoriesService.updateUserLoginData(response.user);
       this.generalInfoServiceService.closeModal();
       this.loading = false
+      this.router.navigate(['']);
     }, error => {
       this.errorManagement("Invalid username or password");
     });

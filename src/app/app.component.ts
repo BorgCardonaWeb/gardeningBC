@@ -43,7 +43,7 @@ export class AppComponent {
   }
 
   loadHomePage(data: any){
-    this.router.navigate(["home"]);
+    this.router.navigate(['']);
   }
 
 }

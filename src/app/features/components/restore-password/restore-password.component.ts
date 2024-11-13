@@ -87,7 +87,7 @@ export class RestorePasswordComponent implements OnInit {
   }
 
   openModal(type: number, option: string) {
-    this.router.navigate(["home"]);
+    this.router.navigate(['']);
     this.generalInfoServiceService.openModal(type, option);
   }
 
