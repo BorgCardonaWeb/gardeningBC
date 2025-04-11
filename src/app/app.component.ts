@@ -28,6 +28,7 @@ export class AppComponent {
   categories: any;
   showProducts = false;
   showUserPanelData = false;
+  showHomePage = false;
 
   constructor(private categoriesService: FilterCategoriesService, private router: Router) {
   }
@@ -44,6 +45,7 @@ export class AppComponent {
 
   loadHomePage(data: any){
     this.router.navigate(['']);
+    this.showHomePage = !this.showHomePage;
   }
 
 }

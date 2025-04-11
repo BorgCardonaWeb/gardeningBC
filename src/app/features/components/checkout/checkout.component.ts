@@ -10,6 +10,13 @@ import { StepperComponent } from '../stepper/stepper.component';
 })
 export class CheckoutComponent {
 
-  constructor() { }
+  constructor() {
+    const modal = document.getElementById('modal-element');
+    if (modal) {
+      modal.style.display = 'none';
+
+    }
+
+  }
 
 }
