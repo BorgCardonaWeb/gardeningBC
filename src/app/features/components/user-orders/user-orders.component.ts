@@ -48,7 +48,7 @@ export class UserOrdersComponent implements OnInit {
   }
 
   goToInit() {
-    this.router.navigate(["home"]);
+    this.router.navigate(['']);
   }
 
   getInitialData() {

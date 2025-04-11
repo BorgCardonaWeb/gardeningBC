@@ -30,6 +30,8 @@
     }
 
     .wrap-searcher-box {
+        position: absolute;
+        margin-top: 35px;
         border: 2px solid $color-border-shadow;
         z-index: 90;
         background-color: $color-white;

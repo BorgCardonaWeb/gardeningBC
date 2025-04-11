@@ -1,7 +1,7 @@
 @import "../../../../styles.scss";
 
 .wrap-products {
-    margin-bottom: 400px;
+    padding-bottom: 200px;
 
     .icon-detail{
         font-size: 1.063rem;
@@ -11,7 +11,7 @@
     }
 
     h1 {
-        color: $color-blue-actions-header;
+        color: $color-green-logo;
         font-size: 1.5rem;
         margin-bottom: 20px;
     }
@@ -27,7 +27,7 @@
     }
 
     .card {
-        border: 1px solid $color-blue-tooltip;
+        border: 1px solid $color-yellow-header;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
@@ -76,7 +76,7 @@
 
     .wrap-btn-cart {
         border-radius: 0px 0px 5px 5px;
-        background-color: $orange-acctions;
+        background-color: $color-yellow-header;
         color: $color-white;
         font-weight: 500;
         text-align: center;
@@ -94,7 +94,7 @@
     }
 
     .wrap-btn-cart:hover {
-        background-color: $color-red-acctions;
+        background-color: $orange-acctions;
     }
 
     .wrap-spinner {

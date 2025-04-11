@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserManagementService } from '../../../services/user-management.service';
 import { valueDefaultIsland } from '../../../../assets/emuns/const';
 import { CommonModule } from '@angular/common';
+import countriesJson from '../../../../assets/data/country-codes.json';
 
 @Component({
   selector: 'app-verify-contact-purchase',
@@ -66,7 +67,7 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.getUserData();
-    this.getCountryCodes();
+    this.countryCodes = countriesJson;
   }
 
   getUserData() {
@@ -119,9 +120,6 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
     this.showPriceWarning = selectedIsland === valueDefaultIsland;
   }
 
-
-
-
   alertSuccessManagement() {
     this.loading = false;
     this.alertSuccess = true;
@@ -136,18 +134,6 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
     setTimeout(() => {
       this.alertError = false;
     }, 5000);
-  }
-
-
-  getCountryCodes() {
-    this.categoriesService.getCountryCodes().subscribe(
-      data => {
-        this.countryCodes = data;
-      },
-      error => {
-        this.showErrorAlert('Error fetching country codes');
-      }
-    );
   }
 
   validateDetails() {

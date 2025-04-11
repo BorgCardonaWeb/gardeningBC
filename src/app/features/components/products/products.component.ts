@@ -82,8 +82,8 @@ export class ProductsComponent implements OnInit {
 
         this.categoriesService.getProductsByFilter(_data).pipe(take(1)).subscribe(
           (data: any) => {
-            this.products = data;
-            this.getProductDetails(data);
+            this.products = data.products;
+            this.getProductDetails(data.products);
           },
           () => {
             this.showErrorAlert()
@@ -109,9 +109,12 @@ export class ProductsComponent implements OnInit {
     const processChunk = (chunk: string[]) => {
       return new Promise<void>((resolve) => {
         this.productsServicesService.getProductsBySKUArray(chunk).subscribe(
-          productsData => {
-            productsData.forEach((dataItem) => {
+          (productsData: any )=> {
+            productsData.data.forEach((dataItem: any) => {
               this.addValueAndStockToProducts(dataItem);
+            });
+            setTimeout(() => {
+              this.validateStockAndSetValueCero();
             });
             resolve();
           },
@@ -136,6 +139,19 @@ export class ProductsComponent implements OnInit {
       matchingProduct.stockQuantity = dataItem.Quantity;
       matchingProduct.loadindData = false;
     }
+  }
+
+  validateStockAndSetValueCero(){
+    this.products.forEach(element => {
+      if(!element.value){
+        element.value = "0";
+        element.loadindData = false;
+      }
+      if(!element.stockQuantity){
+        element.stockQuantity = 0;
+        element.loadindData = false;
+      }
+    });
   }
 
   chunkArray(array: string[], chunkSize: number): string[][] {

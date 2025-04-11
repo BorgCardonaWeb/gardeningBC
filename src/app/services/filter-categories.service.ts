@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { categoriesKeyStorage, productsKeyStorage } from '../../assets/emuns/const';
@@ -36,7 +36,7 @@ export class FilterCategoriesService {
   apiUrl = `${environment.apiUrl}`;
 
   getCategories(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/categories`);
+       return this.http.get<any>(`${this.apiUrl}/categories`);
   }
 
   getAllProducts(): Observable<any> {
@@ -48,7 +48,8 @@ export class FilterCategoriesService {
   }
 
   getCountryCodes(): Observable<any[]> {
-    return this.http.get<any[]>('/assets/data/country-codes.json');
+    const url = `/assets/data/country-codes.json?timestamp=${new Date().getTime()}`;
+    return this.http.get<any[]>(url);
   }
 
   getProductsByFilter(filter: string): Observable<any[]> {

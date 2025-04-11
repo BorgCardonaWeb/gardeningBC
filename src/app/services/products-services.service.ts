@@ -21,4 +21,9 @@ export class ProductsServicesService {
     return this.http.post(url, { productIds });
   }
 
+  getAllBannerImages(): Observable<any> {
+    const url = `${this.apiUrl}/products/allBannerImages`;
+    return this.http.get(url);
+  }
+
 }

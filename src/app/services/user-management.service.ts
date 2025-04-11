@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { userkeystorage } from '../../assets/emuns/const';
+import { environment } from '../../enviroment/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserManagementService {
 
-  private apiUrl = 'http://localhost:3000/auth';
+  private apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +20,7 @@ export class UserManagementService {
 
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
-      tap((response: any) => {
+      tap((response: any) => {        
         localStorage.setItem('token', response.token);
         localStorage.setItem(userkeystorage, JSON.stringify(response.user));
       })
@@ -47,11 +48,11 @@ export class UserManagementService {
     return this.http.post(`${this.apiUrl}/reset-password`, data);
   }
 
-  updateUser(user: any, token: string): Observable<any> {
+  updateUser(user: any, id:any, token: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.put(`${this.apiUrl}/update-user`, user, { headers });
+    return this.http.put(`${this.apiUrl}/users/${id}`, user, { headers });
   }
 }

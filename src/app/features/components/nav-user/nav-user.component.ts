@@ -67,7 +67,7 @@ export class NavUserComponent implements OnInit {
 
   goToInit() {
     this.activeTab = '';
-    this.router.navigate(["home"]);
+    this.router.navigate(['']);
   }
 
   private setActiveTabBasedOnRoute() {

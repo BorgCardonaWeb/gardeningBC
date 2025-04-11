@@ -5,6 +5,7 @@ import { FilterCategoriesService } from '../../../services/filter-categories.ser
 import { Router } from '@angular/router';
 import { UserManagementService } from '../../../services/user-management.service';
 import { userkeystorage } from '../../../../assets/emuns/const';
+import countriesJson from '../../../../assets/data/country-codes.json';
 
 @Component({
   selector: 'app-user-info',
@@ -42,7 +43,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCountryCodes();
+    this.countryCodes = countriesJson;
     this.getUserData();
   }
 
@@ -76,7 +77,7 @@ export class UserInfoComponent implements OnInit {
       let token = this.userManagementService.getToken();
 
       if (token) {
-        this.userManagementService.updateUser(updatedUser, token).subscribe(
+        this.userManagementService.updateUser(updatedUser,  this.userData.id, token).subscribe(
           response => {
             this.alertSuccessManagement();
 
@@ -128,19 +129,7 @@ export class UserInfoComponent implements OnInit {
     }, 5000);
   }
 
-
-  getCountryCodes() {
-    this.categoriesService.getCountryCodes().subscribe(
-      data => {
-        this.countryCodes = data;
-      },
-      error => {
-        this.showErrorAlert('Error fetching country codes');
-      }
-    );
-  }
-
   goToInit() {
-    this.router.navigate(['home']);
+    this.router.navigate(['']);
   }
 }

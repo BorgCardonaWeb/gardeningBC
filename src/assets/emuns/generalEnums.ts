@@ -24,8 +24,10 @@ export enum orderStatus {
   pending = "Pending",
   rejected = "Rejected",
   sended = "Sended",
-  delivered = "Delivered"
+  delivered = "Delivered",
+  preparing = "Preparing",
 }
+
 
 export enum paymentType {
   card = "Card",

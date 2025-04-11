@@ -24,8 +24,8 @@
                                                 <label class="counter-txt">{{product.quantities}}</label>
 
                                                 <label *ngIf="product.quantities < product.stockQuantity"
-                                                    class="simbol-txt" (click)="addCounterProduct(i)"><i
-                                                        class="fa-solid fa-plus"></i></label>
+                                                    class="simbol-txt"><i
+                                                        class="fa-solid fa-plus" (click)="addCounterProduct(i)"></i></label>
 
                                                 <label *ngIf="product.quantities >= product.stockQuantity"
                                                     class="simbol-txt"><i class="fa-solid fa-plus"></i></label>
