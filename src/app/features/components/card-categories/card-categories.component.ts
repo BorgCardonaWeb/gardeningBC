@@ -1,4 +1,4 @@
-import { Component, Input, HostListener, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, HostListener, Output, EventEmitter, OnInit, ChangeDetectorRef } from '@angular/core';
 import { categorie } from '../../models/models';
 import { CommonModule } from '@angular/common';
 import { FilterCategoriesService } from '../../../services/filter-categories.service';
@@ -21,7 +21,7 @@ export class CardCategoriesComponent implements OnInit {
   currentCategorie!: string;
   testProducts: any[] = [];
 
-  constructor(private categoriesService: FilterCategoriesService) {
+  constructor(private categoriesService: FilterCategoriesService, private cdRef: ChangeDetectorRef) {
 
   }
 
@@ -39,9 +39,11 @@ export class CardCategoriesComponent implements OnInit {
   }
 
   toggleSubMenu(index: number) {
+    
     this.currentCategorie = `categorie-${index}`;
     this.closeSubMenu();
     this.categories[index].showSubMenu = !this.categories[index].showSubMenu;
+    this.cdRef.detectChanges();
   }
 
   closeSubMenu() {
