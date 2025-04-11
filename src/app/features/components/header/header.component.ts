@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToInitLogo() {
-    this.router.navigate(['']);
+    this.initPageLogo.emit(true);
   }
 
   getCounterProducts() {
@@ -117,5 +117,6 @@ export class HeaderComponent implements OnInit {
     this.showUserPanel.emit(false);
     this.router.navigate(['']);
   }
+
 
 }
