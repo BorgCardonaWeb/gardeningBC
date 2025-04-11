@@ -3,26 +3,25 @@
   <div class="row">
     <ng-container *ngFor="let categorie of categories; index as i;">
       <ng-container *ngIf="categorie.stock">
-        <div class="content-card-info col-12 col-md-6 col-lg-3 mb-4">
-          <div id="categorie-{{i}}" class="card mb-3 mx-auto category-card" (click)="toggleSubMenu(i)">
-            <img src="./assets/images/categories/{{categorie.image}}" class="content-img card-img-top"
-              alt="Category Image">
-            <div class="card-body">
-              <h5 class="card-title">{{categorie.name}}</h5>
-              <span *ngIf="categorie.showSubMenu" class="submenu">
-                <ul>
-                  <span *ngFor="let subcategorie of categorie.subcategories; index as i;">
-                    <li *ngIf="subcategorie.stock" (click)="getProductsByCategorie(categorie, subcategorie)">
-                      <i class="fa-solid fa-bars" style="margin-right: 5px; margin-top: 5px;"></i> {{subcategorie.name}}
-                    </li>
-                  </span>
-                </ul>
-              </span>
+        <div class="card h-100 d-flex flex-column col-12 col-md-6 col-lg-3 mb-4">
+          <div class="app-card" id="categorie-{{i}}" (click)="toggleSubMenu(i)">
+            <img src="./assets/images/categories/{{categorie.image}}" class="card-img-top app-card__img">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title app-card__title">{{categorie.name}}</h5>
+              <ul class="submenu" [class.open]="categorie.showSubMenu">
+                <span *ngFor="let subcategorie of categorie.subcategories; index as i;">
+                  <li *ngIf="subcategorie.stock"
+                    (click)="getProductsByCategorie(categorie, subcategorie); $event.stopPropagation()">
+                    <i class="fa-solid fa-bars" style="margin-right: 5px; margin-top: 5px;"></i> {{subcategorie.name}}
+                  </li>
+                </span>
+              </ul>
             </div>
           </div>
         </div>
       </ng-container>
     </ng-container>
   </div>
-</div>
 
+
+</div>

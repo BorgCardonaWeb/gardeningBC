@@ -12,6 +12,7 @@ export class ProductDetailComponent implements OnInit {
 
   @Input() shortDescription: any;
   @Input() description: any;
+  @Input() img: any;
 
   constructor() { }
 
@@ -26,6 +27,5 @@ export class ProductDetailComponent implements OnInit {
     }
     return text.trim();
   }
-
 
 }
