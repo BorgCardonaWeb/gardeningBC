@@ -1,5 +1,5 @@
 
-<div class="col-12" style="background-color: #F0EEE5;">
+<div class="col-12" style="background-color: #FCF0D6;">
     <app-header (showUserPanel)="showUserPanelComponent($event)" (initPageLogo)="loadHomePage($event)"></app-header>
     <app-nav-user *ngIf="showUserPanelData"></app-nav-user>
     <router-outlet *ngIf="showHomePage"></router-outlet>
