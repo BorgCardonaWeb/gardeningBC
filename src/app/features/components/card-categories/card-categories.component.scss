@@ -15,12 +15,13 @@
 
     .card {
         color: $color-white;
-        background-color: #F0EEE5;
+        background-color: #FCF0D6;
         word-break: break-all;
         border: 1px solid transparent;
         position: relative;
         overflow: visible;
     }
+
 
     .app-card {
         display: flex;
@@ -31,7 +32,7 @@
         z-index: 1;
         cursor: pointer;
 
-         &:hover {
+        &:hover {
             transform: scale(1.05);
 
             .card-text {
@@ -72,7 +73,6 @@
             overflow: hidden;
             transition: max-height 0.4s ease-in-out, opacity 0.3s ease;
             opacity: 0;
-            z-index: 1;
             padding: 10px;
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
@@ -93,8 +93,6 @@
             color: $color-yellow-header;
         }
 
-
     }
-
 
 }
