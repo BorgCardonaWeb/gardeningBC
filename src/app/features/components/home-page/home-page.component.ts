@@ -11,6 +11,7 @@ import { Component, OnInit } from "@angular/core";
 import { FilterCategoriesService } from "../../../services/filter-categories.service";
 import { LocalStorageService } from "../../../services/local-storage.service";
 import { NewsAndEventsComponent } from "../news-and-events/news-and-events.component";
+import { NewEventsComponent } from "../new-events/new-events.component";
 
 @Component({
   selector: 'app-home-page',
@@ -26,7 +27,8 @@ import { NewsAndEventsComponent } from "../news-and-events/news-and-events.compo
     BreadcrumbComponent,
     NavUserComponent,
     HomePageComponent,
-    NewsAndEventsComponent
+    NewsAndEventsComponent,
+    NewEventsComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
