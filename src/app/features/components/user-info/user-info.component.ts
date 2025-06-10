@@ -35,7 +35,7 @@ export class UserInfoComponent implements OnInit {
       lastName: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
-      postalCode: ['', [Validators.required, Validators.pattern(/^[A-Z]{2,3}\d{1,4}$/)]],
+      postalCode: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{3}\s?\d{4}$/)]],
       phonePrefix: ['+356'],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       email: ['', [Validators.required, Validators.email]],
