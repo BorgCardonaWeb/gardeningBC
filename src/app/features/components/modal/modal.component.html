@@ -13,7 +13,7 @@
         <app-shopping-cart *ngIf="type == 4"></app-shopping-cart>
         <app-login-page [showGeneralInf]="true" id="{{type}}" *ngIf="type == 5"></app-login-page>
         <app-login-page [showGeneralInf]="false" id="{{type}}" *ngIf="type == 6"></app-login-page>
-        <app-product-detail id="{{type}}" *ngIf="type == 7" [shortDescription]="shortDescription" [description]="description"></app-product-detail>
+        <app-product-detail id="{{type}}" *ngIf="type == 7" [shortDescription]="shortDescription" [description]="description" [img]="img"></app-product-detail>
         <app-order-detail-modal  *ngIf="type == 8" [orderNumber]="shortDescription" ></app-order-detail-modal>
     </div>
 </div>

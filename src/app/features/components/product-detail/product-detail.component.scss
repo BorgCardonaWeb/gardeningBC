@@ -4,4 +4,11 @@
     color: black;
     padding: 20px;
     line-height: 2;
+
+    .img-product {
+        max-width: 100%;
+        height: auto;
+        max-height: 150px; 
+        object-fit: contain;
+    }
 }

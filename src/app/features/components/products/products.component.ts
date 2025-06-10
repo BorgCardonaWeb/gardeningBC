@@ -218,6 +218,6 @@ export class ProductsComponent implements OnInit {
   }
 
   openModal(product: any) {
-    this.generalInfoServiceService.openModal(this.productModal, product.name, product.shortDescription, product.description);
+    this.generalInfoServiceService.openModal(this.productModal, product.name, product.shortDescription, product.description, this.getImageSrc(product.image));
   }
 }

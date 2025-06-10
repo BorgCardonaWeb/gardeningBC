@@ -6,6 +6,7 @@
     <app-card-categories *ngIf="categories?.length > 0 && !showProducts" [categories]="categories"
         (categoriAndSubcategoriSelected)="findProducts($event)"></app-card-categories>
 
-   <app-principal-banner *ngIf="!showProducts"></app-principal-banner>
     <app-products *ngIf="showProducts"></app-products>
+    <app-principal-banner *ngIf="!showProducts"></app-principal-banner>   
+ 
 </div>

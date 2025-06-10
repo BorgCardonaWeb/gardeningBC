@@ -34,6 +34,7 @@ export class ModalComponent {
   type: number | null = null;
   shortDescription: number | null = null;
   description: number | null = null;
+  img: number | null = null;
   constructor(public modalRef: MdbModalRef<ModalComponent>) { }
 
 }

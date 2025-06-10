@@ -3,16 +3,8 @@
 
 
 .wrap-categories {
-    cursor: pointer;
     font-size: 1.188rem;
 
-    .content-card-info{
-      
-    }
-
-    .content-img{
-        max-height: 285px !important;
-    }
 
     h1 {
         color: $color-green-logo;
@@ -20,67 +12,87 @@
         margin-bottom: 20px;
     }
 
+
     .card {
         color: $color-white;
-        background-color: $color-yellow-header;
+        background-color: #FCF0D6;
         word-break: break-all;
+        border: 1px solid transparent;
+        position: relative;
+        overflow: visible;
     }
 
-    .card:hover {
-        .card-text {
-            font-weight: 500;
+
+    .app-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        transition: transform 0.3s ease-in-out;
+        position: relative;
+        z-index: 0;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.05);
+
+            .card-text {
+                font-weight: 500;
+            }
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            background-color: $color-yellow-header;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 5px 5px;
+        }
+
+        .app-card__title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            color: $color-green-logo;
+        }
+
+        .app-card__img {
+            object-fit: cover;
+            width: 100%;
+            height: 15rem;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease;
+            opacity: 0;
+            padding: 10px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .submenu.open {
+            max-height: 300px;
+            opacity: 1;
+            background-color: $color-green-logo;
+            color: $color-white;
+        }
+
+        li:hover {
             cursor: pointer;
         }
 
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s,
-        box-shadow 0.3s;
-
-        img {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-            border-radius: 5px 5px 5px 5px;
+        li:hover {
+            color: $color-yellow-header;
         }
-    }
 
-
-    .submenu {
-        padding-top: 10px;
-        color: $orange-acctions;
-        width: 100%;
-        position: absolute;
-        top: calc(100% + 0px);
-        left: 0;
-        background-color: $color-white;
-        border: 1px solid $color-white;
-        z-index: 9999;
-        border-radius: 0 0 5px 5px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        font-size: 1rem;
-        font-weight: 500;
-
-    }
-
-    .submenu ul {
-        list-style-type: none;
-        list-style: url ("./assets/icons/icon-collapse.svg");
-        padding-left: 15px;
-    }
-
-    .submenu ul li:before {
-        color: $color-orage-strong;
-        display: inline-block;
-        width: 1em;
-        margin-left: -1em;
-    }
-
-    li:hover {
-        font-weight: bold;
-        color: $color-orage-strong;
-    }
-
-    .card-title{
-        font-size: 1.25rem;
     }
 
 }
