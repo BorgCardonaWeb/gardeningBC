@@ -113,8 +113,7 @@
         <input id="signupPostalCode" class="form-control" formControlName="postalCode">
         <div *ngIf="signupForm.get('postalCode')?.invalid && signupForm.get('postalCode')?.touched" class="text-danger">
           <small *ngIf="signupForm.get('postalCode')?.errors?.['required']">Postal Code is required.</small>
-          <small *ngIf="signupForm.get('postalCode')?.errors?.['pattern']">Postal Code must match the pattern
-            'MXR1363'.</small>
+          <small *ngIf="signupForm.get('postalCode')?.errors?.['pattern']">Please enter a valid postal code format (3 letters followed by 4 digits)</small>
         </div>
       </div>
 
