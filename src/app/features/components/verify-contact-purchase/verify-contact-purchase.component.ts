@@ -37,7 +37,7 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
     this.signupForm = this.fb.group({
       address: ['', Validators.required],
       city: ['', Validators.required],
-      postalCode: ['', [Validators.required, Validators.pattern(/^[A-Z]{2,3}\d{1,4}$/)]],
+      postalCode: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{3}\s?\d{4}$/)]],
       phonePrefix: ['+356'],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       deliveryNote: [''],
@@ -65,10 +65,10 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
   }
 
 
-  ngAfterViewInit(): void {
-    this.getUserData();
-    this.countryCodes = countriesJson;
-  }
+ ngAfterViewInit(): void {
+  this.countryCodes = countriesJson;
+  this.getUserData(); 
+}
 
   getUserData() {
     if (this.summaryData) {
@@ -81,7 +81,6 @@ export class VerifyContactPurchaseComponent implements AfterViewInit {
   }
 
   getUserDataByForm() {
-
     this.signupForm.patchValue({
       island: this.summaryData.island,
       address: this.summaryData.address,

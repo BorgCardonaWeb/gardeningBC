@@ -31,13 +31,14 @@ export class SearcherComponent {
 
   restrictSpecialChars(event: any) {
     const input = event.target as HTMLInputElement;
-    const filteredValue = input.value.replace(/[^a-zA-Z0-9 ]/g, '');
+    const filteredValue = input.value.replace(/[^a-zA-Z0-9 ]/g, '').trim();
     this.searcherProduct.set(filteredValue);
     input.value = filteredValue; // Update the input value to the filtered one
   }
 
   filterProductProsses() {
-    if (this.searcherProduct().length > 0) {
+    const trimmedValue = this.searcherProduct().trim(); 
+    if (trimmedValue.length > 0) {
       this.filterProductBySearchingControl();
       this.showOrHideNoProductsMessagges();
       this.showSearcherBox = true;
@@ -67,6 +68,9 @@ export class SearcherComponent {
     this.showSearcherBox = false;
     this.showSearcherBoxError = false;
     this.searcherProduct.set(nameProductSelected);
+    setTimeout(() => {
+      this.emmitSearching();
+    });
   }
 
   getProducts() {

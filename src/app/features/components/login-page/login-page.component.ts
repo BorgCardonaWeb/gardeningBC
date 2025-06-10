@@ -50,7 +50,7 @@ export class LoginPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private categoriesService: FilterCategoriesService,
     private generalInfoServiceService: GeneralInfoServiceService,
-    private userManagementService: UserManagementService, 
+    private userManagementService: UserManagementService,
     private router: Router) {
 
     this.forgotPasswordForm = this.fb.group({
@@ -70,7 +70,7 @@ export class LoginPageComponent implements OnInit {
       lastName: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
-      postalCode: ['', [Validators.required, Validators.pattern(/^[A-Z]{2,3}\d{1,4}$/)]],
+      postalCode: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{3}\s?\d{4}$/)]],
       phonePrefix: ['+356'], // Default value
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       email: ['', [Validators.required, Validators.email]],
@@ -90,7 +90,7 @@ export class LoginPageComponent implements OnInit {
     this.countryCodes = countriesJson;
   }
 
-  hideForgotPassword(){
+  hideForgotPassword() {
     this.showForgotPassword = false;
   }
 
@@ -104,7 +104,7 @@ export class LoginPageComponent implements OnInit {
     this.loadingForgotPassword = true;
     if (this.forgotPasswordForm.valid) {
       this.userManagementService.forgotPassword(this.forgotPasswordForm.value.email).subscribe(
-        data=> {
+        data => {
           this.loadingForgotPassword = false;
           this.alertForgotSUccess = true;
           setTimeout(() => {
@@ -172,7 +172,12 @@ export class LoginPageComponent implements OnInit {
         this.hideSuccessAlert();
       },
       error => {
-        this.errorManagement("An unexpected error occurred while creating the account");
+        if (error.status === 400) {
+          this.errorManagement('This email is already registered');
+        } else {
+          this.errorManagement('An unexpected error occurred while creating the account');
+        }
+
       }
     )
   }
